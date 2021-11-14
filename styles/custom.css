@@ -1,0 +1,35 @@
+* .i {
+  background-color: rgb(255, 209, 216);
+}
+
+* .table {
+  width: 100%;
+}
+
+* .col-checkbox {
+  width: 1%;
+}
+
+* .col-brand {
+  width: 17%;
+}
+
+* .col-type {
+  width: 10%;
+}
+
+* .col-colorcode {
+  width: 10%;
+}
+
+* .col-brandcode {
+  width: 15%;
+}
+
+* .col-image {
+  width: 100%;
+}
+
+* .col-manage {
+  width: 10%;
+}
