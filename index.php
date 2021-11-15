@@ -30,22 +30,6 @@
           <button class="btn btn-primary" type="button">WISHLIST</button>
         </div>
 
-        <div class="id_card1 mt-2">
-          <div class="col-5 p-2 d-flex flex-column position-static">
-            <div class="col p-1">
-              <div class="square">
-                <img src="images/jeD68CBDXAs.jpg">
-              </div>
-            </div>
-          </div>
-          <div class="col-7 pt-3 d-flex flex-column position-static">
-            <a href="#" class="user-name">Helena Meadows</a>
-            <p class="registered">registered 13 days ago</p>
-            <a href="#" class="idcard_links">Change account</a>
-            <a href="#" class="idcard_links">Settings</a>
-          </div>
-        </div>
-
 
         <div class="d-grid gap-2 mt-5 mb-2">
           <button class="btn btn-primary" type="button">SEND FEEDBACK</button>
