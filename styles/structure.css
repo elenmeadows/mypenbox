@@ -130,7 +130,8 @@ body {
     color: var(--clr);
     text-transform: lowercase;
     margin: 0;
-    font-size: clamp(min, ideal, max);
+    font-size: clamp(min, prefered, max);
+    font-size: clamp(3rem, 10vw, 7rem); /*=viewport width*/
 }
 
 .header {
@@ -195,7 +196,7 @@ footer { grid-area: footer; }
 .grid {
     display: grid;
     grid=template-columns: 200px 1fr;
-    grid=gap: 10px;
+    grid-gap: 10px;
 }
 
 .title {
