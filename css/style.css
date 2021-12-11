@@ -135,8 +135,9 @@ header {
     grid-area: header;
     width: 100%;
     min-height: 3.2rem;
+    position: fixed;
+    top: 0;
     background-color: var(--clr-header);
-    z-index: 1000;
 }
 
 .main-logo {
@@ -212,9 +213,11 @@ header {
     width: 100%;
     height: fit-content;
     text-align: center;
+    position: fixed;
+    top: 3.2rem;
+    z-index: 1000;
     padding: 1rem 8%;
     background-color: orange;
-    z-index: 1000;
 }
 
 .feedback-b { flex: 1 100%; }
