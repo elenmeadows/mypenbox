@@ -137,6 +137,7 @@ header {
     min-height: 3.2rem;
     position: fixed;
     top: 0;
+    z-index: 1100;
     background-color: var(--clr-header);
 }
 
@@ -216,8 +217,8 @@ header {
     position: fixed;
     top: 3.2rem;
     z-index: 1000;
-    padding: 1rem 8%;
-    background-color: orange;
+    padding: 1.3rem 8%;
+    background-color: var(--clr-header);
 }
 
 .feedback-b { flex: 1 100%; }
@@ -228,7 +229,7 @@ header {
     display: block;
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--clr-primary);
+    color: var(--clr-accent-1);
     text-transform: uppercase;
     text-align: center;
     padding: 0.825rem 0;
@@ -239,7 +240,7 @@ header {
 .settings a:hover {
     background-color: var(--clr-accent-1);
     color: #FFF;
-    border: 0.11rem solid currentColor;
+    border: 0.11rem solid var(--clr-header);
     transition-duration: 0.4s;
     cursor: pointer;
 }
@@ -247,7 +248,7 @@ header {
 .settings a:active {
     background-color: var(--clr-accent-2);
     color: #FFF;
-    border: 0.11rem solid currentColor;
+    border: 0.11rem solid var(--clr-header);
     transform: scale(0.98);
     transition-duration: 0.4s;
     cursor: pointer;
@@ -257,8 +258,8 @@ header {
     display: inline-block;
     flex: 4 100%;
     font-size: 0.9rem;
-    color: #5E5E5E;
-    padding: 0.5rem 0;
+    color: rgba(230, 223, 239, 0.5);
+    padding: 0.7rem 0 0.5rem;
 }
 
 .laptop-account {
@@ -274,7 +275,7 @@ header {
 .main-nav {
     grid-area: main-nav;
     height: fit-content;
-    margin: 2rem 0 0;
+    margin: 4rem 0 0;
     z-index: 500;
 }
 
@@ -381,4 +382,7 @@ header {
         background-color: green;
     }
 
+    .main-nav {
+        margin: 0.5rem 0 0;
+    }
 }
