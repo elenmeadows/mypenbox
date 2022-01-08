@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 *,
 *::before,
@@ -18,7 +18,7 @@
     --clr-search: #E6DFEF;
 
     --ff-raleway: "Raleway", Helvetica, sans-serif;
-    --ff-quicksand: "Quicksand", Helvetica, sans-serif;
+    --ff-montserrat: "Montserrat", Helvetica, sans-serif;
 }
 
 html, body, div, span, object, iframe,
@@ -207,7 +207,7 @@ header {
 
 .settings {
     grid-area: settings;
-    display: flex;
+    display: none;
     flex-flow: row wrap;
     gap: 0.5rem;
     width: 100%;
@@ -325,15 +325,12 @@ header {
 }
 
 .greeting {
-    font-family: var(--ff-quicksand);
+    font-family: var(--ff-montserrat);
     font-size: 3.5rem;
-    text-transform: uppercase;
-    text-shadow:
-    -1px -1px 0 var(--clr-primary),
-    1px -1px 0 var(--clr-primary),
-    -1px 1px 0 var(--clr-primary),
-    1px 1px 0 var(--clr-primary);
-    color: #FFF;
+    text-transform: lowercase;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
+    color: rgba(0, 0, 0, 0);
     margin: 2rem 2rem 1rem;
 }
 
