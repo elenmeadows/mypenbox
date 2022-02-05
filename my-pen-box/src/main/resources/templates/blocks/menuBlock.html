@@ -1,0 +1,28 @@
+<div th:fragment="header">
+    <header>
+        <a href="/" class="main-logo">my pen-box</a>
+        <div class="header-links">
+            <a href="#" class="login-b">Log In</a>
+            <a href="#" class="signup-b">Sign Up</a>
+        </div>
+        <div class="set-icon"></div>
+    </header>
+    <div class="settings">
+        <a href="#" class="feedback-b">Send Feedback</a>
+        <a href="#" class="en-lang lang-flex">en</a>
+        <a href="#" class="ru-lang lang-flex">ru</a>
+        <a href="#" class="dark-mode mode-flex">dark mode</a>
+        <a href="#" class="light-mode mode-flex">light mode</a>
+        <span class="copyright">© Copyright — Helena Meadows</span>
+    </div>
+</div>
+
+<nav th:fragment="mNavigation">
+    <ul>
+        <li><a href="/catalogue">catalogue</a></li>
+        <li><a href="#">my pen-box</a></li>
+        <li><a href="#">my sets</a></li>
+        <li><a href="#">favourites</a></li>
+        <li><a href="#">wishlist</a></li>
+    </ul>
+</nav>
