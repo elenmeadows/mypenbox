@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>my pen-box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="grid">
+        <div th:insert="blocks/menuBlock :: header"></div>
+
+        <div class="laptop-account">
+        </div>
+
+        <div class="laptop-sidebar">
+            <a href="#" class="signup-laptop">Sign Up</a>
+            <a href="#" class="login-laptop">Log In</a>
+        </div>
+
+        <nav th:insert="blocks/menuBlock :: mNavigation" class="main-nav"></nav>
+        <div class="content-window">
+            <p class="about-text">
+                SOMETHING
+            </p>
+        </div>
+    </div>
+</body>
+<script src="js/main.js"></script>
+</html>
