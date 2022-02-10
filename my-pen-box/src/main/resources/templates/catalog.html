@@ -23,9 +23,10 @@
 
         <nav th:insert="blocks/menuBlock :: mNavigation" class="main-nav"></nav>
         <div class="content-window">
-            <p class="about-text">
-                SOMETHING
-            </p>
+            <div th:each="el : ${product}" class="about-text">
+                <p th:text="${el.category}"/>
+                <p th:text="${el.brand}"/>
+            </div>
         </div>
     </div>
 </body>
