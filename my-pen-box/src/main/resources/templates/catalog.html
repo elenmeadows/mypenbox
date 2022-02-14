@@ -23,10 +23,32 @@
 
         <nav th:insert="blocks/menuBlock :: mNavigation" class="main-nav"></nav>
         <div class="content-window">
-            <div th:each="el : ${product}" class="about-text">
-                <p th:text="${el.category}"/>
-                <p th:text="${el.brand}"/>
-            </div>
+            <form action="/catalog" method="get">
+                Поиск по названию цвета: <input type="text" name="colorname"><br>
+                <input type="submit" value="Поиск"/>
+            </form>
+            <th:block th:each="el : ${products}">
+                <p class="about-text">
+                    <th:block th:text="${el.category}"/>
+                    <th:block th:text="${el.brand}"/>
+                    <th:block th:text="${el.type}"/>
+                    <th:block th:text="${el.colormark}"/>
+                    <th:block th:text="${el.colorswatch}"/>
+                    <th:block th:text="${el.colorname}"/>
+                    <th:block th:text="${el.img}"/>
+                </p>
+            </th:block>
+            <br><br><h3>Добавить новый продукт</h3>
+            <form action="/catalog/create" method="post">
+                Категория: <input type="text", name="category"><br>
+                Бренд: <input type="text", name="brand"><br>
+                Тип: <input type="text", name="type"><br>
+                Код цвета: <input type="text", name="colormark"><br>
+                Образец цвета: <input type="text", name="colorswatch"><br>
+                Название цвета: <input type="text", name="colorname"><br>
+                Изображение продукта: <input type="text", name="img"><br>
+                <input type="submit" value="Добавить продукт"/>
+            </form>
         </div>
     </div>
 </body>
