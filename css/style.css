@@ -7,15 +7,48 @@
     text-decoration: none;
 }
 
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #580e3c;
+}
+
 :root {
     --clr-primary: #393636;
     --clr-chosenlink: #FFF;
-    --clr-aqua: #89DAFF;
-    --clr-header: #580E3C;
-    --clr-accent-1: #989CD7;
-    --clr-accent-2: #FF67C5;
+    --clr-aqua: #8adaff;
+    --clr-header: #580e3c;
+    --clr-accent-1: #989cd7;
+    --clr-accent-2: #ff66c4;
     --clr-accent-3: #DBB1BC;
     --clr-search: #E6DFEF;
+
+    --clr-prima: #81d4fa;
+    --clr-primary-light: #e1f5fe;
+    --clr-primary-dark: #4fc3f7;
+    --clr-gray100: #f9fbff;
+    --clr-gray150: #f4f6fb;
+    --clr-gray200: #eef1f6;
+    --clr-gray300: #e1e5ee;
+    --clr-gray400: #767b91;
+    --clr-gray500: #4f546c;
+    --clr-gray600: #2a324b;
+    --clr-gray700: #161d34;
+    --clr-pending: #fff0c2;
+    --clr-pending-font: #a68b00;
+    --clr-unpaid: #ffcdd2;
+    --clr-unpaid-font: #c62828;
+    --clr-paid: #c8e6c9;
+    --clr-paid-font: #388e8c;
+    --clr-link: #2962ff;
+
 
     --ff-raleway: "Raleway", Helvetica, sans-serif;
     --ff-montserrat: "Montserrat", Helvetica, sans-serif;
@@ -40,6 +73,11 @@ time, mark, audio, video {
     font-size: 100%;
     vertical-align:baseline;
     background:transparent;
+}
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color:  hsl(323, 73%, 20%)  transparent; 
 }
 
 body {
@@ -95,11 +133,6 @@ del {
 abbr[title], dfn[title] {
     border-bottom:1px dotted;
     cursor:help;
-}
-
-table {
-    border-collapse:collapse;
-    border-spacing:0;
 }
 
 hr {
@@ -262,6 +295,16 @@ header {
     padding: 0.7rem 0 0.5rem;
 }
 
+.settings-background {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 3.2rem;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.7);
+}
+
 .laptop-account {
     display: none;
 }
@@ -321,27 +364,79 @@ header {
     grid-area: content;
     width: 100%;
     height: fit-content;
-    border: 1.9px solid var(--clr-primary);
-    border-radius: 6px;
-}
 
-.greeting {
     font-family: var(--ff-montserrat);
-    font-size: 3.5rem;
-    text-transform: lowercase;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000;
-    color: rgba(0, 0, 0, 0);
-    margin: 2rem 2rem 1rem;
+    color: var(--clr-gray500);
+    font-size: 0.9rem;
 }
 
 .about-text {
     margin: 0 2rem 0;
 }
 
-.content-window a {
-    display: block;
-    margin: 1rem 2rem 2rem;
+
+/* CLASSES FOR MY YOUTUBE STUDIES (EXPERIMENTS) */
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    color: var(--clr-primary);
+}
+
+td:not(:first-child, :last-child) {
+    overflow:hidden;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    vertical-align: middle;
+    border: 1px solid #000;
+}
+
+tr td:first-child {
+    padding: 1rem 0.5rem;
+    vertical-align: middle;
+    width: 1%;
+    white-space: nowrap;
+    border: 1px solid #000;
+}
+
+td:nth-child(6n) {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+tr td:last-child {
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    border: 1px solid #000;
+}
+
+.colormark {
+    padding: 0.3rem 1rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    border: 0.1rem solid var(--clr-primary);
+}
+
+.colorswatch {
+    border-radius: 0.2rem;
+    padding: 0.4rem 1rem;
+    text-align: center;
+}
+
+.manage-btn {
+    display: flex;
+    padding: 0.3rem 1rem;
+    justify-content: center;
+    border-radius: 0.2rem;
+    border: 0.1rem solid var(--clr-primary);
+}
+
+.btn-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.4rem;
+    cursor: pointer;
 }
 
 /* MEDIA QUERIES */
