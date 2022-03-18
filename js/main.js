@@ -16,7 +16,7 @@ $(".set-icon").click(function () {
   }
 });
 
-window.onclick = function (event) {
+window.onclick = function settings(event) {
   if (!event.target.matches(".set-icon") && !event.target.matches(".settings") && !event.target.matches(".settings a")) {
     $(".settings").slideUp(200);
     $(".settings-background").css("display", "none");
@@ -38,3 +38,42 @@ function mQuery() {
 
 mQuery();
 window.matchMedia("(min-width: 1024px)").addListener(mQuery);
+
+
+$(".manage-btn").on("mouseover", manageButtonOver);
+$(".manage-menu ul li a").on("click", manageButtonOut);
+
+function manageButtonOver(event) {
+  if (event.target.matches(".manage-btn")) {
+    $(".manage-menu").slideDown();
+    $(".manage-arrows-icon").css("transform", "rotate(180deg)");
+    $(".manage-arrows-icon").css("transition-duration", "0.4s");
+  }
+}
+
+function manageButtonOut(event) {
+  if (event.target.matches(".manage-menu ul li a")) {
+    $(".manage-menu").slideUp();
+    $(".manage-arrows-icon").css("transform", "rotate(0deg)");
+    $(".manage-arrows-icon").css("transition-duration", "0.4s");
+  }
+}
+
+$(".manage-menu").mouseleave(function () {
+  $(".manage-menu").slideUp();
+  $(".manage-arrows-icon").css("transform", "rotate(0deg)");
+  $(".manage-arrows-icon").css("transition-duration", "0.4s");
+});
+
+// Рабочая версия, но только по кликам:
+// $(".manage-btn").click(function () {
+//   if ($(".manage-menu").is(":hidden")) {
+//     $(".manage-menu").show(200);
+//     $(".manage-arrows-icon").css("transform", "rotate(180deg)")
+//     $(".manage-arrows-icon").css("transition-duration", "0.4s");
+//   } else {
+//     $(".manage-menu").hide(200);
+//     $(".manage-arrows-icon").css("transform", "rotate(0deg)");
+//     $(".manage-arrows-icon").css("transition-duration", "0.4s");
+//   }
+// });
