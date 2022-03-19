@@ -1,3 +1,6 @@
+
+// SettingsBar animation (mobile view)
+
 $(".settings").css("display", "flex").hide();
 
 $(".set-icon").click(function () {
@@ -39,6 +42,7 @@ function mQuery() {
 mQuery();
 window.matchMedia("(min-width: 1024px)").addListener(mQuery);
 
+// ManageButtonMenu animation
 
 $(".manage-btn").on("mouseover", manageButtonOver);
 $(".manage-menu ul li a").on("click", manageButtonOut);
@@ -65,7 +69,7 @@ $(".manage-menu").mouseleave(function () {
   $(".manage-arrows-icon").css("transition-duration", "0.4s");
 });
 
-// Рабочая версия, но только по кликам:
+// Рабочая версия ManageButtonMenu animation, но только по кликам:
 // $(".manage-btn").click(function () {
 //   if ($(".manage-menu").is(":hidden")) {
 //     $(".manage-menu").show(200);
@@ -77,3 +81,18 @@ $(".manage-menu").mouseleave(function () {
 //     $(".manage-arrows-icon").css("transition-duration", "0.4s");
 //   }
 // });
+
+// SearchBar animation
+
+input.oninput = function () {
+  let searchInput = $(".search-input").val();
+  if (!searchInput == "") {
+    $(".reset-icon").css("display", "inline-block");
+  } else if (searchInput == "") {
+    $(".reset-icon").css("display", "none");
+  }
+}
+
+$(".reset-icon").click(function () {
+  $(".reset-icon").css("display", "none");
+});
