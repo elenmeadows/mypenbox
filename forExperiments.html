@@ -7,58 +7,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #outer {
-            width: 250px;
-            height: 125px;
-            display: flex;
+        .rotated {
+            transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
         }
 
-        #red {
-            flex-grow: 1;
-            background: red;
+        .img {
+            transition: all 0.5s ease;
         }
 
-        #blue {
-            flex-grow: 1;
-            background: blue;
+        .container {
+            border: 1px solid blue;
+            display: inline-block;
+            width: 300px;
+            text-align: center;
+            /* added */
         }
 
-        #log {
-            max-height: 100vh;
-            overflow-y: scroll;
+        div {
+            border: 1px solid blue;
+            display: inline-block;
+            transition: all .5s linear;
+            /* added */
         }
     </style>
 </head>
 
 
-<body id="body">
-    <div id="outer">
-        <div id="red"></div>
-        <div id="blue"></div>
+<body>
+
+    <div class="container">
+
+        <button>
+            Rotate
+        </button>
+        <div class="content">
+
+            <img class="img"
+                src="http://projectpuffin.audubon.org/sites/g/files/amh646/f/styles/hero_mobile/public/atpu-scholtz.jpg" />
+        </div>
     </div>
-    <p id="log"></p>
 </body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <script>
-    const mouseoutLog = document.getElementById('log'),
-        red = document.getElementById('red'),
-        blue = document.getElementById('blue');
-
-    red.addEventListener('mouseover', overListener);
-    red.addEventListener('mouseout', outListener);
-    blue.addEventListener('mouseover', overListener);
-    blue.addEventListener('mouseout', outListener);
-
-    function outListener(event) {
-        let related = event.relatedTarget ? event.relatedTarget.id : "unknown";
-
-        mouseoutLog.innerText = `\nfrom ${event.target.id} into ${related} ${mouseoutLog.innerText}`;
-    }
-
-    function overListener(event) {
-        let related = event.relatedTarget ? event.relatedTarget.id : "unknown";
-
-        log.innerText = `\ninto ${event.target.id} from ${related} ${mouseoutLog.innerText}`;
-    }
+    $(document).ready(function () {
+        var degrees = 0;
+        $("button").click(function rotateMe(e) {
+            degrees += 90;
+            if (degrees % 180 == 0)
+                $(".content").css({
+                    'transform': 'rotate(' + degrees + 'deg) scale(1)'
+                });
+            else
+                $(".content").css({
+                    'transform': 'rotate(' + 90 + 'deg) scale(0.8)'
+                });
+        })
+    });
 </script>
 
 </html>

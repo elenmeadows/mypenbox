@@ -96,3 +96,6 @@ input.oninput = function () {
 $(".reset-icon").click(function () {
   $(".reset-icon").css("display", "none");
 });
+
+// Modal animation
+
