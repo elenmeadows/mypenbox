@@ -14,7 +14,7 @@
 	<name>mpb</name>
 	<description>Project based on Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
