@@ -33,7 +33,7 @@ public class AppController {
 
     @GetMapping("/catalog/{id}")
     public String productInfo(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productService.getProductById(id));
+        model.addAttribute("product", productService.getProduct(id));
         return "product-info";
     }
 
