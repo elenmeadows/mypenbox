@@ -1,13 +1,13 @@
-package com.mypenbox.mpb;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class MpbApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+//package com.mypenbox.mpb;
+//
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//@SpringBootTest
+//class MpbApplicationTests {
+//
+//	@Test
+//	void contextLoads() {
+//	}
+//
+//}
