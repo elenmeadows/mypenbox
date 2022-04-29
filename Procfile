@@ -1,1 +1,1 @@
-web: java -jar target/my-pen-box-0.0.1-SNAPSHOT.jar
+web: java -jar my-pen-box/target/my-pen-box-0.0.1-SNAPSHOT.jar
