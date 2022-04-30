@@ -99,3 +99,8 @@ $(".reset-icon").click(function () {
 
 // Modal animation
 
+let rangePercent = $('[type="range"]').val();
+$('[type="range"]').on('change input', function () {
+  rangePercent = $('[type="range"]').val();
+  $('span').html(rangePercent);
+});
