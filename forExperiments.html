@@ -7,68 +7,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .rotated {
-            transform: rotate(90deg);
-            -ms-transform: rotate(90deg);
-            -moz-transform: rotate(90deg);
-            -webkit-transform: rotate(90deg);
-            -o-transform: rotate(90deg);
+        body {
+            margin: 0;
+            display: flex;
         }
 
-        .img {
-            transition: all 0.5s ease;
+        input[type="range"] {
+            margin-right: 0.8rem;
+            -webkit-appearance: none;
+            position: relative;
+            overflow: hidden;
+            height: 40px;
+            width: 200px;
+            cursor: pointer;
+            border: 1px solid #000;
+            border-radius: 0.375rem;
         }
 
-        .container {
-            border: 1px solid blue;
-            display: inline-block;
-            width: 300px;
-            text-align: center;
-            /* added */
+        ::-webkit-slider-runnable-track {
+            background: #ddd;
+            border-radius: 0.375rem;
         }
 
-        div {
-            border: 1px solid blue;
-            display: inline-block;
-            transition: all .5s linear;
-            /* added */
+        /*
+ * 1. Set to 0 width and remove border for a slider without a thumb
+ */
+        ::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 0rem;
+            height: 40px;
+            background: #fff;
+            box-shadow: -100vw 0 0 100vw #989CD7;
+            border-right: 1px solid #000;
+        }
+
+        ::-moz-range-track {
+            height: 40px;
+            background: #ddd;
+        }
+
+        ::-moz-range-thumb {
+            background: #fff;
+            height: 40px;
+            width: 0px;
+            box-shadow: -100vw 0 0 100vw #989CD7;
+            box-sizing: border-box;
+        }
+
+        ::-ms-fill-lower {
+            background: #989CD7;
+        }
+
+        ::-ms-thumb {
+            background: #fff;
+            border: 2px solid #999;
+            height: 40px;
+            width: 20px;
+            box-sizing: border-box;
+        }
+
+        ::-ms-ticks-after {
+            display: none;
+        }
+
+        ::-ms-ticks-before {
+            display: none;
+        }
+
+        ::-ms-track {
+            background: #ddd;
+            color: transparent;
+            height: 40px;
+            border: none;
+        }
+
+        ::-ms-tooltip {
+            display: none;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
-
 <body>
-
-    <div class="container">
-
-        <button>
-            Rotate
-        </button>
-        <div class="content">
-
-            <img class="img"
-                src="http://projectpuffin.audubon.org/sites/g/files/amh646/f/styles/hero_mobile/public/atpu-scholtz.jpg" />
-        </div>
-    </div>
+    <input type="range" min="0" max="100" value="93" id="indicator">
+    <p>Value: <span id="value">93</span></p>
 </body>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
 <script>
-    $(document).ready(function () {
-        var degrees = 0;
-        $("button").click(function rotateMe(e) {
-            degrees += 90;
-            if (degrees % 180 == 0)
-                $(".content").css({
-                    'transform': 'rotate(' + degrees + 'deg) scale(1)'
-                });
-            else
-                $(".content").css({
-                    'transform': 'rotate(' + 90 + 'deg) scale(0.8)'
-                });
-        })
+    let rangePercent = $('[type="range"]').val();
+    $('[type="range"]').on('change input', function () {
+        rangePercent = $('[type="range"]').val();
+        $('span').html(rangePercent);
     });
 </script>
 
