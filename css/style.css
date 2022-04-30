@@ -600,6 +600,8 @@ tr td:nth-child(7), tr td:nth-child(9) {
     border-bottom: 0.1rem solid var(--clr-primary);
 }
 
+/* MODAL */
+
 .modal {
     max-width: 75%;
     min-width: 70%;
@@ -644,6 +646,8 @@ tr td:nth-child(7), tr td:nth-child(9) {
     stroke-miterlimit: 10;
 }
 
+/* MODAL: BODY */
+
 .modal-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -673,6 +677,8 @@ tr td:nth-child(7), tr td:nth-child(9) {
     pointer-events: all;
 }
 
+/* MODAL: PRODUCT-IMAGE */
+
 .product-img-modal {
     grid-area: product-img;
     display: flex;
@@ -687,6 +693,8 @@ tr td:nth-child(7), tr td:nth-child(9) {
     width: 100%;
     height: auto;
 }
+
+/* MODAL: PRODUCT-INFO */
 
 .product-info {
     grid-area: product-info;
@@ -725,7 +733,89 @@ tr td:nth-child(7), tr td:nth-child(9) {
     align-items: center;
 }
 
+input[type="range"] {
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    height: 1.8rem;
+    width: 100%;
+    cursor: pointer;
+    margin: 0;
+    border: 1.1px solid var(--clr-primary);
+    border-radius: 0.375rem;
+}
+
+::-webkit-slider-runnable-track {
+    background: #fff;
+    border-radius: 0.375rem;
+}
+
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0rem;
+    height: 1.8rem;
+    background: #fff;
+    box-shadow: -100vw 0 0 100vw #989CD7;
+    border-right: 1.1px solid var(--clr-primary);
+}
+
+::-moz-range-track {
+    height: 40px;
+    background: #fff;
+}
+
+::-moz-range-thumb {
+    background: #fff;
+    height: 40px;
+    width: 0px;
+    box-shadow: -100vw 0 0 100vw #989CD7;
+    box-sizing: border-box;
+}
+
+::-ms-fill-lower {
+    background: #989CD7;
+}
+
+::-ms-thumb {
+    background: #fff;
+    border: 2px solid #999;
+    height: 40px;
+    width: 0px;
+    box-sizing: border-box;
+}
+
+::-ms-ticks-after {
+    display: none;
+}
+
+::-ms-ticks-before {
+    display: none;
+}
+
+::-ms-track {
+    background: #fff;
+    color: transparent;
+    height: 40px;
+    border: none;
+}
+
+::-ms-tooltip {
+    display: none;
+}
+
+#value {
+    position: relative;
+    bottom: 1.5rem;
+    font-family: var(--ff-montserrat);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #FFF;
+    text-shadow: -1.1px -1.1px 0 var(--clr-primary), 1.1px -1.1px 0 var(--clr-primary), -1.1px 1.1px 0 var(--clr-primary), 1.1px 1.1px 0 var(--clr-primary);
+}
+
 .product-info .product-indicator svg {
+    position: relative;
+    bottom: 0.5rem;
     width: 70%;
     fill: none;
     stroke: #393636;
@@ -735,6 +825,7 @@ tr td:nth-child(7), tr td:nth-child(9) {
     stroke-miterlimit: 10;
 }
 
+/* MODAL: PRODUCT-SETS */
 
 .product-sets {
     display: flex;
@@ -771,6 +862,15 @@ tr td:nth-child(7), tr td:nth-child(9) {
     margin-right: 0.4rem;
 }
 
+.product-sets .existing-tags:hover {
+    background-color: #ded6e7;
+}
+
+.product-sets .existing-tags:active {
+    background-color: #ded6e7;
+    color: var(--clr-primary);
+}
+
 .product-sets .add-tags:hover {
     text-decoration: underline;
 }
@@ -778,6 +878,8 @@ tr td:nth-child(7), tr td:nth-child(9) {
 .product-sets .add-tags:active {
     color: var(--clr-accent-2);
 }
+
+/* MODAL: PRODUCT-NOTES */
 
 .product-notes {
     display: flex;
@@ -803,6 +905,8 @@ tr td:nth-child(7), tr td:nth-child(9) {
     border: 0.11rem solid var(--clr-primary);
     border-radius: 0.375rem;
 }
+
+/* MODAL: LIKE & WISHLIST BUTTONS */
 
 .fav-buttons {
     display: flex;
@@ -853,6 +957,8 @@ tr td:nth-child(7), tr td:nth-child(9) {
     border-radius: 0.25rem;
     cursor: pointer;
 }
+
+/* MODAL: PREV & NEXT NAVIGATION */
 
 .nav-arrows {
     display: flex;
@@ -1103,6 +1209,19 @@ tr td:nth-child(7), tr td:nth-child(9) {
         margin-left: 0.7rem;
     }
 
+    .modal-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 1.1rem;
+        grid-gap: 1rem;
+        grid-template-areas:
+        "product-img product-img"
+        "product-info product-sets"
+        "fav-buttons product-notes"
+        "nav-arrows nav-arrows"
+    }   
+
+    ***************************************************
 }
 
 /* On screens that are ***px wide or less*/
