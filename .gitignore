@@ -1,5 +1,6 @@
 HELP.md
 target/
+my-pen-box/target
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -15,6 +16,7 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
+my-pen-box/.idea
 *.iws
 *.iml
 *.ipr
