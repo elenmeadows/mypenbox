@@ -185,7 +185,7 @@ header {
 }
 
 .header-links {
-    font-family: var (--ff-raleway);
+    font-family: var(--ff-raleway);
     font-weight: 400;
     margin-left: auto;
 }
@@ -632,7 +632,6 @@ tr td:nth-child(7), tr td:nth-child(9) {
     background: none;
     width: 2rem;
     height: auto;
-    padding: none;
     border: none;
     cursor: pointer;
 }
@@ -1220,8 +1219,6 @@ input[type="range"] {
         "fav-buttons product-notes"
         "nav-arrows nav-arrows"
     }   
-
-    ***************************************************
 }
 
 /* On screens that are ***px wide or less*/
