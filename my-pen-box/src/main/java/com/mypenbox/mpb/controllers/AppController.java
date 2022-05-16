@@ -24,10 +24,10 @@ public class AppController {
         return "index";
     }
 
-    @GetMapping("/catalog")
+    @GetMapping("/catalog.html")
     public String listProducts(Model model) {
-        List<Product> products = productService.listAll();
-        model.addAttribute("products", products);
+//        List<Product> products = productService.listAll();
+//        model.addAttribute("products", products);
         return "catalog";
     }
 

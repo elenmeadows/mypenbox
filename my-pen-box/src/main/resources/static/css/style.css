@@ -1208,6 +1208,10 @@ input[type="range"] {
         margin-left: 0.7rem;
     }
 
+    .content-window .main-style {
+        border: 1px solid #000;
+    }
+
     .modal-body {
         display: grid;
         grid-template-columns: 1fr 1fr;
