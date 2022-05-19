@@ -76,23 +76,29 @@
         </nav>
 
         <div class="content-window content-window__index">
-            <h2 class="heading">hi there,</h2>
-            <p class="text">
-                <b>welcome to my pen-box, the site where you can play around with pencils, markers and other artist
-                    supplies. </b><br><br>
-                <i> — Hey! What does «play around» mean?</i><br>
-                — Well, let me explain. Y'know, life is so much easier when you have all of your things up to date, in
-                one place. And *surprise!* THIS IS WHAT MY PEN-BOX CAN HELP YOU WITH!<br><br>
-                Sign up and you'll have access to the library of stuff used for drawing.
-                Then manage it! Create your own sets of supplies, add them to wishlist and favourites, write notes,
-                check their condition (maybe it's time to buy another one).. Sounds great, isn't it? ;)
-            </p>
-            <div class="registration-buttons">
-                <a href="#">Log In</a>
-                <a href="sign-up.html">Sign Up</a>
+            <div class="auth__api">
+                <h2 class="heading">sign up</h2>
+                <h4>with
+                    <a href="#">Google</a>
+                </h4>
             </div>
-        </div>
+            <p class="text">
+                or just fill in these forms
+            <form action="/catalog/create" method="post">
+                Категория: <input type="text" , name="category"><br>
+                Бренд: <input type="text" , name="brand"><br>
+                Тип: <input type="text" , name="type"><br>
+                Код цвета: <input type="text" , name="colormark"><br>
+                Образец цвета: <input type="text" , name="colorswatch"><br>
+                Название цвета: <input type="text" , name="colorname"><br>
+                Изображение продукта: <input type="text" , name="img"><br>
+                <button type="submit" class="auth__buttons">
+                    Confirm
+                </button>
+            </form>
+            </p>
 
+        </div>
     </div>
 </body>
 <script src="js/main.js"></script>
