@@ -9,7 +9,7 @@ $(".set-icon").click(function () {
     $(".settings-background").css("display", "block");
     $(".main-nav").css("pointer-events", "none");
     $(".content-window").css("pointer-events", "none");
-    $("header").css("box-shadow", "0 0.35rem 0.35rem rgba(60, 10, 41, .7)");
+    $("header").css("box-shadow", "0 0.35rem 0.35rem rgba(38, 36, 36, .7)");
   } else {
     $(".settings").slideUp(200);
     $(".settings-background").css("display", "none");
