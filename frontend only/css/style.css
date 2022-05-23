@@ -180,6 +180,13 @@ a {
     background: transparent;
 }
 
+a:hover,
+a:active {
+    font-weight: 700;
+    color: var(--clr-primary);
+    cursor: pointer;
+}
+
 ins {
     background-color: #ff9;
     color: #000;
@@ -537,14 +544,19 @@ header {
     gap: 1rem;
 }
 
+.auth__api a {
+    text-decoration: underline;
+}
+
 .heading {
     font-family: var(--ff-montserrat);
     color: var(--clr-primary);
     font-size: 3rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
 }
 
-.text {
+.text,
+.auth__fields {
     font-family: var(--clr-primary);
     font-size: 0.9rem;
     font-weight: 450;
@@ -553,6 +565,38 @@ header {
 
 .text b {
     font-size: 1rem;
+}
+
+.auth__fields {
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+}
+
+.auth__fields input {
+    min-width: 50%;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--clr-primary);
+    background-color: #f9f9f9;
+    border: 0.12rem solid var(--clr-primary);
+    border-radius: 0.2rem;
+    padding: 0.4rem;
+    margin: 0.3rem 0.3rem 0.3rem 0;
+}
+
+#email {
+    margin-left: 0.3rem;
+}
+
+.auth__fields span {
+    font-size: 0.8rem;
+    text-transform: none;
+}
+
+.auth__fields a:hover {
+    font-weight: 500;
+    font-size: 0.8rem;
 }
 
 .registration-buttons,
