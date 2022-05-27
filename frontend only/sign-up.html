@@ -18,14 +18,14 @@
         <header>
             <a href="index.html" class="main-logo">my pen-box</a>
             <div class="header-links">
-                <a href="#" class="login-b">Log In</a>
-                <a href="#" class="signup-b">Sign Up</a>
+                <a href="login.html" class="login-b">Log In</a>
+                <a href="sign-up.html" class="signup-b">Sign Up</a>
             </div>
             <div class="set-icon"></div>
         </header>
         <div class="laptop-title"><a href="#">my pen-box</a></div>
         <div class="settings">
-            <a href="#" class="feedback-b">Send Feedback</a>
+            <a href="feedback.html" class="feedback-b">Send Feedback</a>
             <a href="#" class="en-lang lang-flex">en</a>
             <a href="#" class="ru-lang lang-flex">ru</a>
             <a href="#" class="dark-mode mode-flex">dark mode</a>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="laptop-settings laptop-settings__index">
-            <a href="#" class="feedback-b">Send Feedback</a>
+            <a href="feedback.html" class="feedback-b">Send Feedback</a>
             <a href="#" class="en-lang lang-flex">en</a>
             <a href="#" class="ru-lang lang-flex">ru</a>
             <a href="#" class="dark-mode mode-flex">dark mode</a>
@@ -86,14 +86,15 @@
             </div>
             <p class="text">
                 <b>or just fill in these forms</b>
-            <form class="auth__fields" action="/catalog/create" method="post">
-                e-mail <input type="text" name="email" id="email" placeholder="user@mail.com"><br>
-                <input type="text" name="first_name" placeholder="Helena"> first name<br>
-                <input type="text" name="last_name" placeholder="Meadows"> last name<br>
-                <input type="text" name="nickname" placeholder="@elenmeadows"> nickname<br>
-                <input type="password" , name="password" placeholder="don't think twice,"> password<br>
-                <input type="password" , name="repeat_passowrd" placeholder="it's all right!"> repeat password<br>
-                <button type="submit" class="auth__buttons">
+            <form class="content__fields" action="/catalog/create" method="post">
+                e-mail <input type="text" name="email" id="email" placeholder="user@mail.com" required><br>
+                <input type="text" name="first_name" placeholder="Helena" required> first name<br>
+                <input type="text" name="last_name" placeholder="Meadows" required> last name<br>
+                <input type="text" name="nickname" placeholder="@elenmeadows" required> nickname<br>
+                <input type="password" , name="password" placeholder="don't think twice," required> password<br>
+                <input type="password" , name="repeat_passoword" placeholder="it's all right!" required> repeat
+                password<br>
+                <button type="submit" class="content__buttons">
                     Confirm
                 </button>
             </form>

@@ -76,23 +76,21 @@
         </nav>
 
         <div class="content-window content-window__index">
-            <h2 class="heading">hi there,</h2>
-            <p class="text">
-                <b>welcome to my pen-box, the site where you can play around with pencils, markers and other artist
-                    supplies. </b><br><br>
-                <i> — Hey! What does «play around» mean?</i><br>
-                — Well, let me explain. Y'know, life is so much easier when you have all of your things up to date, in
-                one place. And *surprise!* THIS IS WHAT MY PEN-BOX CAN HELP YOU WITH!<br><br>
-                Sign up and you'll have access to the library of stuff used for drawing.
-                Then manage it! Create your own sets of supplies, add them to wishlist and favourites, write notes,
-                check their condition (maybe it's time to buy another one).. Sounds great, isn't it? ;)
-            </p>
-            <div class="registration-buttons">
-                <a href="login.html">Log In</a>
-                <a href="sign-up.html">Sign Up</a>
+            <div class="auth__api">
+                <h2 class="heading">send feedback</h2>
             </div>
-        </div>
+            <p class="text">
+            <form class="content__fields" action="#" method="post">
+                <input type="text" name="nickname" placeholder="Helena Meadows" required> full name<br>
+                <input type="text" name="nickname" placeholder="user@mail.com" required> your e-mail<br>
+                <textarea class="feedback-container" placeholder="Type here your message.." required></textarea><br>
+                <button type="submit" class="content__buttons">
+                    Send
+                </button>
+            </form>
+            </p>
 
+        </div>
     </div>
 </body>
 <script src="js/main.js"></script>
