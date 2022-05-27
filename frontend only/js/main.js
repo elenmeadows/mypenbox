@@ -97,10 +97,18 @@ $(".reset-icon").click(function () {
   $(".reset-icon").css("display", "none");
 });
 
-// Modal animation
+// Product indicator animation (modal window)
 
 let rangePercent = $('[type="range"]').val();
 $('[type="range"]').on('change input', function () {
   rangePercent = $('[type="range"]').val();
   $('span').html(rangePercent);
+});
+
+// Auto-resize of feedback message container
+
+$(".feedback-container").keyup(function (e) {
+  $(this).css("height", "auto");
+  let scHeight = $(this).prop('scrollHeight');
+  $(this).css("height", `${scHeight}px`);
 });

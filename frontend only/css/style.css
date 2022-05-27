@@ -530,6 +530,7 @@ header {
     font-family: var(--ff-montserrat);
     color: var(--clr-primary);
     font-size: 0.9rem;
+    margin-bottom: 4rem;
 }
 
 .content-window__index {
@@ -556,7 +557,7 @@ header {
 }
 
 .text,
-.auth__fields {
+.content__fields {
     font-family: var(--clr-primary);
     font-size: 0.9rem;
     font-weight: 450;
@@ -567,13 +568,13 @@ header {
     font-size: 1rem;
 }
 
-.auth__fields {
+.content__fields {
     font-weight: 500;
     text-transform: uppercase;
     margin-top: 0.4rem;
 }
 
-.auth__fields input {
+.content__fields input {
     min-width: 50%;
     font-weight: 500;
     font-size: 0.9rem;
@@ -585,29 +586,57 @@ header {
     margin: 0.3rem 0.3rem 0.3rem 0;
 }
 
-#email {
-    margin-left: 0.3rem;
-}
-
-.auth__fields span {
+.content__fields span {
     font-size: 0.8rem;
     text-transform: none;
 }
 
-.auth__fields a:hover {
+.content__fields a:hover {
     font-weight: 500;
     font-size: 0.8rem;
 }
 
+.content__fields textarea {
+    font-family: var(--clr-primary);
+    line-height: 1rem;
+    width: 100%;
+    min-height: 150px;
+    max-height: 370px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--clr-primary);
+    background-color: #f9f9f9;
+    resize: none;
+    border: 0.12rem solid var(--clr-primary);
+    border-radius: 0.2rem;
+    padding: 0.4rem;
+    margin: 0.3rem 0;
+}
+
+#email {
+    margin-left: 0.3rem;
+}
+
+#set-avatar {
+    min-width: 50%;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--clr-primary);
+    background-color: #efeeee;
+    border: none;
+    padding: 0;
+    margin: 0.3rem 0.3rem 0.3rem 0;
+}
+
 .registration-buttons,
-.auth__buttons {
+.content__buttons {
     display: flex;
     justify-content: space-evenly;
     margin-top: 1.2rem;
 }
 
 .registration-buttons a,
-.auth__buttons {
+.content__buttons {
     font-family: var(--ff-montserrat);
     color: var(--clr-primary);
     font-size: 0.9rem;
@@ -620,7 +649,7 @@ header {
 }
 
 .registration-buttons a:hover,
-.auth__buttons:hover {
+.content__buttons:hover {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
     border: 1px solid var(--clr-primary);
@@ -629,7 +658,7 @@ header {
 }
 
 .registration-buttons a:active,
-.auth__buttons:active {
+.content__buttons:active {
     transform: scale(0.98);
     transition-duration: 0.4s;
     cursor: pointer;
@@ -1241,6 +1270,8 @@ input[type="range"] {
     }
 
     .laptop-title a:hover {
+        font-size: 2.3rem;
+        font-weight: 400;
         color: var(--clr-primary);
     }
 
