@@ -105,6 +105,13 @@ $('[type="range"]').on('change input', function () {
   $('span').html(rangePercent);
 });
 
+// Favourite button animation (modal window)
+
+
+$(".heart-btn").click(function () {
+  $(this).toggleClass("liked");
+});
+
 // Auto-resize of feedback message container
 
 $(".feedback-container").keyup(function (e) {
