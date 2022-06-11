@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<!--for MySQL:
-    user: mypenuser
-    password: myPenUserpassword1$-->
 <html id="html" lang="en" dir="ltr">
 
 <head>
@@ -16,22 +13,25 @@
 <body>
     <div class="grid">
         <header>
-            <a href="index.html" class="main-logo">my pen-box</a>
-            <div class="header-links">
-                <a href="#" class="login-b">Log In</a>
-                <a href="#" class="signup-b">Sign Up</a>
+            <a href="index-101.html" class="title">my pen-box</a>
+            <div class="header-links header-account-info">
+                <span><b>Helena Meadows</b></span><br>
+                <span>@elenmeadows</span>
             </div>
-            <div class="set-icon">
-                <div class="set-icon__burger"></div>
+            <div class="header-account-avatar"></div>
+            <div class="settings-icon">
+                <div class="settings-icon__burger"></div>
             </div>
         </header>
         <div class="laptop-title"><a href="index-101.html">my pen-box</a></div>
         <div class="settings">
-            <a href="#" class="feedback-b">Send Feedback</a>
-            <a href="#" class="en-lang lang-flex">en</a>
-            <a href="#" class="ru-lang lang-flex">ru</a>
-            <a href="#" class="dark-mode mode-flex">dark mode</a>
-            <a href="#" class="light-mode mode-flex">light mode</a>
+            <a href="#" class="settings__flex">Edit account</a>
+            <a href="#" class="settings__flex">Log out</a>
+            <a href="#" class="settings__flex-feedback">Send Feedback</a>
+            <a href="#" class="en-language settings__flex">en</a>
+            <a href="#" class="ru-language settings__flex">ru</a>
+            <a href="#" class="dark-mode settings__flex">dark mode</a>
+            <a href="#" class="light-mode settings__flex">light mode</a>
             <span class="copyright">© Copyright — Helena Meadows</span>
         </div>
 
@@ -39,25 +39,27 @@
         </div>
 
         <div class="laptop-signup-login">
-            <a href="#" class="signup-laptop">Sign Up</a>
-            <a href="#" class="login-laptop">Log In</a>
+            <a href="sign-up.html" class="laptop__signup">Sign Up</a>
+            <a href="login.html" class="laptop__login">Log In</a>
         </div>
 
-        <div class="accountbar">
-            <a href="#" class="fullname">Helena Meadows</a>
-            <span class="nickname">@elen_meadows</span>
-            <span class="registered">registered 13 days ago</span>
-            <a href="#" id="edit-account" class="account-btns">Edit account</a>
-            <a href="#" class="account-btns">Log out</a>
+        <div class="account-info">
+            <a href="#" class="account-info__fullname">Helena Meadows</a>
+            <span class="account-info__nickname">@elen_meadows</span>
+            <span class="account-info__registered">registered 13 days ago</span>
+            <div class="account-info__settings">
+                <a href="edit.html">Edit account</a>
+                <a href="#">Log out</a>
+            </div>
         </div>
 
         <div class="laptop-settings">
-            <a href="#" class="feedback-b">Send Feedback</a>
-            <a href="#" class="en-lang lang-flex">en</a>
-            <a href="#" class="ru-lang lang-flex">ru</a>
-            <a href="#" class="dark-mode mode-flex">dark mode</a>
-            <a href="#" class="light-mode mode-flex">light mode</a>
-            <p class="copyright-laptop">© Copyright — Helena Meadows</p>
+            <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+            <a href="#" class="en-language settings__flex">en</a>
+            <a href="#" class="ru-language settings__flex">ru</a>
+            <a href="#" class="dark-mode settings__flex">dark mode</a>
+            <a href="#" class="light-mode settings__flex">light mode</a>
+            <p class="laptop-copyright">© Copyright — Helena Meadows</p>
         </div>
 
         <nav class="main-nav">
@@ -95,30 +97,54 @@
         </nav>
 
         <div class="content-window">
-            <div class="filters-section">
-                <p>
-                    Filter
-                    <span class="off-btn">off</span>
-                    // Sort by
-                    <img class="arrows-icon" src="img/manage-lmode.svg">
-                </p>
+            <div class="filter-section">
+                Filter
+                <button class="filter-toggle">off</button>
+                // Sort by
+                <button type="button" class="sortby-button">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
+                        <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
+                    </svg>
+                </button>
+                <nav class="submenu submenu__sortby">
+                    <ul>
+                        <li><a href="#">Last added</a></li>
+                        <li><a href="#">Earliest</a></li>
+                    </ul>
+                </nav>
             </div>
             <table>
                 <thead></thead>
                 <tbody>
                     <tr>
                         <td><input type="checkbox" id="checkbox"></td>
-                        <td><b>Derwent</b><br><i>Inktense</i></td>
                         <td>
-                            <p class="colormark">0100</p>
+                            <div class="brand-type">
+                                <span class="brand">
+                                    <b>Derwent</b><br>
+                                </span>
+                                <span class="type">
+                                    <i>Inktense</i>
+                                </span>
+                            </div>
                         </td>
                         <td>
-                            <p class="colorswatch" style="background-color: #F4ED5F; color: #F4ED5F;">#F4ED5F</p>
+                            <div class="colormark">0100</div>
                         </td>
-                        <td>Sherbet Lemon</td>
-                        <td><img class="product-img" src="img/derwent-inktense0200.jpg"></td>
                         <td>
-                            <a href="#" class="manage-btn-mobile">
+                            <div class="colorswatch" style="background-color: #F4ED5F; color: #F4ED5F;">#F4ED5F</div>
+                        </td>
+                        <td>
+                            <span class="colorname">
+                                Sherbet Lemon
+                            </span>
+                        </td>
+                        <td><img class="product-image" src="img/derwent-inktense0200.jpg"></td>
+                        <td>
+                            <button type="button" href="#" class="edit-button modal-open">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 448.5 188.4"
                                     style="enable-background:new 0 0 448.5 188.4;" xml:space="preserve">
@@ -132,10 +158,10 @@
                                     <line class="st2" x1="318.5" y1="131" x2="19.5" y2="131" />
                                     <line class="st2" x1="318.5" y1="58.6" x2="19.5" y2="58.6" />
                                 </svg>
-                            </a>
+                            </button>
                         </td>
                         <td>
-                            <a href="#" class="manage-btn">
+                            <button type="button" class="manage-button">
                                 <span>Manage</span>
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -143,29 +169,42 @@
                                     <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                                     <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
                                 </svg>
-                            </a>
-                            <nav class="manage-menu">
+                            </button>
+                            <nav class="submenu submenu__manage">
                                 <ul>
                                     <li><a href="#">Add to favorites</a></li>
                                     <li><a href="#">Add to wishlist</a></li>
-                                    <li><a href="#">Edit</a></li>
+                                    <li><a class="modal-open" href="#">Edit</a></li>
                                 </ul>
                             </nav>
                         </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="checkbox"></td>
-                        <td><b>Derwent</b><br><i>Inktense</i></td>
                         <td>
-                            <p class="colormark">0200</p>
+                            <div class="brand-type">
+                                <span class="brand">
+                                    <b>Derwent</b><br>
+                                </span>
+                                <span class="type">
+                                    <i>Inktense</i>
+                                </span>
+                            </div>
                         </td>
                         <td>
-                            <p class="colorswatch" style="background-color: #FEE859; color: #FEE859;">#FEE859</p>
+                            <div class="colormark">0200</div>
                         </td>
-                        <td>Sun Yellow</td>
-                        <td><img class="product-img" src="img/derwentinktense1800.png"></td>
                         <td>
-                            <a href="#" class="manage-btn-mobile">
+                            <div class="colorswatch" style="background-color: #FEE859; color: #FEE859;">#FEE859</div>
+                        </td>
+                        <td>
+                            <span class="colorname">
+                                Sun Yellow
+                            </span>
+                        </td>
+                        <td><img class="product-image" src="img/derwentinktense1800.png"></td>
+                        <td>
+                            <button type="button" class="edit-button modal-open">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 448.5 188.4"
                                     style="enable-background:new 0 0 448.5 188.4;" xml:space="preserve">
@@ -179,10 +218,10 @@
                                     <line class="st2" x1="318.5" y1="131" x2="19.5" y2="131" />
                                     <line class="st2" x1="318.5" y1="58.6" x2="19.5" y2="58.6" />
                                 </svg>
-                            </a>
+                            </button>
                         </td>
                         <td>
-                            <a href="#" class="manage-btn">
+                            <button type="button" class="manage-button">
                                 <span>Manage</span>
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -190,22 +229,42 @@
                                     <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                                     <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
                                 </svg>
-                            </a>
+                            </button>
+                            <nav class="submenu submenu__manage">
+                                <ul>
+                                    <li><a href="#">Add to favorites</a></li>
+                                    <li><a href="#">Add to wishlist</a></li>
+                                    <li><a class="modal-open" href="#">Edit</a></li>
+                                </ul>
+                            </nav>
                         </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="checkbox"></td>
-                        <td><b>Derwent</b><br><i>Inktense</i></td>
                         <td>
-                            <p class="colormark">0300</p>
+                            <div class="brand-type">
+                                <span class="brand">
+                                    <b>Derwent</b><br>
+                                </span>
+                                <span class="type">
+                                    <i>Inktense</i>
+                                </span>
+                            </div>
                         </td>
                         <td>
-                            <p class="colorswatch" style="background-color: #F79725; color: #F79725;">#FEE859</p>
+                            <div class="colormark">0300</div>
                         </td>
-                        <td>Tangerine</td>
-                        <td><img class="product-img" src="img/derwentinktense1800.png"></td>
                         <td>
-                            <a href="#" class="manage-btn-mobile">
+                            <div class="colorswatch" style="background-color: #F79725; color: #F79725;">#F79725</div>
+                        </td>
+                        <td>
+                            <span class="colorname">
+                                Tangerine
+                            </span>
+                        </td>
+                        <td><img class="product-image" src="img/derwentinktense1800.png"></td>
+                        <td>
+                            <button type="button" class="edit-button modal-open">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 448.5 188.4"
                                     style="enable-background:new 0 0 448.5 188.4;" xml:space="preserve">
@@ -219,10 +278,10 @@
                                     <line class="st2" x1="318.5" y1="131" x2="19.5" y2="131" />
                                     <line class="st2" x1="318.5" y1="58.6" x2="19.5" y2="58.6" />
                                 </svg>
-                            </a>
+                            </button>
                         </td>
                         <td>
-                            <a href="#" class="manage-btn">
+                            <button type="button" class="manage-button">
                                 <span>Manage</span>
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -230,22 +289,42 @@
                                     <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                                     <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
                                 </svg>
-                            </a>
+                            </button>
+                            <nav class="submenu submenu__manage">
+                                <ul>
+                                    <li><a href="#">Add to favorites</a></li>
+                                    <li><a href="#">Add to wishlist</a></li>
+                                    <li><a class="modal-open" href="#">Edit</a></li>
+                                </ul>
+                            </nav>
                         </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="checkbox"></td>
-                        <td><b>Derwent</b><br><i>Inktense</i></td>
                         <td>
-                            <p class="colormark">0400</p>
+                            <div class="brand-type">
+                                <span class="brand">
+                                    <b>Derwent</b><br>
+                                </span>
+                                <span class="type">
+                                    <i>Inktense</i>
+                                </span>
+                            </div>
                         </td>
                         <td>
-                            <p class="colorswatch" style="background-color: #EE3523; color: #EE3523;">#EE3523</p>
+                            <div class="colormark">0400</div>
                         </td>
-                        <td>Poppy Red</td>
-                        <td><img class="product-img" src="img/derwentinktense1800.png"></td>
                         <td>
-                            <a href="#" class="manage-btn-mobile">
+                            <div class="colorswatch" style="background-color: #EE3523; color: #EE3523;">#EE3523</div>
+                        </td>
+                        <td>
+                            <span class="colorname">
+                                Poppy Red
+                            </span>
+                        </td>
+                        <td><img class="product-image" src="img/derwentinktense1800.png"></td>
+                        <td>
+                            <button type="button" class="edit-button modal-open">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 448.5 188.4"
                                     style="enable-background:new 0 0 448.5 188.4;" xml:space="preserve">
@@ -259,10 +338,10 @@
                                     <line class="st2" x1="318.5" y1="131" x2="19.5" y2="131" />
                                     <line class="st2" x1="318.5" y1="58.6" x2="19.5" y2="58.6" />
                                 </svg>
-                            </a>
+                            </button>
                         </td>
                         <td>
-                            <a href="#" class="manage-btn">
+                            <button type="button" class="manage-button">
                                 <span>Manage</span>
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -270,22 +349,42 @@
                                     <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                                     <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
                                 </svg>
-                            </a>
+                            </button>
+                            <nav class="submenu submenu__manage">
+                                <ul>
+                                    <li><a href="#">Add to favorites</a></li>
+                                    <li><a href="#">Add to wishlist</a></li>
+                                    <li><a class="modal-open" href="#">Edit</a></li>
+                                </ul>
+                            </nav>
                         </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" class="checkbox"></td>
-                        <td><b>Derwent</b><br><i>Inktense</i></td>
                         <td>
-                            <p class="colormark">0500</p>
+                            <div class="brand-type">
+                                <span class="brand">
+                                    <b>Derwent</b><br>
+                                </span>
+                                <span class="type">
+                                    <i>Inktense</i>
+                                </span>
+                            </div>
                         </td>
                         <td>
-                            <p class="colorswatch" style="background-color: #BA101B; color: #BA101B;">#BA101B</p>
+                            <div class="colormark">0500</div>
                         </td>
-                        <td>Chilli red</td>
-                        <td><img class="product-img" src="img/derwentinktense1800.png"></td>
                         <td>
-                            <a href="#" class="manage-btn-mobile">
+                            <div class="colorswatch" style="background-color: #BA101B; color: #BA101B;">#BA101B</div>
+                        </td>
+                        <td>
+                            <span class="colorname">
+                                Chilli red
+                            </span>
+                        </td>
+                        <td><img class="product-image" src="img/derwentinktense1800.png"></td>
+                        <td>
+                            <button type="button" class="edit-button modal-open">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 448.5 188.4"
                                     style="enable-background:new 0 0 448.5 188.4;" xml:space="preserve">
@@ -299,10 +398,10 @@
                                     <line class="st2" x1="318.5" y1="131" x2="19.5" y2="131" />
                                     <line class="st2" x1="318.5" y1="58.6" x2="19.5" y2="58.6" />
                                 </svg>
-                            </a>
+                            </button>
                         </td>
                         <td>
-                            <a href="#" class="manage-btn">
+                            <button type="button" class="manage-button">
                                 <span>Manage</span>
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -310,7 +409,14 @@
                                     <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                                     <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
                                 </svg>
-                            </a>
+                            </button>
+                            <nav class="submenu submenu__manage">
+                                <ul>
+                                    <li><a href="#">Add to favorites</a></li>
+                                    <li><a href="#">Add to wishlist</a></li>
+                                    <li><a class="modal-open" href="#">Edit</a></li>
+                                </ul>
+                            </nav>
                         </td>
                     </tr>
                 </tbody>
@@ -318,11 +424,11 @@
         </div>
 
     </div>
-    <button class="modal-window">Open Modal</button>
-    <div class="modal" id="modal">
-        <div class="modal-header">
-            <div class="title">close</div>
-            <button data-close-button class="close-button">
+
+    <div class="modal">
+        <div class="modal__header">
+            <span>close</span>
+            <button class="close-button">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                     style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -333,15 +439,23 @@
                 </svg>
             </button>
         </div>
-        <div class="modal-body">
-            <div class="product-img-modal">
-                <img class="img-modal" src="img/derwentinktense1800.png" alt="">
+        <div class="modal__body">
+            <div class="product-image__modal">
+                <img src="img/derwentinktense1800.png" alt="">
             </div>
-            <div class="product-info">
-                <p class="colorname">Sun Yellow</p>
-                <p class="colorswatch colorswatch__modal" style="background-color: #BA101B; color: #BA101B;">#BA101B</p>
-                <p class="brand-type"><b>Derwent</b><br><i>Inktense</i></p>
-                <p class="colormark">0500</p>
+            <div class="product-info__modal">
+                <div class="colorname">Sun Yellow</div>
+                <div class="colorswatch colorswatch__modal" style="background-color: #BA101B; color: #BA101B;">#BA101B
+                </div>
+                <div class="brand-type">
+                    <span class="brand">
+                        <b>Derwent</b><br>
+                    </span>
+                    <span class="type">
+                        <i>Inktense</i>
+                    </span>
+                </div>
+                <div class="colormark">0500</div>
                 <div class="product-indicator">
                     <input type="range" min="0" max="100" value="97" id="indicator">
                     <span id="value">97</span>
@@ -379,7 +493,7 @@
                     <circle class="st1" cx="336.5" cy="129.4" r="6.2" />
                 </svg>
                 <h4>SETS</h4>
-                <div class="tags">
+                <div class="tags__modal">
                     <a class="existing-tags" href="#">plein air</a>
                     <a class="add-tags" href="#">Add tags...</a>
                 </div>
@@ -410,14 +524,15 @@
                     voluptas et similique deleniti excepturi eum ipsam voluptatem.
                 </p>
             </div>
-            <div class="fav-buttons">
-                <button class="heart-btn">
+            <div class="fav-wishlist-buttons">
+                <button class="fav-button">
                     &#10084;
                 </button>
-                <button class="wishlist-btn">WISHLIST</button>
+                <button class="wishlist-button">WISHLIST</button>
             </div>
-            <div class="nav-arrows">
-                <a class="prev-btn" href="#"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+            <div class="prev-next-buttons">
+                <a class="prev-button" href="#">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 398.7 198"
                         style="enable-background:new 0 0 398.7 198;" xml:space="preserve">
                         <path class="st0"
@@ -426,7 +541,8 @@
                             d="M156.6,99.1l63.6-36.7c0.3-0.2,0.7,0,0.7,0.4l0,73.4c0,0.4-0.4,0.6-0.7,0.4l-63.6-36.7C156.3,99.7,156.3,99.3,156.6,99.1z" />
                     </svg>
                 </a>
-                <a class="next-btn" href="#"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                <a class="next-button" href="#">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 398.7 198"
                         style="enable-background:new 0 0 398.7 198;" xml:space="preserve">
                         <path class="st0"

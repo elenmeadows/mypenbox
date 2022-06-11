@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<!--for MySQL:
-    user: MyPenUser
-    password: MyPenUserPa$$w0rd-->
 <html lang="en" dir="ltr">
 
 <head>
@@ -16,22 +13,22 @@
 <body>
     <div class="grid grid__index">
         <header>
-            <a href="index.html" class="main-logo">my pen-box</a>
+            <a href="index.html" class="title">my pen-box</a>
             <div class="header-links">
-                <a href="login.html" class="login-b">Log In</a>
-                <a href="sign-up.html" class="signup-b">Sign Up</a>
+                <a href="login.html" class="header-links__login">Log In</a>
+                <a href="sign-up.html" class="header-links__signup">Sign Up</a>
             </div>
-            <div class="set-icon">
-                <div class="set-icon__burger"></div>
+            <div class="settings-icon">
+                <div class="settings-icon__burger"></div>
             </div>
         </header>
-        <div class="laptop-title"><a href="#">my pen-box</a></div>
+        <div class="laptop-title"><a href="index-101.html">my pen-box</a></div>
         <div class="settings">
-            <a href="feedback.html" class="feedback-b">Send Feedback</a>
-            <a href="#" class="en-lang lang-flex">en</a>
-            <a href="#" class="ru-lang lang-flex">ru</a>
-            <a href="#" class="dark-mode mode-flex">dark mode</a>
-            <a href="#" class="light-mode mode-flex">light mode</a>
+            <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+            <a href="#" class="en-language settings__flex">en</a>
+            <a href="#" class="ru-language settings__flex">ru</a>
+            <a href="#" class="dark-mode settings__flex">dark mode</a>
+            <a href="#" class="light-mode settings__flex">light mode</a>
             <span class="copyright">© Copyright — Helena Meadows</span>
         </div>
 
@@ -39,12 +36,12 @@
         </div>
 
         <div class="laptop-settings laptop-settings__index">
-            <a href="feedback.html" class="feedback-b">Send Feedback</a>
-            <a href="#" class="en-lang lang-flex">en</a>
-            <a href="#" class="ru-lang lang-flex">ru</a>
-            <a href="#" class="dark-mode mode-flex">dark mode</a>
-            <a href="#" class="light-mode mode-flex">light mode</a>
-            <p class="copyright-laptop">© Copyright — Helena Meadows</p>
+            <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+            <a href="#" class="en-language settings__flex">en</a>
+            <a href="#" class="ru-language settings__flex">ru</a>
+            <a href="#" class="dark-mode settings__flex">dark mode</a>
+            <a href="#" class="light-mode settings__flex">light mode</a>
+            <p class="laptop-copyright">© Copyright — Helena Meadows</p>
         </div>
 
         <nav class="main-nav main-nav__index">
@@ -73,7 +70,7 @@
                 </button>
             </form>
             <ul>
-                <li><a href="catalog.html">catalogue</a></li>
+                <li><a href="catalog-unregistered.html">catalogue</a></li>
             </ul>
         </nav>
 
@@ -81,12 +78,12 @@
             <div class="auth__api">
                 <h2 class="heading">send feedback</h2>
             </div>
-            <p class="text">
-            <form class="content__fields" action="#" method="post">
+            <p class="content-window__text">
+            <form class="content-window__fields" action="#" method="post">
                 <input type="text" name="nickname" placeholder="Helena Meadows" required> full name<br>
                 <input type="text" name="nickname" placeholder="user@mail.com" required> your e-mail<br>
                 <textarea class="feedback-container" placeholder="Type here your message.." required></textarea><br>
-                <button type="submit" class="content__buttons">
+                <button type="submit" class="content-window__buttons">
                     Send
                 </button>
             </form>

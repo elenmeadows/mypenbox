@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<!--for MySQL:
-    user: MyPenUser
-    password: MyPenUserPa$$w0rd-->
 <html lang="en" dir="ltr">
 
 <head>
@@ -16,11 +13,12 @@
 <body>
     <div class="grid grid__index">
         <header>
-            <a href="index-101.html" class="title">my pen-box</a>
-            <div class="header-links">
-                <a href="login.html" class="header-links__login">Log In</a>
-                <a href="sign-up.html" class="header-links__signup">Sign Up</a>
+            <a href="index.html" class="title">my pen-box</a>
+            <div class="header-links header-account-info">
+                <span><b>Helena Meadows</b></span><br>
+                <span>@elenmeadows</span>
             </div>
+            <div class="header-account-avatar"></div>
             <div class="settings-icon">
                 <div class="settings-icon__burger"></div>
             </div>
@@ -73,28 +71,36 @@
                 </button>
             </form>
             <ul>
-                <li><a href="catalog-unregistered.html">catalogue</a></li>
+                <li><a href="catalog.html">catalogue</a></li>
+                <li><a href="#">my pen-box</a></li>
+                <li><a href="#">my sets</a></li>
+                <li><a href="#">favourites</a></li>
+                <li><a href="#">wishlist</a></li>
             </ul>
         </nav>
 
         <div class="content-window content-window__index">
-            <h2 class="heading">hi there,</h2>
-            <p class="content-window__text">
-                <b>welcome to my pen-box, the site where you can play around with pencils, markers and other artist
-                    supplies. </b><br><br>
-                <i> — Hey! What does «play around» mean?</i><br>
-                — Well, let me explain. Y'know, life is so much easier when you have all of your things up to date, in
-                one place. And *surprise!* THIS IS WHAT MY PEN-BOX CAN HELP YOU WITH!<br><br>
-                Sign up and you'll have access to the library of stuff used for drawing.
-                Then manage it! Create your own sets of supplies, add them to wishlist and favourites, write notes,
-                check their condition (maybe it's time to buy another one).. Sounds great, isn't it? ;)
-            </p>
-            <div class="registration-buttons">
-                <a href="login.html">Log In</a>
-                <a href="sign-up.html">Sign Up</a>
+            <div class="auth__api">
+                <h2 class="heading">add item</h2>
             </div>
-        </div>
+            <p class="content-window__text">
+            <form class="content-window__fields" action="/catalog/create" method="post">
+                <b>product info</b><br>
+                category <input type="text" name="category" id="category" placeholder="pencil"><br>
+                <input type="text" name="brand" placeholder="Derwent"> brand<br>
+                <input type="text" name="type" placeholder="Inktense"> type<br>
+                <input type="text" name="colormark" placeholder="0100"> colormark<br>
+                <input type="text" name="colorswatch" placeholder="#F4ED5F"> colorswatch<br>
+                <input type="text" name="colorname" placeholder="Sherbet Lemon"> colorname<br><br>
+                <b>product image</b><br>
+                <input type="file" name="product-image" id="product-image"><br>
+                <button type="submit" class="content-window__buttons">
+                    Add
+                </button>
+            </form>
+            </p>
 
+        </div>
     </div>
 </body>
 <script src="js/main.js"></script>

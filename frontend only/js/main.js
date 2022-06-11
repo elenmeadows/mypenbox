@@ -3,17 +3,17 @@
 
 $(".settings").css("display", "flex").hide();
 
-$(".set-icon").click(function () {
+$(".settings-icon").click(function () {
   if ($(".settings").is(":hidden")) {
     $(".settings").slideDown(700);
-    $(".set-icon").addClass("open");
+    $(".settings-icon").addClass("open");
     $(".settings-background").css("display", "block");
     $(".main-nav").css("pointer-events", "none");
     $(".content-window").css("pointer-events", "none");
     $("header").css("box-shadow", "0 0.35rem 0.35rem rgba(38, 36, 36, .7)");
   } else {
     $(".settings").slideUp(200);
-    $(".set-icon").removeClass("open");
+    $(".settings-icon").removeClass("open");
     $(".settings-background").css("display", "none");
     $(".main-nav").css("pointer-events", "");
     $(".content-window").css("pointer-events", "");
@@ -23,9 +23,9 @@ $(".set-icon").click(function () {
 
 function settings() {
   window.onclick = function (event) {
-    if (!event.target.matches(".set-icon") && !event.target.matches(".set-icon__burger") && !event.target.matches(".settings") && !event.target.matches(".settings a")) {
+    if (!event.target.matches(".settings-icon") && !event.target.matches(".settings-icon__burger") && !event.target.matches(".settings") && !event.target.matches(".settings a")) {
       $(".settings").slideUp(200);
-      $(".set-icon").removeClass("open");
+      $().removeClass("open");
       $(".settings-background").css("display", "none");
       $(".main-nav").css("pointer-events", "");
       $(".content-window").css("pointer-events", "");
@@ -36,11 +36,13 @@ function settings() {
 
 settings();
 
+// MediaQuery animations
+
 function mQuery() {
   let windowWidth = $(window).width();
   if (windowWidth >= 1024) {
     $(".settings").slideUp(1);
-    $(".set-icon").removeClass("open");
+    $(".settings-icon").removeClass("open");
     $(".settings-background").css("display", "none");
     $(".main-nav").css("pointer-events", "");
     $(".content-window").css("pointer-events", "");
@@ -48,11 +50,11 @@ function mQuery() {
   };
 
   if (windowWidth <= 692) {
-    $(".manage-btn span").text("");
-    $(".manage-btn svg").css("margin-left", "0");
+    $(".manage-button span").text("");
+    $(".manage-button svg").css("margin-left", "0");
   } else {
-    $(".manage-btn span").text("Manage");
-    $(".manage-btn svg").css("margin-left", "1rem");
+    $(".manage-button span").text("Manage");
+    $(".manage-button svg").css("margin-left", "1rem");
   }
 }
 
@@ -64,15 +66,15 @@ window.matchMedia("(max-width: 692px)").addListener(mQuery);
 
 // ManageButtonMenu animation
 
-$(".manage-btn").click(function () {
-  if ($(".manage-menu").is(":hidden")) {
-    $(".manage-menu").show(200);
-    $(".manage-btn svg").css("transform", "rotate(180deg)")
-    $(".manage-btn svg").css("transition-duration", "0.4s");
+$("td").click(function () {
+  if ($(this).find(".submenu__manage").is(":hidden")) {
+    $(this).find(".submenu__manage").show();
+    $(this).find(".manage-button svg").css("transform", "rotate(180deg)")
+    $(this).find(".manage-button svg").css("transition-duration", "0.4s");
   } else {
-    $(".manage-menu").hide(200);
-    $(".manage-btn svg").css("transform", "rotate(0deg)");
-    $(".manage-btn svg").css("transition-duration", "0.4s");
+    $(this).find(".submenu__manage").hide();
+    $(this).find(".manage-button svg").css("transform", "rotate(0deg)");
+    $(this).find(".manage-button svg").css("transition-duration", "0.4s");
   }
 });
 
@@ -119,7 +121,7 @@ $(".reset-icon").click(function () {
 
 // Modal window pop-up/collapse on click
 
-$(".modal-window").click(function () {
+$(".modal-open").click(function () {
   $("#overlay").show();
   $(".modal").show();
 });
@@ -144,13 +146,13 @@ $('[type="range"]').on('change input', function () {
 
 // Favourite button animation (modal window)
 
-$(".heart-btn").click(function () {
+$(".fav-button").click(function () {
   $(this).toggleClass("liked");
 });
 
 // Auto-resize of feedback message container
 
-$(".feedback-container").keyup(function (e) {
+$(".feedback-container").keyup(function () {
   $(this).css("height", "auto");
   let scHeight = $(this).prop('scrollHeight');
   $(this).css("height", `${scHeight}px`);
