@@ -271,22 +271,34 @@ header {
 .header-links {
     font-family: var(--ff-raleway);
     font-weight: 400;
+    color: var(--clr-accent-1);
     margin-left: auto;
 }
 
 .header-links a {
     display: inline-block;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--clr-accent-1);
     margin-right: 0.5rem;
+    cursor: pointer;
 }
 
 .header-account-info {
     font-size: 0.9rem;
-    font-family: var(--ff-raleway);
-    font-weight: 400;
-    color: var(--clr-accent-1);
     text-align: right;
+}
+
+.header-links__signup {
+    padding: 0.4em 0.4em;
+    border: 0.12em solid var(--clr-accent-1);
+    border-radius: 0.375em;
+}
+
+.header-links__login:active,
+.header-links__signup:active {
+    transform: scale(0.95);
+    transition-duration: 0.4s;
 }
 
 .header-account-avatar {
@@ -299,37 +311,6 @@ header {
     background-position: center;
     background-size: cover;
     border-radius: 50%;
-}
-
-.header-links__login:hover {
-    color: var(--clr-accent-1);
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.header-links__login:active {
-    transform: scale(0.95);
-    transition-duration: 0.4s;
-}
-
-.header-links__signup {
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 0.4em 0.4em;
-    border: 0.12em solid var(--clr-accent-1);
-    border-radius: 0.375em;
-}
-
-.header-links__signup:hover {
-    color: var(--clr-accent-1);
-    border: 0.12em solid var(--clr-accent-1);
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.header-links__signup:active {
-    transform: scale(0.95);
-    transition-duration: 0.4s;
 }
 
 .settings-icon {
@@ -412,7 +393,7 @@ header {
     text-transform: uppercase;
     text-align: center;
     padding: 0.825rem 0;
-    border: 0.11rem solid currentColor;
+    border: 0.11rem solid var(--clr-accent-1);
     border-radius: 0.375rem;
 }
 
@@ -420,7 +401,7 @@ header {
     font-weight: 700;
     background-color: var(--clr-accent-1);
     color: var(--clr-primary);
-    border: 0.11rem solid var(--clr-header);
+    border: 0.11rem solid var(--clr-primary);
     transition-duration: 0.4s;
     cursor: pointer;
 }

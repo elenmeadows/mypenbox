@@ -25,7 +25,7 @@ function settings() {
   window.onclick = function (event) {
     if (!event.target.matches(".settings-icon") && !event.target.matches(".settings-icon__burger") && !event.target.matches(".settings") && !event.target.matches(".settings a")) {
       $(".settings").slideUp(200);
-      $().removeClass("open");
+      $(".settings-icon").removeClass("open");
       $(".settings-background").css("display", "none");
       $(".main-nav").css("pointer-events", "");
       $(".content-window").css("pointer-events", "");
