@@ -17,39 +17,27 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #580e3c;
+    background: var(--clr-primary);
+}
+
+::-moz-selection {
+    /* Code for Firefox */
+    color: var(--clr-secondary);
+    background: var(--clr-primary);
+}
+
+::selection {
+    color: var(--clr-secondary);
+    background: var(--clr-primary);
 }
 
 :root {
     --clr-primary: #393636;
-    --clr-secondary: #efeeee;
-    --clr-aqua: #8adaff;
-    --clr-header: #580e3c;
-    --clr-accent-1: #989cd7;
-    --clr-accent-2: #ff66c4;
-    --clr-accent-3: #DBB1BC;
-    --clr-search: #E6DFEF;
-    --clr-filters: #e0e0e0;
-
-    --clr-prima: #81d4fa;
-    --clr-primary-light: #e1f5fe;
-    --clr-primary-dark: #4fc3f7;
-    --clr-gray100: #f9fbff;
-    --clr-gray150: #f4f6fb;
-    --clr-gray200: #eef1f6;
-    --clr-gray300: #e1e5ee;
-    --clr-gray400: #767b91;
-    --clr-gray500: #4f546c;
-    --clr-gray600: #2a324b;
-    --clr-gray700: #161d34;
-    --clr-pending: #fff0c2;
-    --clr-pending-font: #a68b00;
-    --clr-unpaid: #ffcdd2;
-    --clr-unpaid-font: #c62828;
-    --clr-paid: #c8e6c9;
-    --clr-paid-font: #388e8c;
-    --clr-link: #2962ff;
-
+    --clr-secondary: #EFEEEE;
+    --clr-tertiary: #F9F9F9;
+    --clr-quaternary: #E6DFEF;
+    --clr-quinary: #ded6e7;
+    --clr-accent-1: #989CD7;
 
     --ff-raleway: "Raleway", Helvetica, sans-serif;
     --ff-montserrat: "Montserrat", Helvetica, sans-serif;
@@ -133,7 +121,7 @@ video {
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: hsl(323, 73%, 20%) transparent;
+    scrollbar-color: var(--clr-primary) transparent;
 }
 
 body {
@@ -182,20 +170,20 @@ a {
 
 a:hover,
 a:active {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--clr-primary);
     cursor: pointer;
 }
 
 ins {
-    background-color: #ff9;
-    color: #000;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
     text-decoration: none;
 }
 
 mark {
-    background-color: #ff9;
-    color: #000;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
     font-style: italic;
     font-weight: bold;
 }
@@ -214,7 +202,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid var(--clr-primary);
     margin: 1em 0;
     padding: 0;
 }
@@ -406,7 +394,12 @@ header {
     cursor: pointer;
 }
 
-.settings a:active {
+.settings a:active,
+.main-nav ul li a:active,
+.registration-buttons a:active,
+.content-window__buttons:active,
+.manage-button:active,
+.edit-button:active {
     transform: scale(0.98);
     transition-duration: 0.4s;
 }
@@ -415,7 +408,7 @@ header {
     display: inline-block;
     flex: 4 100%;
     font-size: 0.9rem;
-    color: rgba(230, 223, 239, 0.5);
+    color: rgb(230, 223, 239, 0.5);
     padding: 0.7rem 0 0.5rem;
 }
 
@@ -452,7 +445,6 @@ header {
 
 .main-nav ul li {
     display: block;
-    list-style: none;
     margin: 0.5rem auto;
 }
 
@@ -471,13 +463,6 @@ header {
 .main-nav ul li a:hover {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
-    border: 0.11rem solid var(--clr-primary);
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.main-nav ul li a:active {
-    transform: scale(0.98);
     transition-duration: 0.4s;
     cursor: pointer;
 }
@@ -521,7 +506,7 @@ header {
 
 .search-icon .st1 {
     fill: none;
-    stroke: rgba(57, 54, 54, 0.45);
+    stroke: rgb(57, 54, 54, 0.45);
     stroke-width: 50;
     stroke-linecap: round;
     stroke-miterlimit: 10;
@@ -551,7 +536,7 @@ header {
     font-weight: 500;
     font-size: 1rem;
     color: var(--clr-primary);
-    background-color: var(--clr-search);
+    background-color: var(--clr-quaternary);
     border: 0.12rem solid var(--clr-primary);
     border-radius: 0.2rem;
     padding: 0.5rem 2.1rem;
@@ -617,7 +602,7 @@ header {
     font-weight: 500;
     font-size: 0.9rem;
     color: var(--clr-primary);
-    background-color: #f9f9f9;
+    background-color: var(--clr-tertiary);
     border: 0.12rem solid var(--clr-primary);
     border-radius: 0.2rem;
     padding: 0.4rem;
@@ -643,7 +628,7 @@ header {
     font-weight: 500;
     font-size: 0.9rem;
     color: var(--clr-primary);
-    background-color: #f9f9f9;
+    background-color: var(--clr-tertiary);
     resize: none;
     border: 0.12rem solid var(--clr-primary);
     border-radius: 0.2rem;
@@ -662,7 +647,7 @@ header {
     font-weight: 500;
     font-size: 0.9rem;
     color: var(--clr-primary);
-    background-color: #efeeee;
+    background-color: var(--clr-secondary);
     border: none;
     padding: 0;
     margin: 0.3rem 0.3rem 0.3rem 0;
@@ -693,13 +678,6 @@ header {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
     border: 1px solid var(--clr-primary);
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.registration-buttons a:active,
-.content-window__buttons:active {
-    transform: scale(0.98);
     transition-duration: 0.4s;
     cursor: pointer;
 }
@@ -779,24 +757,9 @@ tr td:nth-child(4) {
     margin: 0 1.1rem;
 }
 
-/* Can be used If BACKGROUND-COLOR is #efeeee */
-/* tr td:nth-child(6) {
-    border: 1px solid var(--clr-primary);
-} */
-
 tr td:nth-child(7) {
     display: none;
 }
-
-/* tr td:last-child {
-    padding: 1rem;
-} */
-
-/* td:nth-child(6n) {
-    border-left: 0.02rem solid var(--clr-primary);
-    border-right: 0.02rem solid var(--clr-primary);
-} */
-
 
 .colormark {
     padding: 0.3rem 1rem;
@@ -833,15 +796,15 @@ tr td:nth-child(7) {
 
 .edit-button svg .st0 {
     fill: none;
-    stroke: #393636;
+    stroke: var(--clr-primary);
     stroke-width: 10;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 .edit-button svg .st1 {
-    fill: #393636;
-    stroke: #393636;
+    fill: var(--clr-primary);
+    stroke: var(--clr-primary);
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-miterlimit: 10;
@@ -849,7 +812,7 @@ tr td:nth-child(7) {
 
 .edit-button svg .st2 {
     fill: none;
-    stroke: #393636;
+    stroke: var(--clr-primary);
     stroke-width: 10;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -868,12 +831,6 @@ tr td:nth-child(7) {
     cursor: pointer;
 }
 
-.manage-button:active,
-.edit-button:active {
-    transform: scale(0.98);
-    transition-duration: 0.4s;
-}
-
 .manage-button svg {
     width: 1rem;
     height: 1rem;
@@ -883,7 +840,7 @@ tr td:nth-child(7) {
 .manage-button svg .st0,
 .sortby-button svg .st0 {
     fill: none;
-    stroke: #393636;
+    stroke: var(--clr-primary);
     stroke-width: 32;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -970,7 +927,7 @@ tr td:nth-child(7) {
 .close-button {
     display: flex;
     fill: none;
-    stroke: #393636;
+    stroke: var(--clr-primary);
     stroke-width: 28;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -983,8 +940,13 @@ tr td:nth-child(7) {
     cursor: pointer;
 }
 
-.close-button:active {
+.close-button:active,
+.fav-button:active,
+.wishlist-button:active,
+.prev-next-buttons .prev-button:active,
+.prev-next-buttons .next-button:active {
     transform: scale(0.93);
+    transition-duration: 0.4s;
 }
 
 /* MODAL: BODY */
@@ -1119,7 +1081,7 @@ input[type="range"] {
 
 ::-ms-thumb {
     background: var(--clr-secondary);
-    border: 2px solid #999;
+    border: 2px solid var(--clr-primary);
     height: 40px;
     width: 0px;
     box-sizing: border-box;
@@ -1159,7 +1121,7 @@ input[type="range"] {
     bottom: 0.5rem;
     width: 70%;
     fill: none;
-    stroke: #393636;
+    stroke: var(--clr-primary);
     stroke-width: 8;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -1178,7 +1140,7 @@ input[type="range"] {
 .product-sets svg {
     width: 2rem;
     fill: none;
-    stroke: #393636;
+    stroke: var(--clr-primary);
     stroke-width: 16;
     stroke-miterlimit: 10;
     margin-right: 0.4rem;
@@ -1198,7 +1160,7 @@ input[type="range"] {
 }
 
 .product-sets .existing-tags {
-    background-color: var(--clr-search);
+    background-color: var(--clr-quaternary);
     padding: 0.4rem 1rem;
     border-radius: 99rem;
     margin-right: 0.4rem;
@@ -1206,11 +1168,11 @@ input[type="range"] {
 
 .product-sets .existing-tags:hover {
     font-weight: 400;
-    background-color: #ded6e7;
+    background-color: var(--clr-quinary);
 }
 
 .product-sets .existing-tags:active {
-    background-color: #ded6e7;
+    background-color: var(--clr-quinary);
     color: var(--clr-primary);
 }
 
@@ -1231,7 +1193,7 @@ input[type="range"] {
 .product-notes svg {
     width: 2rem;
     fill: none;
-    stroke: #393636;
+    stroke: var(--clr-primary);
     stroke-width: 16;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -1278,10 +1240,6 @@ input[type="range"] {
     color: red;
 }
 
-.fav-button:active {
-    transform: scale(0.93);
-}
-
 .wishlist-button {
     font-family: var(--ff-raleway);
     font-size: 0.8rem;
@@ -1296,11 +1254,6 @@ input[type="range"] {
     border-radius: 0.25rem;
     cursor: pointer;
 }
-
-.wishlist-button:active {
-    transform: scale(0.93);
-}
-
 
 /* MODAL: PREV & NEXT NAVIGATION */
 
@@ -1343,12 +1296,6 @@ input[type="range"] {
     transform: rotate(-180deg);
 }
 
-.prev-next-buttons .prev-button:active,
-.prev-next-buttons .next-button:active {
-    transform: scale(0.93);
-    transition-duration: 0.4s;
-}
-
 /* MEDIA QUERIES */
 
 @media screen and (min-width: 1282px) {
@@ -1387,7 +1334,6 @@ input[type="range"] {
         margin-top: 2rem;
         margin-bottom: 4rem;
         grid-template-columns: 10% 250px auto 10%;
-        /* grid-gap: 1rem; */
         grid-template-areas:
             ". laptop-title laptop-title ."
             ". laptop-signup-login content ."
@@ -1446,13 +1392,12 @@ input[type="range"] {
         color: var(--clr-secondary);
         border: 0.11rem solid var(--clr-primary);
         transition-duration: 0.4s;
-        cursor: pointer;
     }
 
-    .laptop-signup-login a:active {
+    .laptop-signup-login a:active,
+    .laptop-settings a:active {
         transform: scale(0.98);
         transition-duration: 0.4s;
-        cursor: pointer;
     }
 
     .laptop__signup {
@@ -1548,7 +1493,6 @@ input[type="range"] {
     .account-info__settings a:hover {
         font-weight: 700;
         transition-duration: 0.4s;
-        cursor: pointer;
     }
 
     .laptop-settings {
@@ -1583,12 +1527,6 @@ input[type="range"] {
         background-color: var(--clr-primary);
         color: var(--clr-secondary);
         border: 0.11rem solid var(--clr-primary);
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
-
-    .laptop-settings a:active {
-        transform: scale(0.98);
         transition-duration: 0.4s;
     }
 
