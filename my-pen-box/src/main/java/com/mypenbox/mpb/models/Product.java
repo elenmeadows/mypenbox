@@ -6,36 +6,30 @@ import javax.persistence.*;
 @Entity
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
-    @Column(name = "category")
+    private Long id;
     private String category;
-    @Column(name = "brand")
     private String brand;
-    @Column(name = "type")
     private String type;
-    @Column(name = "colormark")
     private String colormark;
-    @Column(name = "colorswatch")
     private String colorswatch;
-    @Column(name = "colorname")
     private String colorname;
-    @Column(name = "img")
     private String img;
 
     protected Product() {
     }
 
-    public long getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
+    @Column(name = "category")
     public String getCategory() {
         return category;
     }
@@ -44,6 +38,7 @@ public class Product {
         this.category = category;
     }
 
+    @Column(name = "brand")
     public String getBrand() {
         return brand;
     }
@@ -52,6 +47,7 @@ public class Product {
         this.brand = brand;
     }
 
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -60,6 +56,7 @@ public class Product {
         this.type = type;
     }
 
+    @Column(name = "colormark")
     public String getColormark() {
         return colormark;
     }
@@ -68,6 +65,7 @@ public class Product {
         this.colormark = colormark;
     }
 
+    @Column(name = "colorswatch")
     public String getColorswatch() {
         return colorswatch;
     }
@@ -76,6 +74,7 @@ public class Product {
         this.colorswatch = colorswatch;
     }
 
+    @Column(name = "colorname")
     public String getColorname() {
         return colorname;
     }
@@ -84,6 +83,7 @@ public class Product {
         this.colorname = colorname;
     }
 
+    @Column(name = "img")
     public String getImg() {
         return img;
     }
