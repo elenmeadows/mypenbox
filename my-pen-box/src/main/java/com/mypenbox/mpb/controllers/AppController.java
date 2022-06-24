@@ -2,50 +2,42 @@ package com.mypenbox.mpb.controllers;
 
 import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.services.ProductService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
 public class AppController {
 
     @Autowired
-    private final ProductService productService;
+    private ProductService service;
 
-    @GetMapping("/")
-    public String indexPage() {
-        return "index";
+    @RequestMapping("/catalog")
+    public String viewCatalog(Model model) {
+        return viewPage(model, 1);
     }
 
-    @GetMapping("/catalog.html")
-    public String listProducts(Model model) {
-//        List<Product> products = productService.listAll();
-//        model.addAttribute("products", products);
+    @RequestMapping("/catalog/page/{pageNum}")
+    public String viewPage(Model model,
+                              @PathVariable(name = "pageNum") int pageNum) {
+
+        Page<Product> page = service.listAll(pageNum);
+
+        List<Product> listProducts = page.getContent();
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listProducts", listProducts);
+
         return "catalog";
     }
 
-    @GetMapping("/catalog/{id}")
-    public String productInfo(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productService.getProduct(id));
-        return "product-info";
-    }
 
-    @PostMapping("/catalog/create")
-    public String createProduct(Product product) {
-        productService.saveProduct(product);
-        return "redirect:/catalog";
-    }
 
-    @PostMapping("/catalog/delete/{id}")
-    public String deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
-        return "redirect:/catalog";
-    }
 }
