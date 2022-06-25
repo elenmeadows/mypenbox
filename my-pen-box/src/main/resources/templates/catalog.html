@@ -120,7 +120,7 @@
                     <div class="colormark"><th:block th:text="${el.colormark}"/></div>
                 </td>
                 <td>
-                    <div class="colorswatch" style="background-color: #F4ED5F; color: #F4ED5F;"><th:block th:text="${el.colorswatch}"/></div>
+                    <div class="colorswatch" th:styleappend="'background-color: ' + ${el.colorswatch} + ';' + 'color: ' + ${el.colorswatch} + ';'">[[${el.colorswatch}]]</div>
                 </td>
                 <td>
                             <span class="colorname">
@@ -173,18 +173,23 @@
 
 Total Items: [[${totalItems}]]<br>
 Page [[${currentPage}]] of [[${totalPages}]]
-<a th:if="${currentPage > 1}" th:href="@{'/catalog/page/1'}">First</a>
+<a th:if="${currentPage > 1}" th:href="@{'/catalog/page/1'} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+">First</a>
 <span th:unless="${currentPage > 1}">First</span>
-<a th:if="${currentPage > 1}" th:href="@{${currentPage - 1}}">Previous</a>
+<a th:if="${currentPage > 1}" th:href="@{${currentPage - 1}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+">Previous</a>
 <span th:unless="${currentPage > 1}">Previous</span>
-<a th:if="${currentPage < totalPages}" th:href="@{'/catalog/page/' + ${currentPage + 1}}">Next</a>
+<a th:if="${currentPage < totalPages}" th:href="@{'/catalog/page/' + ${currentPage + 1}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+">Next</a>
 <span th:unless="${currentPage < totalPages}">Next</span>
-<a th:if="${currentPage < totalPages}" th:href="@{'/catalog/page/' + ${totalPages}}">Last</a>
+<a th:if="${currentPage < totalPages}" th:href="@{'/catalog/page/' + ${totalPages}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+">Last</a>
 <span th:unless="${currentPage < totalPages}">Last</span>
 
 
 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-    <a th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i}}">[[${i}]]</a>
+    <a th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+">[[${i}]]</a>
     <span th:unless="${currentPage != i}">[[${i}]]</span>
     &nbsp;
 </span>
@@ -322,6 +327,5 @@ Page [[${currentPage}]] of [[${totalPages}]]
 </div>
 <div id="overlay"></div>
 </body>
-<script src="js/main.js"></script>
-
+<script th:src="@{/js/main.js}"></script>
 </html>
