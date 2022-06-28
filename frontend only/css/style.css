@@ -284,7 +284,8 @@ header {
 }
 
 .header-links__login:active,
-.header-links__signup:active {
+.header-links__signup:active,
+.submenu__sortby ul li button:active {
     transform: scale(0.95);
     transition-duration: 0.4s;
 }
@@ -851,6 +852,7 @@ tr td:nth-child(7) {
     z-index: 2000;
     margin-top: 0.4rem;
     z-index: 898;
+    font-family: var(--ff-montserrat);
     background-color: var(--clr-secondary);
     border: 0.1rem solid var(--clr-primary);
     border-radius: 0.2rem;
@@ -863,13 +865,12 @@ tr td:nth-child(7) {
 }
 
 .submenu ul li a {
-    display: block;
-    font-family: var(--ff-montserrat);
+    display: inline-block;
     padding: 0.4rem;
 }
 
 .submenu ul li a:hover {
-    display: block;
+    display: inline-block;
     font-weight: 600;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -881,7 +882,38 @@ tr td:nth-child(7) {
 
 .submenu__sortby {
     display: none;
-    margin-left: 10rem;
+    margin-left: 6.2rem;
+}
+
+.submenu__sortby ul {
+    width: fit-content;
+}
+
+.submenu__sortby ul li {
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    padding: 0 0.3rem;
+}
+
+.submenu__sortby ul li button {
+    color: var(--clr-primary);
+    background-color: var(--clr-secondary);
+    margin: 0.4rem 0.1rem;
+    border: 1px solid var(--clr-primary);
+    border-radius: 0.2rem;
+}
+
+.submenu__sortby ul li button:hover {
+    color: var(--clr-secondary);
+    background-color: var(--clr-primary);
+    margin: 0.4rem 0.1rem;
+    border: 1px solid var(--clr-primary);
+    border-radius: 0.2rem;
+}
+
+.submenu__sortby ul li button:last-child {
+    margin: 0 0.4rem;
 }
 
 .submenu__manage {
