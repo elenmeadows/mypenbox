@@ -63,6 +63,19 @@ window.matchMedia("(min-width: 1024px)").addListener(mQuery);
 window.matchMedia("(min-width: 692px)").addListener(mQuery);
 window.matchMedia("(max-width: 692px)").addListener(mQuery);
 
+// SortByMenu animation
+
+$(".sortby-button").click(function () {
+  if ($(".submenu__sortby").is(":hidden")) {
+    $(".submenu__sortby").show();
+    $(".sortby-button svg").css("transform", "rotate(180deg)")
+    $(".sortby-button svg").css("transition-duration", "0.4s");
+  } else {
+    $(".submenu__sortby").hide();
+    $(".sortby-button svg").css("transform", "rotate(0deg)");
+    $(".sortby-button svg").css("transition-duration", "0.4s");
+  }
+});
 
 // ManageButtonMenu animation
 
