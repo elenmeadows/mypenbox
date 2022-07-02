@@ -41,7 +41,7 @@
         <a href="login.html" class="laptop__login">Log In</a>
     </div>
 
-    <div class="laptop-settings">
+    <div class="laptop-settings laptop-settings__index">
         <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
@@ -181,34 +181,30 @@
             </th:block>
             </tbody>
         </table>
+        <div class="multselection">
+            <div class="multselection__counter">0 item(s) been selected</div>
+            <div class="multselection__buttons">
+                <button>SELECT ALL</button>
+                <button>REMOVE SELECTION</button>
+                <button class="fav-button">
+                    &#10084;
+                </button>
+                <button class="wishlist-button">WISHLIST</button>
+                <button>DELETE</button>
+            </div>
+        </div>
+        <div class="pagination">
+            <span>Total Items: [[${totalItems}]] // Page [[${currentPage}]] of [[${totalPages}]]</span>
+            <div>
+                <a th:each="i: ${#numbers.sequence(1, totalPages)}">
+                    <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}">[[${i}]]</a>
+                <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
+                </a>
+            </div>
+        </div>
     </div>
-
+    </div>
 </div>
-
-Total Items: [[${totalItems}]]<br>
-Page [[${currentPage}]] of [[${totalPages}]]
-<a th:if="${currentPage > 1}" th:href="@{'/catalog/page/1'} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
-">First</a>
-<span th:unless="${currentPage > 1}">First</span>
-<a th:if="${currentPage > 1}" th:href="@{${currentPage - 1}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
-">Previous</a>
-<span th:unless="${currentPage > 1}">Previous</span>
-<a th:if="${currentPage < totalPages}" th:href="@{'/catalog/page/' + ${currentPage + 1}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
-">Next</a>
-<span th:unless="${currentPage < totalPages}">Next</span>
-<a th:if="${currentPage < totalPages}" th:href="@{'/catalog/page/' + ${totalPages}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
-">Last</a>
-<span th:unless="${currentPage < totalPages}">Last</span>
-
-
-<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-    <a th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
-">[[${i}]]</a>
-    <span th:unless="${currentPage != i}">[[${i}]]</span>
-    &nbsp;
-</span>
-
-
 
 <div class="modal">
     <div class="modal__header">

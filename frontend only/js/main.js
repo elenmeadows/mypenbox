@@ -23,7 +23,7 @@ $(".settings-icon").click(function () {
 
 function settings() {
   window.onclick = function (event) {
-    if (!event.target.matches(".settings-icon") && !event.target.matches(".settings-icon__burger") && !event.target.matches(".settings") && !event.target.matches(".settings a")) {
+    if (!event.target.matches(".settings-icon") && !event.target.matches(".settings-icon__burger") && !event.target.matches(".settings") && !event.target.matches(".settings *")) {
       $(".settings").slideUp(200);
       $(".settings-icon").removeClass("open");
       $(".settings-background").css("display", "none");
@@ -31,7 +31,13 @@ function settings() {
       $(".content-window").css("pointer-events", "");
       $("header").css("box-shadow", "");
     }
-  };
+
+    if (!event.target.matches(".sortby-button") && !event.target.matches(".sortby-button *") && !event.target.matches(".sortby-filter-submenu") && !event.target.matches(".sortby-filter-submenu *")) {
+      $(".sortby-filter-submenu").slideUp(200);
+      $(".sortby-button .double-arrow").css("transform", "rotate(0deg)");
+      $(".sortby-button .double-arrow").css("transition-duration", "0.4s");
+    }
+  }
 };
 
 settings();
@@ -63,17 +69,17 @@ window.matchMedia("(min-width: 1024px)").addListener(mQuery);
 window.matchMedia("(min-width: 692px)").addListener(mQuery);
 window.matchMedia("(max-width: 692px)").addListener(mQuery);
 
-// SortByMenu animation
+// SortByFilterMenu animation
 
 $(".sortby-button").click(function () {
-  if ($(".submenu__sortby").is(":hidden")) {
-    $(".submenu__sortby").show();
-    $(".sortby-button svg").css("transform", "rotate(180deg)")
-    $(".sortby-button svg").css("transition-duration", "0.4s");
+  if ($(".sortby-filter-submenu").is(":hidden")) {
+    $(".sortby-filter-submenu").slideDown(700);
+    $(".sortby-button .double-arrow").css("transform", "rotate(180deg)")
+    $(".sortby-button .double-arrow").css("transition-duration", "0.4s");
   } else {
-    $(".submenu__sortby").hide();
-    $(".sortby-button svg").css("transform", "rotate(0deg)");
-    $(".sortby-button svg").css("transition-duration", "0.4s");
+    $(".sortby-filter-submenu").slideUp(200);
+    $(".sortby-button .double-arrow").css("transform", "rotate(0deg)");
+    $(".sortby-button .double-arrow").css("transition-duration", "0.4s");
   }
 });
 
@@ -81,41 +87,15 @@ $(".sortby-button").click(function () {
 
 $("td").click(function () {
   if ($(this).find(".submenu__manage").is(":hidden")) {
-    $(this).find(".submenu__manage").show();
-    $(this).find(".manage-button svg").css("transform", "rotate(180deg)")
-    $(this).find(".manage-button svg").css("transition-duration", "0.4s");
+    $(this).find(".submenu__manage").slideDown(500);
+    $(this).find(".manage-button .double-arrow").css("transform", "rotate(180deg)")
+    $(this).find(".manage-button .double-arrow").css("transition-duration", "0.4s");
   } else {
-    $(this).find(".submenu__manage").hide();
-    $(this).find(".manage-button svg").css("transform", "rotate(0deg)");
-    $(this).find(".manage-button svg").css("transition-duration", "0.4s");
+    $(this).find(".submenu__manage").slideUp(200);
+    $(this).find(".manage-button .double-arrow").css("transform", "rotate(0deg)");
+    $(this).find(".manage-button .double-arrow").css("transition-duration", "0.4s");
   }
 });
-
-// Рабочая версия ManageButtonMenu animation, но тут hover effect:
-// $(".manage-btn").on("mouseover", manageButtonOver);
-// $(".manage-menu ul li a").on("click", manageButtonOut);
-
-// function manageButtonOver(event) {
-//   if (event.target.matches(".manage-btn")) {
-//     $(".manage-menu").slideDown();
-//     $(".manage-arrows-icon").css("transform", "rotate(180deg)");
-//     $(".manage-arrows-icon").css("transition-duration", "0.4s");
-//   }
-// }
-
-// function manageButtonOut(event) {
-//   if (event.target.matches(".manage-menu ul li a")) {
-//     $(".manage-menu").slideUp();
-//     $(".manage-arrows-icon").css("transform", "rotate(0deg)");
-//     $(".manage-arrows-icon").css("transition-duration", "0.4s");
-//   }
-// }
-
-// $(".manage-menu").mouseleave(function () {
-//   $(".manage-menu").slideUp();
-//   $(".manage-arrows-icon").css("transform", "rotate(0deg)");
-//   $(".manage-arrows-icon").css("transition-duration", "0.4s");
-// });
 
 // SearchBar animation
 
