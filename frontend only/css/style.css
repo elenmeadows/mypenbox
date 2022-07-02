@@ -286,7 +286,7 @@ header {
 
 .header-links__login:active,
 .header-links__signup:active,
-.submenu__sortby ul li button:active {
+.s-f-submenu__sortby ul li button:active {
     transform: scale(0.95);
     transition-duration: 0.4s;
 }
@@ -464,7 +464,7 @@ header {
 }
 
 .main-nav ul li a:hover,
-.submenu__sortby ul li button:hover,
+.s-f-submenu__sortby ul li button:hover,
 .pagination__pages:hover {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
@@ -711,7 +711,8 @@ header {
     border-radius: 0.2rem;
 }
 
-.sortby-button {
+.sortby-button,
+.manage-button svg {
     width: 1rem;
     height: 1rem;
     padding: 0;
@@ -719,6 +720,149 @@ header {
     vertical-align: -0.2rem;
     background: none;
     border: none;
+    cursor: pointer;
+}
+
+.double-arrow .st0 {
+    fill: none;
+    stroke: var(--clr-primary);
+    stroke-width: 32;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sortby-filter-submenu {
+    display: none;
+    flex-flow: row wrap;
+    position: absolute;
+    z-index: 898;
+    font-size: 1rem;
+    font-family: var(--ff-montserrat);
+    color: var(--clr-primary);
+    background-color: rgb(224, 224, 224, 0.9);
+    width: 20rem;
+    height: fit-content;
+    padding: 1.7rem;
+    margin-top: 0.2rem;
+}
+
+.s-f-submenu__filter {
+    width: fit-content;
+    height: fit-content;
+}
+
+.s-f-submenu__filter input {
+    display: none;
+}
+
+.filter-tabs label {
+    display: inline-block;
+    background: var(--clr-secondary);
+    color: var(--clr-primary);
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--clr-primary);
+    border-radius: 0.2rem 0.2rem 0 0;
+    cursor: pointer;
+}
+
+#filter-tabs__one {
+    position: relative;
+    top: 6.1rem;
+    left: -0.2rem;
+    transform-origin: 0 0;
+    transform: rotate(-90deg);
+}
+
+#filter-tabs__two {
+    position: relative;
+    top: 10rem;
+    left: -4.85rem;
+    transform-origin: 0 0;
+    transform: rotate(-90deg);
+}
+
+.filter-panels {
+    width: 15rem;
+    height: 10rem;
+    line-height: 1rem;
+    padding: 0.8rem;
+    margin-left: 1.67rem;
+    overflow-y: scroll;
+    background: var(--clr-secondary);
+    border: 1px solid var(--clr-primary);
+    border-radius: 3px;
+}
+
+.filter-panels div {
+    display: none;
+    animation: fadein .8s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#filter-panels__one span,
+#filter-panels__one a,
+#filter-panels__two span,
+#filter-panels__two a {
+    display: inline-block;
+    width: 100%;
+    padding: 0.2rem;
+    margin-bottom: 0.1rem;
+}
+
+#filter-panels__one span:hover,
+#filter-panels__one a:hover,
+#filter-panels__two span:hover,
+#filter-panels__two a:hover {
+    color: var(--clr-secondary);
+    background-color: var(--clr-primary);
+    cursor: crosshair;
+}
+
+#brand-filter:checked~.filter-panels #filter-panels__one,
+#type-filter:checked~.filter-panels #filter-panels__two {
+    display: block;
+}
+
+#brand-filter:checked~.filter-tabs #filter-tabs__one,
+#type-filter:checked~.filter-tabs #filter-tabs__two {
+    background: var(--clr-primary);
+    color: var(--clr-secondary);
+}
+
+.s-f-submenu__sortby {
+    flex: 1 100%;
+}
+
+.s-f-submenu__sortby ul {
+    list-style: none;
+}
+
+.s-f-submenu__sortby ul li {
+    font-weight: 500;
+}
+
+.s-f-submenu__sortby ul li:not(:last-child) {
+    margin-bottom: 0.6rem;
+}
+
+.s-f-submenu__sortby ul li button {
+    font-family: var(--ff-montserrat);
+    font-size: 0.9rem;
+    background-color: transparent;
+    padding: 0.09rem 0.6rem;
+    margin-right: 0.3rem;
+    border: 0.12rem solid var(--clr-primary);
+    border-radius: 0.2rem;
+    outline: inherit;
     cursor: pointer;
 }
 
@@ -836,84 +980,40 @@ tr td:nth-child(7) {
 }
 
 .manage-button svg {
-    width: 1rem;
-    height: 1rem;
     margin-left: 1rem;
 }
 
-.manage-button svg .st0,
-.sortby-button svg .st0 {
-    fill: none;
-    stroke: var(--clr-primary);
-    stroke-width: 32;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.submenu {
+.submenu__manage {
+    display: none;
     position: absolute;
-    z-index: 2000;
     margin-top: 0.4rem;
-    z-index: 898;
+    z-index: 897;
     font-family: var(--ff-montserrat);
     background-color: var(--clr-secondary);
     border: 0.1rem solid var(--clr-primary);
     border-radius: 0.2rem;
 }
 
-.submenu ul {
+.submenu__manage ul {
     list-style: none;
     justify-content: center;
     width: 9rem;
 }
 
-.submenu ul li a {
+.submenu__manage ul li a {
     display: inline-block;
     padding: 0.4rem;
 }
 
-.submenu ul li a:hover {
+.submenu__manage ul li a:hover {
     display: inline-block;
     font-weight: 600;
     transition-duration: 0.4s;
     cursor: pointer;
 }
 
-.submenu ul li:not(:last-child) {
+.submenu__manage ul li:not(:last-child) {
     border-bottom: 0.1rem solid var(--clr-primary);
-}
-
-.submenu__sortby {
-    display: none;
-    margin-left: 6.2rem;
-
-}
-
-.submenu__sortby ul {
-    width: fit-content;
-}
-
-.submenu__sortby ul li {
-    display: flex;
-    font-weight: 600;
-    align-items: center;
-    padding: 0 0.3rem;
-}
-
-.submenu__sortby ul li button {
-    color: var(--clr-primary);
-    background-color: var(--clr-secondary);
-    margin: 0.4rem 0.1rem;
-    border: 1px solid var(--clr-primary);
-    border-radius: 0.2rem;
-}
-
-.submenu__sortby ul li button:last-child {
-    margin: 0 0.4rem;
-}
-
-.submenu__manage {
-    display: none;
 }
 
 .multselection {
@@ -1418,6 +1518,7 @@ input[type="range"] {
             ". laptop-title laptop-title ."
             ". laptop-signup-login content ."
             ". main-nav content ."
+            ". main-nav content ."
             ". account-info content ."
             ". laptop-settings content ."
     }
@@ -1497,7 +1598,7 @@ input[type="range"] {
 
     .main-nav__index {
         grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-end: 4;
     }
 
     .account-info {
@@ -1586,8 +1687,8 @@ input[type="range"] {
     }
 
     .laptop-settings__index {
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
     }
 
     .laptop-settings a {

@@ -162,6 +162,7 @@ q:after {
 }
 
 a {
+    color: var(--clr-primary);
     margin: 0;
     padding: 0;
     vertical-align: baseline;
@@ -400,7 +401,8 @@ header {
 .registration-buttons a:active,
 .content-window__buttons:active,
 .manage-button:active,
-.edit-button:active {
+.edit-button:active,
+.pagination__pages:active {
     transform: scale(0.98);
     transition-duration: 0.4s;
 }
@@ -461,7 +463,9 @@ header {
     border-radius: 0.375rem;
 }
 
-.main-nav ul li a:hover {
+.main-nav ul li a:hover,
+.submenu__sortby ul li button:hover,
+.pagination__pages:hover {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
     transition-duration: 0.4s;
@@ -691,7 +695,6 @@ header {
     font-family: var(--ff-montserrat);
     width: 100%;
     height: fit-content;
-    align-items: center;
     white-space: nowrap;
     padding: 0.25rem;
     color: var(--clr-primary);
@@ -904,20 +907,83 @@ tr td:nth-child(7) {
     border-radius: 0.2rem;
 }
 
-.submenu__sortby ul li button:hover {
-    color: var(--clr-secondary);
-    background-color: var(--clr-primary);
-    margin: 0.4rem 0.1rem;
-    border: 1px solid var(--clr-primary);
-    border-radius: 0.2rem;
-}
-
 .submenu__sortby ul li button:last-child {
     margin: 0 0.4rem;
 }
 
 .submenu__manage {
     display: none;
+}
+
+.multselection {
+    display: flex;
+    font-size: 1rem;
+    font-family: var(--ff-montserrat);
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    color: var(--clr-primary);
+    background-color: rgb(224, 0, 0, 0.08);
+}
+
+.multselection__counter {
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+.multselection__buttons {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.multselection__buttons button:not(:nth-child(3)),
+.wishlist-button {
+    font-family: var(--ff-montserrat);
+    font-size: 0.8rem;
+    font-weight: 500;
+    outline: none;
+    background: none;
+    height: auto;
+    text-align: center;
+    padding: 0.41rem;
+    border: 1px solid var(--clr-primary);
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-family: var(--ff-montserrat);
+    width: 100%;
+    height: fit-content;
+    white-space: nowrap;
+    padding: 0.5rem;
+    margin-top: 0.4rem;
+    color: var(--clr-primary);
+    background-color: rgb(224, 224, 224, 0.7);
+}
+
+.pagination span {
+    font-weight: 500;
+}
+
+.pagination__pages {
+    font-size: 0.9rem;
+    font-family: var(--ff-montserrat);
+    padding: 0.2rem 0.45rem;
+    margin: 0 0.2rem;
+    border: 1px solid var(--clr-primary);
+    border-radius: 0.2rem;
+}
+
+.selected {
+    color: var(--clr-secondary);
+    background-color: var(--clr-primary);
 }
 
 /* MODAL */
@@ -976,7 +1042,8 @@ tr td:nth-child(7) {
 .fav-button:active,
 .wishlist-button:active,
 .prev-next-buttons .prev-button:active,
-.prev-next-buttons .next-button:active {
+.prev-next-buttons .next-button:active,
+.multselection__buttons button:active {
     transform: scale(0.93);
     transition-duration: 0.4s;
 }
@@ -1252,6 +1319,7 @@ input[type="range"] {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    gap: 0.4rem;
     justify-content: flex-start;
     grid-area: fav-wishlist-buttons;
 }
@@ -1270,21 +1338,6 @@ input[type="range"] {
 
 .liked {
     color: red;
-}
-
-.wishlist-button {
-    font-family: var(--ff-raleway);
-    font-size: 0.8rem;
-    font-weight: 500;
-    outline: none;
-    background: none;
-    height: auto;
-    text-align: center;
-    padding: 0.41rem;
-    margin-left: 0.4rem;
-    border: 1px solid var(--clr-primary);
-    border-radius: 0.25rem;
-    cursor: pointer;
 }
 
 /* MODAL: PREV & NEXT NAVIGATION */
@@ -1370,6 +1423,7 @@ input[type="range"] {
             ". laptop-title laptop-title ."
             ". laptop-signup-login content ."
             ". main-nav content ."
+            ". main-nav content ."
             ". account-info content ."
             ". laptop-settings content ."
     }
@@ -1449,7 +1503,7 @@ input[type="range"] {
 
     .main-nav__index {
         grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-end: 4;
     }
 
     .account-info {
@@ -1538,8 +1592,8 @@ input[type="range"] {
     }
 
     .laptop-settings__index {
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
     }
 
     .laptop-settings a {
@@ -1725,4 +1779,14 @@ input[type="range"] {
     tr td:nth-child(7) {
         display: grid;
     }
+
+    .multselection,
+    .pagination {
+        font-size: 0.8rem;
+    }
+
+    .multselection__buttons button:not(:nth-child(3)) {
+        font-size: 0.67rem;
+    }
+
 }
