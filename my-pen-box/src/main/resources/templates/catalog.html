@@ -81,45 +81,72 @@
     </nav>
 
     <div class="content-window">
-        <div class="filter-section">
+        <div class="sortby-filter-nav">
             Filter
             <button class="filter-toggle">off</button>
             // Sort by
             <button type="button" class="sortby-button">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                <svg class="double-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                      style="enable-background:new 0 0 512 512;" xml:space="preserve">
                         <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                     <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
                     </svg>
             </button>
-            <nav class="submenu submenu__sortby">
+        </div>
+        <div class="sortby-filter-submenu">
+            <div class="s-f-submenu__sortby">
                 <ul>
-                    <li>
-                        <button type="button">DESC</button> <button type="button">ASC</button>
-                        Brand
-                    </li>
-                    <li>
-                        <button type="button">DESC</button> <button type="button">ASC</button>
-                        Type
-                    </li>
-                    <li>
-                        <button type="button">DESC</button> <button type="button">ASC</button>
-                        Color number
-                    </li>
-                    <li>
-                        <button type="button">DESC</button> <button type="button">ASC</button>
-                        Color name
-                    </li>
+                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                        Brand</li>
+                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                        Type</li>
+                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                        Color number</li>
+                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                        Color name</li>
                 </ul>
-            </nav>
+            </div>
+            <div class="s-f-submenu__filter">
+                <input id="brand-filter" name="group" type="radio" checked>
+                <input id="type-filter" name="group" type="radio">
+                <div class="filter-tabs">
+                    <label id="filter-tabs__one" for="brand-filter">Brand</label>
+                    <label id="filter-tabs__two" for="type-filter">Type</label>
+                </div>
+                <div class="filter-panels">
+                    <div id="filter-panels__one">
+                        <span>Derwent</span><br>
+                        <span>Derwent</span><br>
+                        <span>Derwent</span><br>
+                        <span>Derwent</span><br>
+                        <span>Derwent</span><br>
+                        <span>Derwent</span><br>
+                        <span>Derwent</span><br>
+                        <span>Derwent</span><br>
+                    </div>
+                    <div id="filter-panels__two">
+                        <span>Inktense</span><br>
+                        <span>Inktense</span><br>
+                        <span>Inktense</span><br>
+                        <span>Inktense</span><br>
+                        <span>Inktense</span><br>
+                        <span>Inktense</span><br>
+                        <span>Inktense</span><br>
+                        <span>Inktense</span><br>
+                    </div>
+                </div>
+            </div>
         </div>
         <table>
             <thead></thead>
             <tbody>
             <th:block th:each="el : ${listProducts}">
             <tr>
-                <td><input type="checkbox" id="checkbox"></td>
+                <td>
+                    <input type="checkbox" th:id="${el.type} + '_' + ${el.colormark}" name="checkbox"/>
+                    <label th:for="${el.type} + '_' + ${el.colormark}"></label>
+                </td>
                 <td>
                     <div class="brand-type">
                                 <span class="brand">
@@ -162,14 +189,14 @@
                 <td>
                     <button type="button" class="manage-button">
                         <span>Manage</span>
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        <svg class="double-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                              style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                     <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                             <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
                                 </svg>
                     </button>
-                    <nav class="submenu submenu__manage">
+                    <nav class="submenu__manage">
                         <ul>
                             <li><a href="#">Add to favorites</a></li>
                             <li><a href="#">Add to wishlist</a></li>
