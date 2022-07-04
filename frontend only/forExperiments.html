@@ -6,152 +6,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    </div>
+    <link rel="stylesheet" href="https://snipp.ru/cdn/bootstrap/4.3/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <style>
-        /* Base for label styling */
-        [type="checkbox"]:not(:checked),
-        [type="checkbox"]:checked {
+        input[type='checkbox'] {
             display: none;
         }
 
-        [type="checkbox"]:not(:checked)+label,
-        [type="checkbox"]:checked+label {
-            position: relative;
-            padding-left: 2.3em;
-            font-size: 1.05em;
-            line-height: 1.7;
+        input[type="checkbox"]:not(:checked)+label,
+        input[type='checkbox']:checked+label {
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            overflow: hidden;
+            border: 1.8px solid var(--clr-accent-1);
+            border-radius: 0.3rem;
+            background: transparent;
+            transition: all 0.5s ease;
             cursor: pointer;
         }
 
-        /* checkbox aspect */
-        [type="checkbox"]:not(:checked)+label:before,
-        [type="checkbox"]:checked+label:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 1.4em;
-            height: 1.4em;
-            border: 1px solid black;
-            border-radius: .2em;
-        }
-
-        /* checked mark aspect */
-        [type="checkbox"]:not(:checked)+label:after,
-        [type="checkbox"]:checked+label:after {
+        input[type="checkbox"]:checked+label:after {
             content: '✕';
-            position: absolute;
-            top: .525em;
-            left: .18em;
-            font-size: 1.375em;
-            color: #CB22ED;
+            position: relative;
+            top: 0.1rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--clr-primary);
             line-height: 0;
-            -webkit-transition: all .2s;
-            transition: all .2s;
+            animation: checkbox 0.1s;
         }
 
-        /* checked mark aspect changes */
-        [type="checkbox"]:not(:checked)+label:after {
-            opacity: 0;
-            -webkit-transform: scale(0) rotate(45deg);
-            transform: scale(0) rotate(45deg);
-        }
-
-        [type="checkbox"]:checked+label:after {
-            opacity: 1;
-            -webkit-transform: scale(1) rotate(0);
-            transform: scale(1) rotate(0);
-        }
-
-        /*
- * Useless styles, just for demo design
- */
-        body {
-            font-family: "Open Sans", "Segoe WP", "Segoe UI", Helvetica, Arial, sans-serif;
-            text-align: center;
-            color: #34495E;
-            background: #FCFDFD;
-        }
-
-        a[href^="https://www.creativejuiz"] {
-            color: #34495E;
-            text-decoration: underline;
-        }
-
-        h1 {
-            margin-top: 1em;
-        }
-
-        h2 {
-            margin-top: 0;
-            margin-bottom: 2em;
-            color: #CB22ED;
-            font-weight: normal;
-        }
-
-        form {
-            width: 120px;
-            margin: 0 auto 55px;
-            text-align: left;
-        }
-
-        div p:first-child {
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        p {
-            color: #aaa;
-        }
-
-        p a {
-            color: inherit;
-        }
-
-        p+p {
-            margin-top: 3em;
-        }
-
-        form p {
-            margin: 15px 0;
-            color: #34495E;
-        }
-
-        a[href^="https://twitter.com"] {
-            color: #1da1f2;
-        }
-
-        .btn.btn {
-            display: inline-block;
-            padding: 8px 24px;
-            text-decoration: none;
-            border-radius: 40px;
-            background: #34495E;
-            color: #F2F2F2;
-            transition: all .4s;
-        }
-
-        .btn.btn:hover,
-        .btn.btn:focus {
-            background: #000;
+        input[type='checkbox']:checked+label {
+            outline: 1.9px double var(--clr-primary);
+            border: none;
+            background: var(--clr-secondary);
         }
     </style>
 </head>
 
 <body>
-    <form action="#">
-        <p>
-            <input type="checkbox" id="test1" />
-            <label for="test1">Red</label>
+    <div class="text-center">
+        <p id="controls">
+            <label><input class="form-check-input" type="checkbox"> checkbox 1</label><br>
+            <label><input class="form-check-input" type="checkbox"> checkbox 2</label><br>
+            <label><input class="form-check-input" type="checkbox"> checkbox 3</label>
         </p>
-        <p>
-            <input type="checkbox" id="test2" checked="checked" />
-            <label for="test2">Yellow</label>
-        </p>
-    </form>
+        <p id="result">Отмечено: <span>0</span></p>
+    </div>
 </body>
 <script>
+    $('#controls label').click(function () {
+        $('#result span').html($('#controls input:checkbox:checked').length);
+        console.log($('#controls input:checkbox:checked').length);
+    });
 </script>
 
 </html>
