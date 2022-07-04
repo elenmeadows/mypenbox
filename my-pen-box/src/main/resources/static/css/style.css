@@ -929,8 +929,8 @@ input[type='checkbox']:checked+label{
 input[type="checkbox"]:checked+label:after {
     content: '✕';
     position: relative;
-    top: 0.1rem;
-    font-size: 0.8rem;
+    top: 1px;
+    /*font-size: 1rem;*/
     font-weight: 800;
     color: var(--clr-primary);
     line-height: 0;
@@ -1920,6 +1920,10 @@ input[type="range"] {
 
     tr td:nth-child(7) {
         display: grid;
+    }
+
+    input[type="checkbox"]:checked+label:after {
+        top: 3px;
     }
 
     .multselection,
