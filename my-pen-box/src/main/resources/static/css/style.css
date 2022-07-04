@@ -1065,7 +1065,7 @@ input[type='checkbox']:checked+label {
 }
 
 .multselection {
-    display: flex;
+    display: none;
     font-size: 1rem;
     font-family: var(--ff-montserrat);
     width: 100%;
