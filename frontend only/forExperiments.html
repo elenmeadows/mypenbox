@@ -9,108 +9,147 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <style>
-        body {
-            font-family: sans-serif;
-            font-weight: 800;
-            background: #eee;
-        }
-
-        .switch {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150px;
-            height: 50px;
-            text-align: center;
-            margin: -30px 0 0 -75px;
-            background: #00bc9c;
-            transition: all 0.2s ease;
-            border-radius: 25px;
-        }
-
-        .switch span {
-            position: absolute;
-            width: 20px;
-            height: 4px;
-            top: 50%;
-            left: 50%;
-            margin: -2px 0px 0px -4px;
-            background: #fff;
-            display: block;
-            transform: rotate(-45deg);
-            transition: all 0.2s ease;
-        }
-
-        .switch span:after {
-            content: "";
-            display: block;
-            position: absolute;
-            width: 4px;
-            height: 12px;
-            margin-top: -8px;
-            background: #fff;
-            transition: all 0.2s ease;
-        }
-
-        input[type=radio] {
+        /* Base for label styling */
+        [type="checkbox"]:not(:checked),
+        [type="checkbox"]:checked {
             display: none;
         }
 
-        .switch label {
+        [type="checkbox"]:not(:checked)+label,
+        [type="checkbox"]:checked+label {
+            position: relative;
+            padding-left: 2.3em;
+            font-size: 1.05em;
+            line-height: 1.7;
             cursor: pointer;
-            color: rgba(0, 0, 0, 0.2);
-            width: 60px;
-            line-height: 50px;
-            transition: all 0.2s ease;
         }
 
-        label[for=yes] {
+        /* checkbox aspect */
+        [type="checkbox"]:not(:checked)+label:before,
+        [type="checkbox"]:checked+label:before {
+            content: '';
             position: absolute;
-            left: 0px;
-            height: 20px;
+            left: 0;
+            top: 0;
+            width: 1.4em;
+            height: 1.4em;
+            border: 1px solid black;
+            border-radius: .2em;
         }
 
-        label[for=no] {
+        /* checked mark aspect */
+        [type="checkbox"]:not(:checked)+label:after,
+        [type="checkbox"]:checked+label:after {
+            content: '✕';
             position: absolute;
-            right: 0px;
+            top: .525em;
+            left: .18em;
+            font-size: 1.375em;
+            color: #CB22ED;
+            line-height: 0;
+            -webkit-transition: all .2s;
+            transition: all .2s;
         }
 
-        #no:checked~.switch {
-            background: #eb4f37;
+        /* checked mark aspect changes */
+        [type="checkbox"]:not(:checked)+label:after {
+            opacity: 0;
+            -webkit-transform: scale(0) rotate(45deg);
+            transform: scale(0) rotate(45deg);
         }
 
-        #no:checked~.switch span {
-            background: #fff;
-            margin-left: -8px;
+        [type="checkbox"]:checked+label:after {
+            opacity: 1;
+            -webkit-transform: scale(1) rotate(0);
+            transform: scale(1) rotate(0);
         }
 
-        #no:checked~.switch span:after {
-            background: #fff;
-            height: 20px;
-            margin-top: -8px;
-            margin-left: 8px;
+        /*
+ * Useless styles, just for demo design
+ */
+        body {
+            font-family: "Open Sans", "Segoe WP", "Segoe UI", Helvetica, Arial, sans-serif;
+            text-align: center;
+            color: #34495E;
+            background: #FCFDFD;
         }
 
-        #yes:checked~.switch label[for=yes] {
-            color: #fff;
+        a[href^="https://www.creativejuiz"] {
+            color: #34495E;
+            text-decoration: underline;
         }
 
-        #no:checked~.switch label[for=no] {
-            color: #fff;
+        h1 {
+            margin-top: 1em;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 2em;
+            color: #CB22ED;
+            font-weight: normal;
+        }
+
+        form {
+            width: 120px;
+            margin: 0 auto 55px;
+            text-align: left;
+        }
+
+        div p:first-child {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        p {
+            color: #aaa;
+        }
+
+        p a {
+            color: inherit;
+        }
+
+        p+p {
+            margin-top: 3em;
+        }
+
+        form p {
+            margin: 15px 0;
+            color: #34495E;
+        }
+
+        a[href^="https://twitter.com"] {
+            color: #1da1f2;
+        }
+
+        .btn.btn {
+            display: inline-block;
+            padding: 8px 24px;
+            text-decoration: none;
+            border-radius: 40px;
+            background: #34495E;
+            color: #F2F2F2;
+            transition: all .4s;
+        }
+
+        .btn.btn:hover,
+        .btn.btn:focus {
+            background: #000;
         }
     </style>
 </head>
 
 <body>
-    <div class="toggle-radio">
-        <input type="radio" name="rdo" id="yes" checked>
-        <input type="radio" name="rdo" id="no">
-        <div class="switch">
-            <label for="yes">Yes</label>
-            <label for="no">No</label>
-            <span></span>
-        </div>
-    </div>
+    <form action="#">
+        <p>
+            <input type="checkbox" id="test1" />
+            <label for="test1">Red</label>
+        </p>
+        <p>
+            <input type="checkbox" id="test2" checked="checked" />
+            <label for="test2">Yellow</label>
+        </p>
+    </form>
 </body>
 <script>
 </script>

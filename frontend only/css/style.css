@@ -689,7 +689,7 @@ header {
 
 /* CONTENT TABLE */
 
-.filter-section {
+.sortby-filter-nav {
     display: inline-block;
     font-size: 1rem;
     font-family: var(--ff-montserrat);
@@ -907,6 +907,31 @@ tr td:nth-child(4) {
 
 tr td:nth-child(7) {
     display: none;
+}
+
+input[type='checkbox'] {
+    display: none;
+}
+
+input[type='checkbox']+label {
+    display: block;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+input[type='checkbox']#checkbox+label {
+    border: 1.8px solid var(--clr-primary);
+    border-radius: 0.3rem;
+    background: transparent;
+    transition: all 0.5s ease;
+}
+
+input[type='checkbox']#checkbox:checked+label {
+    border: 1.8px solid var(--clr-primary);
+    background: var(--clr-primary);
 }
 
 .colormark {
