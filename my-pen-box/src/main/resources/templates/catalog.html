@@ -101,25 +101,33 @@
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${reverseSortDir}}">
                             <button type="button">Z — A</button>
                         </a>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${sortDir}}">
                         <button type="button">A — Z</button>
+                        </a>
                         Brand</li>
                     <li>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${reverseSortDir}}">
                             <button type="button">Z — A</button>
                         </a>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${sortDir}}">
                         <button type="button">A — Z</button>
+                        </a>
                         Type</li>
                     <li>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${reverseSortDir}}">
                             <button type="button">Z — A</button>
                         </a>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${sortDir}}">
                         <button type="button">A — Z</button>
+                        </a>
                         Color number</li>
                     <li>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${reverseSortDir}}">
                             <button type="button">Z — A</button>
                         </a>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${sortDir}}">
                         <button type="button">A — Z</button>
+                        </a>
                         Color name</li>
                 </ul>
             </div>
@@ -240,7 +248,7 @@
             <span>Total Items: [[${totalItems}]] // Page [[${currentPage}]] of [[${totalPages}]]</span>
             <div>
                 <a th:each="i: ${#numbers.sequence(1, totalPages)}">
-                    <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}">[[${i}]]</a>
+                    <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir}">[[${i}]]</a>
                 <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
                 </a>
             </div>
