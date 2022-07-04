@@ -97,13 +97,29 @@
         <div class="sortby-filter-submenu">
             <div class="s-f-submenu__sortby">
                 <ul>
-                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                    <li>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${reverseSortDir}}">
+                            <button type="button">Z — A</button>
+                        </a>
+                        <button type="button">A — Z</button>
                         Brand</li>
-                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                    <li>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${reverseSortDir}}">
+                            <button type="button">Z — A</button>
+                        </a>
+                        <button type="button">A — Z</button>
                         Type</li>
-                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                    <li>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${reverseSortDir}}">
+                            <button type="button">Z — A</button>
+                        </a>
+                        <button type="button">A — Z</button>
                         Color number</li>
-                    <li><button type="button">Z — A</button><button type="button">A — Z</button>
+                    <li>
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${reverseSortDir}}">
+                            <button type="button">Z — A</button>
+                        </a>
+                        <button type="button">A — Z</button>
                         Color name</li>
                 </ul>
             </div>
