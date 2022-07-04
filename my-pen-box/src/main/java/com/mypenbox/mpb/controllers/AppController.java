@@ -4,12 +4,15 @@ import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.swing.*;
 import java.util.List;
 
 @Controller
@@ -38,8 +41,9 @@ public class AppController {
         model.addAttribute("totalItems", page.getTotalElements());
 
         model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("sortDir", sortDir = "asc");
+        model.addAttribute("reverseSortDir", sortDir = "desc");
+        model.addAttribute("whatSortDir", page.getSort());
 
         model.addAttribute("listProducts", listProducts);
 
