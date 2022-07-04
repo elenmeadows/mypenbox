@@ -43,7 +43,7 @@ public class AppController {
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir = "asc");
         model.addAttribute("reverseSortDir", sortDir = "desc");
-        model.addAttribute("whatSortDir", page.getSort());
+        model.addAttribute("whatSortDir", page.getSort().get().findFirst().get().getDirection().toString().toLowerCase());
 
         model.addAttribute("listProducts", listProducts);
 
