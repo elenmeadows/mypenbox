@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>my pen-box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="grid grid__index">
+        <header>
+            <a href="index.html" class="title">my pen-box</a>
+            <div class="header-links header-account-info">
+                <span><b>Helena Meadows</b></span><br>
+                <span>@elenmeadows</span>
+            </div>
+            <div class="header-account-avatar"></div>
+            <div class="settings-icon">
+                <div class="settings-icon__burger"></div>
+            </div>
+        </header>
+        <div class="laptop-title"><a href="index-101.html">my pen-box</a></div>
+        <div class="settings">
+            <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+            <a href="#" class="en-language settings__flex">en</a>
+            <a href="#" class="ru-language settings__flex">ru</a>
+            <a href="#" class="dark-mode settings__flex">dark mode</a>
+            <a href="#" class="light-mode settings__flex">light mode</a>
+            <span class="copyright">© Copyright — Helena Meadows</span>
+        </div>
+
+        <div class="settings-background">
+        </div>
+
+        <div class="laptop-settings laptop-settings__index">
+            <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+            <a href="#" class="en-language settings__flex">en</a>
+            <a href="#" class="ru-language settings__flex">ru</a>
+            <a href="#" class="dark-mode settings__flex">dark mode</a>
+            <a href="#" class="light-mode settings__flex">light mode</a>
+            <p class="laptop-copyright">© Copyright — Helena Meadows</p>
+        </div>
+
+        <nav class="main-nav main-nav__index">
+            <form role="search" method="get" name="search" class="search search__index" action="">
+                <button type="submit" name="submit" aria-label="submit">
+                    <i class="search-icon">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                            style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                            <path class="st0" d="M-1,2" />
+                            <path class="st1" d="M337.3,340.3L447,450" />
+                            <circle class="st1" cx="229.1" cy="223.5" r="156.2" />
+                        </svg>
+                    </i>
+                </button>
+                <input type="text" name="search" id="input" value="" class="search-input" placeholder="Search">
+                <button type="reset" name="reset" aria-label="reset">
+                    <i class="reset-icon">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                            style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                            <line class="st0" x1="192" y1="320" x2="318.7" y2="193.3" />
+                            <line class="st0" x1="192" y1="192" x2="320" y2="320" />
+                        </svg>
+                    </i>
+                </button>
+            </form>
+            <ul>
+                <li><a href="catalog.html">catalogue</a></li>
+                <li><a href="#">my pen-box</a></li>
+                <li><a href="#">my sets</a></li>
+                <li><a href="#">favourites</a></li>
+                <li><a href="#">wishlist</a></li>
+            </ul>
+        </nav>
+
+        <div class="content-window content-window__index">
+            <div class="auth__api">
+                <h2 class="heading">edit profile</h2>
+            </div>
+            <p class="content-window__text">
+            <form class="content-window__fields" action="/catalog/create" method="post">
+                <b>main info</b><br>
+                e-mail <input type="text" name="email" id="email" placeholder="user@mail.com"><br>
+                <input type="text" name="first_name" placeholder="Helena"> first name<br>
+                <input type="text" name="last_name" placeholder="Meadows"> last name<br>
+                <input type="text" name="nickname" placeholder="@elenmeadows"> nickname<br><br>
+                <b>your avatar</b><br>
+                <input type="file" name="nickname" id="set-avatar" placeholder="@elenmeadows"><br><br>
+                <b>change password</b><br>
+                <input type="password" , name="old_password"> old password<br>
+                <input type="password" , name="password"> new password<br>
+                <input type="password" , name="repeat_password"> repeat new
+                password<br>
+                <button type="submit" class="content-window__buttons">
+                    Save changes
+                </button>
+            </form>
+            </p>
+
+        </div>
+    </div>
+</body>
+<script src="js/main.js"></script>
+
+</html>

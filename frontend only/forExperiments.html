@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="csstransforms" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    </div>
+    <link rel="stylesheet" href="https://snipp.ru/cdn/bootstrap/4.3/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        input[type='checkbox'] {
+            display: none;
+        }
+
+        input[type="checkbox"]:not(:checked)+label,
+        input[type='checkbox']:checked+label {
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            overflow: hidden;
+            border: 1.8px solid var(--clr-accent-1);
+            border-radius: 0.3rem;
+            background: transparent;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked+label:after {
+            content: '✕';
+            position: relative;
+            top: 0.1rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--clr-primary);
+            line-height: 0;
+            animation: checkbox 0.1s;
+        }
+
+        input[type='checkbox']:checked+label {
+            outline: 1.9px double var(--clr-primary);
+            border: none;
+            background: var(--clr-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-center">
+        <p id="controls">
+            <label><input class="form-check-input" type="checkbox"> checkbox 1</label><br>
+            <label><input class="form-check-input" type="checkbox"> checkbox 2</label><br>
+            <label><input class="form-check-input" type="checkbox"> checkbox 3</label>
+        </p>
+        <p id="result">Отмечено: <span>0</span></p>
+    </div>
+</body>
+<script>
+    $('#controls label').click(function () {
+        $('#result span').html($('#controls input:checkbox:checked').length);
+        console.log($('#controls input:checkbox:checked').length);
+    });
+</script>
+
+</html>
