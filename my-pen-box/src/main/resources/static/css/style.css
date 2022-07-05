@@ -286,7 +286,7 @@ header {
 
 .header-links__login:active,
 .header-links__signup:active,
-.s-f-submenu__sortby ul li button:active {
+.sortby-submenu-button:active {
     transform: scale(0.95);
     transition-duration: 0.4s;
 }
@@ -464,7 +464,7 @@ header {
 }
 
 .main-nav ul li a:hover,
-.s-f-submenu__sortby ul li button:hover,
+.sortby-submenu-button:hover,
 .pagination__pages:hover {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
@@ -854,7 +854,7 @@ header {
     margin-bottom: 0.6rem;
 }
 
-.s-f-submenu__sortby ul li button {
+.sortby-submenu-button {
     font-family: var(--ff-montserrat);
     font-size: 0.9rem;
     background-color: transparent;
@@ -1127,6 +1127,16 @@ input[type='checkbox']:checked+label {
     margin: 0 0.3rem;
     border: 1px solid var(--clr-primary);
     border-radius: 0.2rem;
+}
+
+.selected {
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
+    transition-duration: 0.4s;
+}
+
+.selected:hover {
+    cursor: default;
 }
 
 /* MODAL */

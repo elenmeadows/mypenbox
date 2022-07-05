@@ -99,34 +99,34 @@
                 <ul>
                     <li>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${reverseSortDir}}">
-                            <button type="button">Z — A</button>
+                            <button class="sortby-submenu-button" th:classappend="${sortField == 'brand' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${sortDir}}">
-                        <button type="button">A — Z</button>
+                        <button class="sortby-submenu-button" th:classappend="${sortField == 'brand' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Brand</li>
                     <li>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${reverseSortDir}}">
-                            <button type="button">Z — A</button>
+                            <button class="sortby-submenu-button" th:classappend="${sortField == 'type' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${sortDir}}">
-                        <button type="button">A — Z</button>
+                        <button class="sortby-submenu-button" th:classappend="${sortField == 'type' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Type</li>
                     <li>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${reverseSortDir}}">
-                            <button type="button">Z — A</button>
+                            <button class="sortby-submenu-button" th:classappend="${sortField == 'colormark' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${sortDir}}">
-                        <button type="button">A — Z</button>
+                        <button class="sortby-submenu-button" th:classappend="${sortField == 'colormark' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Color number</li>
                     <li>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${reverseSortDir}}">
-                            <button type="button">Z — A</button>
+                            <button class="sortby-submenu-button" th:classappend="${sortField == 'colorname' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
                         <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${sortDir}}">
-                        <button type="button">A — Z</button>
+                        <button class="sortby-submenu-button" th:classappend="${sortField == 'colorname' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Color name</li>
                 </ul>
