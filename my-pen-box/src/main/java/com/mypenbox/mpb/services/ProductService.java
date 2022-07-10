@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @Transactional
@@ -19,12 +20,16 @@ public class ProductService {
     @Autowired
     private ProductRepository repo;
 
-    public Page<Product> listAll(int pageNum, String sortField, String sortDir) {
+    public Page<Product> listAll(int pageNum, String sortField, String sortDir, String keyword) {
 
         int pageSize = 10;
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
                 sortDir.equals("asc") ? Sort.by(sortField).ascending()
                         : Sort.by(sortField).descending());
+
+        if (keyword != null) {
+            return repo.findAll(keyword, pageable);
+        }
 
         return repo.findAll(pageable);
     }

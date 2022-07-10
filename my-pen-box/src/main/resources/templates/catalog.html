@@ -51,8 +51,10 @@
     </div>
 
     <nav class="main-nav">
-        <form role="search" method="get" name="search" class="search" action="">
-            <button type="submit" name="submit" aria-label="submit">
+        <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
+            <input type="hidden" name="sortField" th:value="${sortField}"/>
+            <input type="hidden" name="sortDir" th:value="${whatSortDir}"/>
+            <button type="submit" aria-label="submit">
                 <i class="search-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -63,7 +65,7 @@
                         </svg>
                 </i>
             </button>
-            <input type="text" name="search" id="input" value="" class="search-input" placeholder="Search">
+            <input type="text" name="keyword" th:value="${keyword}" class="search-input" placeholder="Search">
             <button type="reset" name="reset" aria-label="reset">
                 <i class="reset-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -98,34 +100,34 @@
             <div class="s-f-submenu__sortby">
                 <ul>
                     <li>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${reverseSortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                             <button class="sortby-submenu-button" th:classappend="${sortField == 'brand' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${sortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=brand&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                         <button class="sortby-submenu-button" th:classappend="${sortField == 'brand' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Brand</li>
                     <li>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${reverseSortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                             <button class="sortby-submenu-button" th:classappend="${sortField == 'type' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${sortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                         <button class="sortby-submenu-button" th:classappend="${sortField == 'type' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Type</li>
                     <li>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${reverseSortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                             <button class="sortby-submenu-button" th:classappend="${sortField == 'colormark' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${sortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colormark&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                         <button class="sortby-submenu-button" th:classappend="${sortField == 'colormark' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Color number</li>
                     <li>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${reverseSortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                             <button class="sortby-submenu-button" th:classappend="${sortField == 'colorname' and whatSortDir == 'desc' ? 'selected' : ''}" type="button">Z — A</button>
                         </a>
-                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${sortDir}}">
+                        <a th:href="@{'/catalog/page/' + ${currentPage} + '?sortField=colorname&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
                         <button class="sortby-submenu-button" th:classappend="${sortField == 'colorname' and whatSortDir == 'asc' ? 'selected' : ''}" type="button">A — Z</button>
                         </a>
                         Color name</li>
@@ -248,7 +250,7 @@
             <span>Total Items: [[${totalItems}]] // Page [[${currentPage}]] of [[${totalPages}]]</span>
             <div>
                 <a th:each="i: ${#numbers.sequence(1, totalPages)}">
-                    <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir}">[[${i}]]</a>
+                    <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
                 <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
                 </a>
             </div>

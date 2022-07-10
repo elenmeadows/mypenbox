@@ -23,16 +23,17 @@ public class AppController {
 
     @RequestMapping("/catalog")
     public String viewCatalog(Model model) {
-        return viewPage(model, 1, "colormark", "asc");
+        return viewPage(model, 1, "colormark", "asc", null);
     }
 
     @RequestMapping("/catalog/page/{pageNum}")
     public String viewPage(Model model,
                            @PathVariable(name = "pageNum") int pageNum,
                            @Param("sortField") String sortField,
-                           @Param("sortDir") String sortDir) {
+                           @Param("sortDir") String sortDir,
+                           @Param("keyword") String keyword) {
 
-        Page<Product> page = service.listAll(pageNum, sortField, sortDir);
+        Page<Product> page = service.listAll(pageNum, sortField, sortDir, keyword);
 
         List<Product> listProducts = page.getContent();
 
@@ -46,6 +47,8 @@ public class AppController {
         model.addAttribute("whatSortDir", page.getSort().get().findFirst().get().getDirection().toString().toLowerCase());
 
         model.addAttribute("listProducts", listProducts);
+
+        model.addAttribute("keyword", keyword);
 
         return "catalog";
     }

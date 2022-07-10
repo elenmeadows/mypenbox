@@ -1,7 +1,7 @@
 
 // Close menus if clicked outside
 
-function closeIfOutside() {
+function hideIfOutside() {
     window.onclick = function (event) {
         if (!event.target.matches(".settings-icon") && !event.target.matches(".settings-icon__burger") && !event.target.matches(".settings") && !event.target.matches(".settings *")) {
             $(".settings").slideUp(200);
@@ -17,10 +17,14 @@ function closeIfOutside() {
             $(".sortby-button .double-arrow").css("transform", "rotate(0deg)");
             $(".sortby-button .double-arrow").css("transition-duration", "0.4s");
         }
+
+        if (!event.target.matches(".search-input")) {
+            $(".reset-icon").css("display", "none");
+        }
     }
 };
 
-closeIfOutside();
+hideIfOutside();
 
 // MediaQuery animations
 
@@ -73,17 +77,19 @@ $(".settings-icon").click(function () {
 
 // SearchBar animation
 
-input.oninput = function () {
+$(".search-input").on("input focus", function () {
     let searchInput = $(".search-input").val();
     if (!searchInput == "") {
         $(".reset-icon").css("display", "inline-block");
     } else if (searchInput == "") {
         $(".reset-icon").css("display", "none");
     }
-}
+});
 
 $(".reset-icon").click(function () {
+    $('.search-input').attr('value', '')
     $(".reset-icon").css("display", "none");
+    window.location = "http://localhost:8080/catalog";
 });
 
 // SortByFilterMenu animation
