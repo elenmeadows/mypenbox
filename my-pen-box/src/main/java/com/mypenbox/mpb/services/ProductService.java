@@ -34,15 +34,16 @@ public class ProductService {
         return repo.findAll(pageable);
     }
 
-    public void save(Product product) {
-        repo.save(product);
-    }
 
-    public Product get(Long id) {
-        return repo.findById(id).get();
-    }
-
-    public void delete(long id) {
-        repo.deleteById(id);
-    }
+//    public void save(Product product) {
+//        repo.save(product);
+//    }
+//
+//    public Product get(Long id) {
+//        return repo.findById(id).get();
+//    }
+//
+//    public void delete(long id) {
+//        repo.deleteById(id);
+//    }
 }

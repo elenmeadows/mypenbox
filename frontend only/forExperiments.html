@@ -11,57 +11,136 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <style>
-        input[type='checkbox'] {
-            display: none;
-        }
 
-        input[type="checkbox"]:not(:checked)+label,
-        input[type='checkbox']:checked+label {
-            display: block;
-            width: 1rem;
-            height: 1rem;
-            overflow: hidden;
-            border: 1.8px solid var(--clr-accent-1);
-            border-radius: 0.3rem;
-            background: transparent;
-            transition: all 0.5s ease;
-            cursor: pointer;
-        }
-
-        input[type="checkbox"]:checked+label:after {
-            content: '✕';
-            position: relative;
-            top: 0.1rem;
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: var(--clr-primary);
-            line-height: 0;
-            animation: checkbox 0.1s;
-        }
-
-        input[type='checkbox']:checked+label {
-            outline: 1.9px double var(--clr-primary);
-            border: none;
-            background: var(--clr-secondary);
-        }
     </style>
 </head>
 
 <body>
-    <div class="text-center">
-        <p id="controls">
-            <label><input class="form-check-input" type="checkbox"> checkbox 1</label><br>
-            <label><input class="form-check-input" type="checkbox"> checkbox 2</label><br>
-            <label><input class="form-check-input" type="checkbox"> checkbox 3</label>
-        </p>
-        <p id="result">Отмечено: <span>0</span></p>
-    </div>
+<table id="listUser" class="table table-bordered table-hover table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Number</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${listUser}">
+        <td th:text="${user.idUser}"></td>
+        <td th:text="${user.number}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.email}"></td>
+        <td><div class="text-center">
+                        <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==user.email})">
+                            <a class="btn btn-success editBtn" th:href="@{editUser/(idUser=${user.idUser})}">Edit<i class="fas fa-edit"></i></a>
+                        </span>
+                        <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">   |
+                            <a class="btn btn-danger" href="#" th:onclick="'javascript:confirmDelete(\''+ ${user.idUser} +'\');'">Delete<i class="fas fa-user-times"></i></a>
+                        </span>
+        </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+<div class="myForm">
+    <form th:object="${editUser}" th:action="@{/editUser}" method="post">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit user</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="idUserEdit" name="idUser" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="numberEdit">Nombre:</label>
+                            <input class="form-control" type="text" id="numberEdit" name="nombre" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="surnameEdit">Apellido:</label>
+                            <input class="form-control" type="text" id="surnameEdit" name="apellido" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="emailEdit">E-mail:</label>
+                            <input class="form-control" type="text" id="emailEdit" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="rolesEdit">Rol:</label>
+                            <input class="form-control" type="text" id="rolesEdit" name="roles" required />
+                            <!--<select class="form-control" id="rolesEdit" name="rol">
+                                <option th:each="rol :${roles}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
+                            </select>-->
+                        </div>
+                        <!-- <div class="form-group">
+                             <label class="col-form-label" for="rol">Rol:</label>
+                             <select class="form-control" id="rolesEdit" name="roles">
+                                 <option th:each="rol :${roles}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
+                             </select>
+                         </div>
+                         ERROR MESSAGE
+                         <div class="content">
+                             <div style="text-align: center;" class="alert-danger-registro" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
+                        -->
+                    </div>
+                    <!--FOOTER-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Guardar cambios"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 <script>
-    $('#controls label').click(function () {
-        $('#result span').html($('#controls input:checkbox:checked').length);
-        console.log($('#controls input:checkbox:checked').length);
+    $('.table .editBtn').on('click', function (event) {
+
+        event.preventDefault();
+        var href = $(this).attr('href');
+
+        $.get(href, function (user) {
+            $('.myForm #idUserEdit').val(user.idUser);
+            $('.myForm #numberEdit').val(user.number);
+            $('.myForm #surnameEdit').val(user.surname);
+            $('.myForm #emailEdit').val(user.email);
+            $('.myForm #rolesEdit').val(user.roles);
+        });
+        $('.myForm #editModal').modal();
     });
 </script>
 
 </html>
+
+
+@GetMapping("/editUser")
+@ResponseBody
+public User editUser(Model model, long idUser) throws Exception {
+
+model.addAttribute("listaUser", userService.getAllUsers());
+model.addAttribute("roles", rolDao.findAll());
+
+return userService.getUserById(idUser);
+}
+
+//method edit user
+@Override
+public User editUser(User fromUser) throws Exception {
+User toUser = getUserById(fromUser.getIdUser());
+
+return userDao.save(toUser);
+}
+
+
+

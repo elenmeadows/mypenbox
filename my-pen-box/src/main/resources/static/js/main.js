@@ -147,8 +147,10 @@ $("table input:checkbox").click(function() {
 // Modal window pop-up/collapse on click
 
 $(".modal-open").click(function () {
-    $("#overlay").show();
-    $(".modal").show();
+    let productId = $(this).attr("id").replace(/\D/g, "");
+    alert(productId);
+    // $("#overlay").show();
+    // $(".modal").show();
 });
 
 $(".close-button").click(function () {

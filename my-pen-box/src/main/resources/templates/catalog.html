@@ -78,7 +78,7 @@
             </button>
         </form>
         <ul>
-            <li><a href="catalog-unregistered.html">catalogue</a></li>
+            <li><a href="/catalog">catalogue</a></li>
         </ul>
     </nav>
 
@@ -170,8 +170,8 @@
             <th:block th:each="el : ${listProducts}">
             <tr>
                 <td>
-                    <input type="checkbox" th:id="${el.type} + '_' + ${el.colormark}" name="checkbox"/>
-                    <label th:for="${el.type} + '_' + ${el.colormark}"></label>
+                    <input type="checkbox" th:id="${el.id} + '_' + ${el.colorname}" name="checkbox"/>
+                    <label th:for="${el.id} + '_' + ${el.colorname}"></label>
                 </td>
                 <td>
                     <div class="brand-type">
@@ -196,7 +196,7 @@
                 </td>
                 <td><img class="product-image" src="img/derwent-inktense0200.jpg"></td>
                 <td>
-                    <button type="button" href="#" class="edit-button modal-open">
+                    <button type="button" href="#" class="edit-button modal-open" th:id="${el.id} + '_' + ${el.colorname}">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 448.5 188.4"
                              style="enable-background:new 0 0 448.5 188.4;" xml:space="preserve">
@@ -226,7 +226,7 @@
                         <ul>
                             <li><a href="#">Add to favorites</a></li>
                             <li><a href="#">Add to wishlist</a></li>
-                            <li><a class="modal-open" href="#">Edit</a></li>
+                            <li><a class="modal-open" th:id="${el.id} + '_' + ${el.colorname}" href="#">Edit</a></li>
                         </ul>
                     </nav>
                 </td>
@@ -289,7 +289,7 @@
                         <i>Inktense</i>
                     </span>
             </div>
-            <div class="colormark">0500</div>
+            <div class="colormark">500</div>
             <div class="product-indicator">
                 <input type="range" min="0" max="100" value="97" id="indicator">
                 <span id="value">97</span>
