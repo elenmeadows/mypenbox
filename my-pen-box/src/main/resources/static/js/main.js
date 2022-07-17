@@ -148,9 +148,20 @@ $("table input:checkbox").click(function() {
 
 $(".modal-open").click(function () {
     let productId = $(this).attr("id").replace(/\D/g, "");
-    alert(productId);
-    // $("#overlay").show();
-    // $(".modal").show();
+    $.ajax({
+        url:'/modal?productId=' + productId,
+        success: function (data) {
+            $('#product-info').load('/modal?productId=' + productId);
+           // $("#modal-colorname").text(data.colorname);
+           // $("#modal-colorswatch").css("background-color", data.colorswatch);
+           // $("#modal-colorswatch").css("color", data.colorswatch);
+           // $("#modal-brand b").text(data.brand);
+           // $("#modal-type i").text(data.type);
+           // $("#modal-colormark").text(data.colormark);
+        }
+    });
+    $("#overlay").show();
+    $(".modal").show();
 });
 
 $(".close-button").click(function () {

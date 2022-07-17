@@ -1778,6 +1778,7 @@ input[type="range"] {
 
     .content-window {
         margin-left: 0.5rem;
+        overflow: hidden;
     }
 
     .modal {

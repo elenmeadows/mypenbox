@@ -34,13 +34,13 @@ public class ProductService {
         return repo.findAll(pageable);
     }
 
+    public Product getProductById(Long id) {
+        return repo.findById(id).get();
+    }
+
 
 //    public void save(Product product) {
 //        repo.save(product);
-//    }
-//
-//    public Product get(Long id) {
-//        return repo.findById(id).get();
 //    }
 //
 //    public void delete(long id) {

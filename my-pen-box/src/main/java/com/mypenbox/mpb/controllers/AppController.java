@@ -9,11 +9,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.*;
+import java.net.ResponseCache;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @Controller
@@ -54,6 +54,18 @@ public class AppController {
         return "catalog";
     }
 
+    @GetMapping("/modal")
+    public String productInfo(Model model,
+                                     @Param("productId") String productId) {
 
+        Product productInfo = productService.getProductById(Long.valueOf(productId));
+        model.addAttribute("colorname", productInfo.getColorname());
+        model.addAttribute("colorswatch", productInfo.getColorswatch());
+        model.addAttribute("brand", productInfo.getBrand());
+        model.addAttribute("type", productInfo.getType());
+        model.addAttribute("colormark", productInfo.getColormark());
+
+        return "frags/modal :: modal";
+    }
 
 }

@@ -277,34 +277,7 @@
         <div class="product-image__modal">
             <img src="img/derwentinktense1800.png" alt="">
         </div>
-        <div class="product-info__modal">
-            <div class="colorname">Sun Yellow</div>
-            <div class="colorswatch colorswatch__modal" style="background-color: #BA101B; color: #BA101B;">#BA101B
-            </div>
-            <div class="brand-type">
-                    <span class="brand">
-                        <b>Derwent</b><br>
-                    </span>
-                <span class="type">
-                        <i>Inktense</i>
-                    </span>
-            </div>
-            <div class="colormark">500</div>
-            <div class="product-indicator">
-                <input type="range" min="0" max="100" value="97" id="indicator">
-                <span id="value">97</span>
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2000 198"
-                     style="enable-background:new 0 0 2000 198;" xml:space="preserve">
-                        <polygon class="st0" points="1936.6,98.4 1904.9,76 1904.9,120.9 " />
-                    <line class="st1" x1="1819.4" y1="40.2" x2="1819.4" y2="157.2" />
-                    <path class="st2"
-                          d="M1926.9,88.2l-98.8-44.9c-0.9-0.4-1.8-0.7-2.7-1c-2.6-1.5-5.8-2.4-9.2-2.4h-280.1c-1.3,0-2.5,0.1-3.6,0.3H79c-7.7,0-14,5.1-14,11.4V146c0,6.3,6.3,11.4,14,11.4h1565c1.2,0,2.3-0.1,3.4-0.3h168.8c3.1,0,6-0.7,8.5-2c1.2-0.2,2.3-0.7,3.4-1.1l98.8-44.9C1937.2,104.6,1937.2,92.9,1926.9,88.2z" />
-                    <line class="st2" x1="326" y1="157.6" x2="448" y2="40" />
-                    <line class="st2" x1="424" y1="157.6" x2="546" y2="40" />
-                    </svg>
-            </div>
-        </div>
+        <div id="product-info" th:insert="frags/modal :: modal"></div>
         <div class="product-sets">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
