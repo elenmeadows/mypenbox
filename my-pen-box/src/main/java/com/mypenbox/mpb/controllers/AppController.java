@@ -65,7 +65,7 @@ public class AppController {
         model.addAttribute("type", productInfo.getType());
         model.addAttribute("colormark", productInfo.getColormark());
 
-        return "frags/modal :: modal";
+        return "fragments/modal :: modal";
     }
 
 }
