@@ -152,6 +152,7 @@ $(".modal-open").click(function () {
         url:'/modal?productId=' + productId,
         success: function (data) {
             $('#product-info').load('/modal?productId=' + productId);
+            $('#product-info').removeAttr('class').addClass(productId);
         }
     });
     $("#overlay").show();
@@ -180,6 +181,34 @@ $('[type="range"]').on('change input', function () {
 
 $(".fav-button").click(function () {
     $(this).toggleClass("liked");
+});
+
+// Previous and Next buttons (modal window)
+
+$(".prev-button").click(function () {
+    let productId = $("#product-info").attr("class");
+    let totalItems = $("#total-items").text().replace(/\D/g, "");
+    console.log(productId);
+    console.log(totalItems);
+    if (productId < totalItems || productId != 1) {
+        $.ajax({
+            url:'/modal?productId=' + (productId - 1),
+            success: function (data) {
+                $('#product-info').load('/modal?productId=' + (productId - 1));
+                productId -= 1;
+                $('#product-info').removeAttr('class').addClass(productId.toString());
+            }
+        });
+    } else if (productId > totalItems || productId == 1) {
+        $.ajax({
+            url:'/modal?productId=' + (productId),
+            success: function (data) {
+                $('#product-info').load('/modal?productId=' + (productId));
+            }
+        });
+    }
+    $("#overlay").show();
+    $(".modal").show();
 });
 
 // Auto-resize of feedback message container

@@ -1250,8 +1250,11 @@ input[type='checkbox']:checked+label {
 
 /* MODAL: PRODUCT-INFO */
 
-.product-info__modal {
+#product-info {
     grid-area: product-info;
+}
+
+.product-info__modal {
     display: flex;
     flex-flow: row wrap;
 }
@@ -1381,10 +1384,13 @@ input[type="range"] {
 
 /* MODAL: PRODUCT-SETS */
 
+#product-sets {
+    grid-area: product-sets;
+}
+
 .product-sets {
     display: flex;
     flex-flow: row wrap;
-    grid-area: product-sets;
     align-items: center;
 }
 
@@ -1434,10 +1440,13 @@ input[type="range"] {
 
 /* MODAL: PRODUCT-NOTES */
 
+#product-notes {
+    grid-area: product-notes;
+}
+
 .product-notes {
     display: flex;
     flex-flow: row wrap;
-    grid-area: product-notes;
     align-items: center;
 }
 
@@ -1467,13 +1476,16 @@ input[type="range"] {
 
 /* MODAL: LIKE & WISHLIST BUTTONS */
 
+#fav-wishlist-buttons {
+    grid-area: fav-wishlist-buttons;
+}
+
 .fav-wishlist-buttons {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     gap: 0.4rem;
     justify-content: flex-start;
-    grid-area: fav-wishlist-buttons;
 }
 
 .fav-button {
@@ -1494,12 +1506,15 @@ input[type="range"] {
 
 /* MODAL: PREV & NEXT NAVIGATION */
 
+#prev-next-buttons {
+    grid-area: prev-next-buttons;
+}
+
 .prev-next-buttons {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-end;
-    grid-area: prev-next-buttons;
 }
 
 .prev-next-buttons .prev-button svg {
@@ -1824,14 +1839,14 @@ input[type="range"] {
 
     /* MODAL: PRODUCT-SETS */
 
-    .product-sets {
+    #product-sets {
         grid-area: product-sets;
         margin-bottom: 0.2rem;
     }
 
     /* MODAL: PRODUCT-NOTES */
 
-    .product-notes {
+    #product-notes {
         grid-area: product-notes;
     }
 
@@ -1843,14 +1858,14 @@ input[type="range"] {
 
     /* MODAL: LIKE & WISHLIST BUTTONS */
 
-    .fav-wishlist-buttons {
+    #fav-wishlist-buttons {
         grid-area: fav-wishlist-buttons;
         margin-top: 0.2rem;
     }
 
     /* MODAL: PREV & NEXT NAVIGATION */
 
-    .prev-next-buttons {
+    #prev-next-buttons {
         grid-area: prev-next-buttons;
         place-self: center;
         margin-top: 1rem;

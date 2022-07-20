@@ -247,7 +247,10 @@
             </div>
         </div>
         <div class="pagination">
-            <span>Total Items: [[${totalItems}]] // Page [[${currentPage}]] of [[${totalPages}]]</span>
+            <div>
+                <span id="total-items">Total Items: [[${totalItems}]]</span>
+                <span>// Page [[${currentPage}]] of [[${totalPages}]]</span>
+            </div>
             <div>
                 <a th:each="i: ${#numbers.sequence(1, totalPages)}">
                     <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
@@ -277,88 +280,11 @@
         <div class="product-image__modal">
             <img src="img/derwentinktense1800.png" alt="">
         </div>
-        <div id="product-info" th:insert="fragments/modal :: modal"></div>
-        <div class="product-sets">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
-                 style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                    <path class="st0"
-                          d="M431.5,465h-351C62,465,47,450,47,431.5v-351C47,62,62,47,80.5,47h351C450,47,465,62,465,80.5v351C465,450,450,465,431.5,465z" />
-                <path class="st0"
-                      d="M327.8,410.3H185.2c-18.5,0-33.5-15-33.5-33.5v-98.4c0-18.5,15-33.5,33.5-33.5h142.5c18.5,0,33.5,15,33.5,33.5v98.4C361.3,395.3,346.3,410.3,327.8,410.3z" />
-                <path class="st1"
-                      d="M186.7,247.2l-18.6-77.4c-1.6-6.7,2.5-13.4,9.2-15l11.3-2.7c6.7-1.6,13.4,2.5,15,9.2l20.1,83.6" />
-                <path class="st1"
-                      d="M245.4,244.9l7.7-103.4c0.5-6.9,6.5-12,13.3-11.5l11.6,0.9c6.9,0.5,12,6.5,11.5,13.3l-7.7,103" />
-                <path class="st1"
-                      d="M291.2,244.9l16.2-70.5c1.5-6.7,8.2-10.9,14.9-9.3l11.4,2.6c6.7,1.5,10.9,8.2,9.3,14.9l-14.8,64.7" />
-                <circle class="st1" cx="178.4" cy="134.5" r="16.1" />
-                <circle class="st1" cx="273.6" cy="113.3" r="16.1" />
-                <circle class="st1" cx="331.6" cy="150.5" r="16.1" />
-                <circle class="st1" cx="173.3" cy="113.3" r="6.2" />
-                <circle class="st1" cx="275.2" cy="91.6" r="6.2" />
-                <circle class="st1" cx="336.5" cy="129.4" r="6.2" />
-                </svg>
-            <h4>SETS</h4>
-            <div class="tags__modal">
-                <a class="existing-tags" href="#">plein air</a>
-                <a class="add-tags" href="#">Add tags...</a>
-            </div>
-        </div>
-        <div class="product-notes">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
-                 style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                    <path class="st0"
-                          d="M431.5,465h-351C62,465,47,450,47,431.5v-351C47,62,62,47,80.5,47h351C450,47,465,62,465,80.5v351C465,450,450,465,431.5,465z" />
-                <polygon class="st1" points="125.5,387.5 153.9,379.9 133,359 " />
-                <line class="st2" x1="233.6" y1="361.7" x2="150.8" y2="278.9" />
-                <path class="st3"
-                      d="M138.8,388.4l88.7-23.8c0.6-0.1,1.1-0.3,1.6-0.5c2.4-0.5,4.7-1.7,6.6-3.6l149.2-149.2c5.2-5.2,5.2-13.7,0-19l-64.1-64.1c-5.2-5.2-13.7-5.2-19,0L152.5,277.4c-1.9,1.9-3.1,4.2-3.6,6.6c-0.2,0.5-0.4,1-0.5,1.6l-23.8,88.7C122.3,382.8,130.2,390.7,138.8,388.4z" />
-                </svg>
-            <h4>NOTES</h4>
-            <p class="notes-container">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi corrupti
-                dolor dicta? Expedita non voluptas at exercitationem voluptates pariatur eaque velit tempora
-                cupiditate fugit minus commodi, quasi corporis aliquam doloremque obcaecati iure! Reiciendis
-                voluptas et similique deleniti excepturi eum ipsam voluptatem.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi corrupti
-                dolor dicta? Expedita non voluptas at exercitationem voluptates pariatur eaque velit tempora
-                cupiditate fugit minus commodi, quasi corporis aliquam doloremque obcaecati iure! Reiciendis
-                voluptas et similique deleniti excepturi eum ipsam voluptatem.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi corrupti
-                dolor dicta? Expedita non voluptas at exercitationem voluptates pariatur eaque velit tempora
-                cupiditate fugit minus commodi, quasi corporis aliquam doloremque obcaecati iure! Reiciendis
-                voluptas et similique deleniti excepturi eum ipsam voluptatem.
-            </p>
-        </div>
-        <div class="fav-wishlist-buttons">
-            <button class="fav-button">
-                &#10084;
-            </button>
-            <button class="wishlist-button">WISHLIST</button>
-        </div>
-        <div class="prev-next-buttons">
-            <a class="prev-button" href="#">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 398.7 198"
-                     style="enable-background:new 0 0 398.7 198;" xml:space="preserve">
-                        <path class="st0"
-                              d="M354,15h-96h-46.5h-24.6h-73.4H44.5c-15.9,0-28.9,10.8-28.9,24.2v119.5c0,13.4,12.9,24.2,28.9,24.2h69.1h73.4h24.6H258h96c15.9,0,28.9-10.8,28.9-24.2V39.3C382.8,25.9,369.9,15,354,15z" />
-                    <path class="st1"
-                          d="M156.6,99.1l63.6-36.7c0.3-0.2,0.7,0,0.7,0.4l0,73.4c0,0.4-0.4,0.6-0.7,0.4l-63.6-36.7C156.3,99.7,156.3,99.3,156.6,99.1z" />
-                    </svg>
-            </a>
-            <a class="next-button" href="#">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 398.7 198"
-                     style="enable-background:new 0 0 398.7 198;" xml:space="preserve">
-                        <path class="st0"
-                              d="M354,15h-96h-46.5h-24.6h-73.4H44.5c-15.9,0-28.9,10.8-28.9,24.2v119.5c0,13.4,12.9,24.2,28.9,24.2h69.1h73.4h24.6H258h96c15.9,0,28.9-10.8,28.9-24.2V39.3C382.8,25.9,369.9,15,354,15z" />
-                    <path class="st1"
-                          d="M156.6,99.1l63.6-36.7c0.3-0.2,0.7,0,0.7,0.4l0,73.4c0,0.4-0.4,0.6-0.7,0.4l-63.6-36.7C156.3,99.7,156.3,99.3,156.6,99.1z" />
-                    </svg>
-            </a>
-        </div>
+        <div id="product-info" th:insert="fragments/modal :: product-info"></div>
+        <div id="product-sets" th:insert="fragments/modal :: product-sets"></div>
+        <div id="product-notes" th:insert="fragments/modal :: product-notes"></div>
+        <div id="fav-wishlist-buttons" th:insert="fragments/modal :: fav-wishlist-buttons"></div>
+        <div id="prev-next-buttons" th:insert="fragments/modal :: prev-next-buttons"></div>
     </div>
 </div>
 <div id="overlay"></div>
