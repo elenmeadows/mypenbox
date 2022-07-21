@@ -186,11 +186,10 @@ $(".fav-button").click(function () {
 // Previous and Next buttons (modal window)
 
 $(".prev-button").click(function () {
-    let productId = $("#product-info").attr("class");
-    let totalItems = $("#total-items").text().replace(/\D/g, "");
-    console.log(productId);
-    console.log(totalItems);
-    if (productId < totalItems || productId != 1) {
+    let productId = parseInt($("#product-info").attr("class"));
+    let totalItems = parseInt($("#total-items").text().replace(/\D/g, ""));
+    if (productId <= totalItems && productId != 1) {
+        console.log("first prev-btn");
         $.ajax({
             url:'/modal?productId=' + (productId - 1),
             success: function (data) {
@@ -199,7 +198,34 @@ $(".prev-button").click(function () {
                 $('#product-info').removeAttr('class').addClass(productId.toString());
             }
         });
-    } else if (productId > totalItems || productId == 1) {
+    } else if (productId == 1 || productId > totalItems) {
+        console.log("first prev-btn");
+        $.ajax({
+            url:'/modal?productId=' + (productId),
+            success: function (data) {
+                $('#product-info').load('/modal?productId=' + (productId));
+            }
+        });
+    }
+    $("#overlay").show();
+    $(".modal").show();
+});
+
+$(".next-button").click(function () {
+    let productId = parseInt($("#product-info").attr("class"));
+    let totalItems = parseInt($("#total-items").text().replace(/\D/g, ""));
+    if (productId < totalItems && productId != totalItems) {
+        console.log("first next-btn");
+        $.ajax({
+            url:'/modal?productId=' + (productId + 1),
+            success: function (data) {
+                $('#product-info').load('/modal?productId=' + (productId + 1));
+                productId += 1;
+                $('#product-info').removeAttr('class').addClass(productId.toString());
+            }
+        });
+    } else if (productId == totalItems || productId > totalItems) {
+        console.log("second next-btn");
         $.ajax({
             url:'/modal?productId=' + (productId),
             success: function (data) {
