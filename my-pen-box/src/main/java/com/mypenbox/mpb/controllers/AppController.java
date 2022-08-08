@@ -68,4 +68,11 @@ public class AppController {
         return "fragments/modal :: product-info";
     }
 
+    @RequestMapping("/additem")
+    public String addItem(Model model) {
+
+        return "additem";
+    }
+
+
 }

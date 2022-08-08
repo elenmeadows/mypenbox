@@ -567,6 +567,10 @@ header {
     border-radius: 0.375rem;
 }
 
+.content-window__error {
+    text-align: center;
+}
+
 .auth__api {
     display: flex;
     align-items: center;
@@ -1037,7 +1041,7 @@ input[type='checkbox']:checked+label {
     margin-top: 0.4rem;
     z-index: 897;
     font-family: var(--ff-montserrat);
-    background-color: var(--clr-secondary);
+    background-color: rgb(224, 224, 224, 0.85);
     border: 0.1rem solid var(--clr-primary);
     border-radius: 0.2rem;
 }
@@ -1750,6 +1754,8 @@ input[type="range"] {
 
     .laptop-settings {
         grid-area: laptop-settings;
+        grid-row-start: 5;
+        grid-row-end: 6;
         display: flex;
         flex-flow: row wrap;
         gap: 0.5rem;
@@ -1759,8 +1765,8 @@ input[type="range"] {
     }
 
     .laptop-settings__index {
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
 
     .laptop-settings a {
