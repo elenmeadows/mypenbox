@@ -42,6 +42,10 @@ public class MpbErrorController implements ErrorController {
                 pageTitle = "forbidden";
                 errorPage = "error/403";
                 LOGGER.error("Error 403");
+            } else if (statusCode == HttpStatus.BAD_REQUEST.value()) {
+                pageTitle = "bad request";
+                errorPage = "error/400";
+                LOGGER.error("Error 400");
             }
         }
 
