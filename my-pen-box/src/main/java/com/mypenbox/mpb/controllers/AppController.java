@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.*;
 import java.net.ResponseCache;
@@ -68,11 +69,28 @@ public class AppController {
         return "fragments/modal :: product-info";
     }
 
-    @RequestMapping("/additem")
-    public String addItem(Model model) {
+    @RequestMapping("/add-product")
+    public String addProduct(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
 
-        return "additem";
+        return "add-product";
     }
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveProduct(@ModelAttribute("product") Product product) {
+        productService.save(product);
+
+        return "redirect:/catalog";
+    }
+
+    @RequestMapping("/edit-product/{productId}")
+    public String editProduct(Model model,
+                              @PathVariable(name = "productId") Long productId) {
+        Product product = productService.getProductById(productId);
+        model.addAttribute("product", product);
+
+        return "edit-product";
+    }
 
 }

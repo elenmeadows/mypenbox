@@ -38,10 +38,10 @@ public class ProductService {
         return repo.findById(id).get();
     }
 
+    public void save(Product product) {
+        repo.save(product);
+    }
 
-//    public void save(Product product) {
-//        repo.save(product);
-//    }
 //
 //    public void delete(long id) {
 //        repo.deleteById(id);

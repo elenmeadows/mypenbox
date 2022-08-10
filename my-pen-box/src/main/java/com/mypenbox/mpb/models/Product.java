@@ -15,7 +15,7 @@ public class Product {
     private String colorname;
     private String img;
 
-    protected Product() {
+    public Product() {
     }
 
     @Id
