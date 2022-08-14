@@ -6,15 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.swing.*;
-import java.net.ResponseCache;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @Controller
@@ -38,6 +33,11 @@ public class AppController {
         Page<Product> pageProduct = productService.listAll(pageNum, sortField, sortDir, keyword);
 
         List<Product> listProducts = pageProduct.getContent();
+        Sort explistProducts = pageProduct.getSort();
+        System.out.println("defaultSort: " + explistProducts);
+
+        List<Product> modalPageProduct = productService.modalfindAll(sortField, sortDir, keyword);
+        System.out.println(modalPageProduct.get(0).getColorname());
 
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", pageProduct.getTotalPages());

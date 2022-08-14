@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Locale;
 
 @Service
 @Transactional
@@ -32,6 +31,18 @@ public class ProductService {
         }
 
         return repo.findAll(pageable);
+    }
+
+    public List<Product> modalfindAll(String sortField, String sortDir, String keyword) {
+
+        Sort modalSorting = sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                        : Sort.by(sortField).descending();
+
+        if (keyword != null) {
+            return repo.findAll(keyword, modalSorting);
+        }
+
+        return repo.findAll(modalSorting);
     }
 
     public Product getProductById(Long id) {
