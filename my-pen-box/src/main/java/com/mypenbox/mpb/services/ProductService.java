@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -23,8 +24,8 @@ public class ProductService {
 
         int pageSize = 10;
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
-                sortDir.equals("asc") ? Sort.by(sortField).ascending()
-                        : Sort.by(sortField).descending());
+                sortDir.equals("asc") ? Sort.by(sortField).ascending().and(Sort.by(Sort.Direction.ASC, "id"))
+                        : Sort.by(sortField).descending().and(Sort.by(Sort.Direction.DESC, "id")));
 
         if (keyword != null) {
             return repo.findAll(keyword, pageable);
@@ -33,10 +34,10 @@ public class ProductService {
         return repo.findAll(pageable);
     }
 
-    public List<Product> modalfindAll(String sortField, String sortDir, String keyword) {
+    public List<Product> modalFindAll(String sortField, String sortDir, String keyword) {
 
-        Sort modalSorting = sortDir.equals("asc") ? Sort.by(sortField).ascending()
-                        : Sort.by(sortField).descending();
+        Sort modalSorting = sortDir.equals("asc") ? Sort.by(sortField).ascending().and(Sort.by(Sort.Direction.ASC, "id"))
+                        : Sort.by(sortField).descending().and(Sort.by(Sort.Direction.DESC, "id"));
 
         if (keyword != null) {
             return repo.findAll(keyword, modalSorting);

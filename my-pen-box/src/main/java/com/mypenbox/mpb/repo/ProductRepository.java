@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "OR CONCAT(p.brand, ' ', p.type, ' ', p.colorname, ' ') LIKE %?1%" +
             "OR UPPER(CONCAT(p.brand, ' ', p.type, ' ', p.colorname, ' ')) LIKE %?1%")
     public Page<Product> findAll(String keyword, Pageable pageable);
+
 
     @Query("SELECT p FROM Product p WHERE LOWER(CONCAT(p.brand, ' ', p.type, ' ', p.colorname, ' ')) LIKE %?1%" +
             "OR CONCAT(p.brand, ' ', p.type, ' ', p.colorname, ' ') LIKE %?1%" +

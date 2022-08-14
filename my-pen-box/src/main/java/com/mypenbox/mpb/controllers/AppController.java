@@ -33,10 +33,12 @@ public class AppController {
         Page<Product> pageProduct = productService.listAll(pageNum, sortField, sortDir, keyword);
 
         List<Product> listProducts = pageProduct.getContent();
-        Sort explistProducts = pageProduct.getSort();
-        System.out.println("defaultSort: " + explistProducts);
+        System.out.println("default: " + listProducts.get(0).getColorname());
 
-        List<Product> modalPageProduct = productService.modalfindAll(sortField, sortDir, keyword);
+        Sort expListProducts = pageProduct.getSort();
+        System.out.println("defaultSort: " + expListProducts);
+
+        List<Product> modalPageProduct = productService.modalFindAll(sortField, sortDir, keyword);
         System.out.println(modalPageProduct.get(0).getColorname());
 
         model.addAttribute("currentPage", pageNum);
