@@ -1,7 +1,11 @@
 package com.mypenbox.mpb.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.services.ProductService;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -10,6 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -31,15 +40,23 @@ public class AppController {
                            @Param("keyword") String keyword) {
 
         Page<Product> pageProduct = productService.listAll(pageNum, sortField, sortDir, keyword);
-
         List<Product> listProducts = pageProduct.getContent();
-        System.out.println("default: " + listProducts.get(0).getColorname());
 
+        // Playing around
+
+        System.out.println("default: " + listProducts.get(0).getColorname());
         Sort expListProducts = pageProduct.getSort();
         System.out.println("defaultSort: " + expListProducts);
-
         List<Product> modalListProduct = productService.modalFindAll(sortField, sortDir, keyword);
-        System.out.println(modalListProduct.get(0).getColorname());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(new File("my-pen-box/src/main/resources/listProducts.json"), modalListProduct);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        // Playing around
 
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", pageProduct.getTotalPages());
@@ -59,7 +76,29 @@ public class AppController {
 
     @GetMapping("/modal")
     public String productInfo(Model model,
-                                     @Param("productId") String productId) {
+                                     @Param("productId") int productId) {
+
+        // Playing around
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/listProducts.json"), new TypeReference<List<Product>>(){});
+            System.out.println("FINALLY?: " + modalListProduct.get(0).getColorname());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        Gson gson = new Gson();
+//        try(FileReader reader = new FileReader("listProducts.json")) {
+//            System.out.println("GSON RESULT: " + gson.fromJson(reader, Product.class));
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        // Playing around
 
         Product productInfo = productService.getProductById(Long.valueOf(productId));
         model.addAttribute("colorname", productInfo.getColorname());

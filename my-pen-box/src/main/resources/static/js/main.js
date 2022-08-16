@@ -147,7 +147,7 @@ $("table input:checkbox").click(function() {
 // Modal window pop-up/collapse on click
 
 $(".modal-open").click(function () {
-    let productId = $(this).attr("id").replace(/\D/g, "");
+    let productId = $(this).attr("id").replace(/\D/g, ""); // Getting ID-number of product in row
     $.ajax({
         url:'/modal?productId=' + productId,
         success: function (data) {
@@ -186,25 +186,12 @@ $(".fav-button").click(function () {
 // Previous and Next buttons (modal window)
 
 $(".prev-button").click(function () {
+    let pathname = window.location.href;
+    console.log(pathname);
     let productId = parseInt($("#product-info").attr("class"));
-    let totalItems = parseInt($("#total-items").text().replace(/\D/g, ""));
-    if (productId <= totalItems && productId != 1) {
-        $.ajax({
-            url:'/modal?productId=' + (productId - 1),
-            success: function (data) {
-                $('#product-info').load('/modal?productId=' + (productId - 1));
-                productId -= 1;
-                $('#product-info').removeAttr('class').addClass(productId.toString());
-            }
+    $.ajax({
+            url: pathname + productId
         });
-    } else if (productId == 1 || productId > totalItems) {
-        $.ajax({
-            url:'/modal?productId=' + (productId),
-            success: function (data) {
-                $('#product-info').load('/modal?productId=' + (productId));
-            }
-        });
-    }
     $("#overlay").show();
     $(".modal").show();
 });
