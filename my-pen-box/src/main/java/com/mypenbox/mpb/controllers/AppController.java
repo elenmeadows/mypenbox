@@ -38,8 +38,8 @@ public class AppController {
         Sort expListProducts = pageProduct.getSort();
         System.out.println("defaultSort: " + expListProducts);
 
-        List<Product> modalPageProduct = productService.modalFindAll(sortField, sortDir, keyword);
-        System.out.println(modalPageProduct.get(0).getColorname());
+        List<Product> modalListProduct = productService.modalFindAll(sortField, sortDir, keyword);
+        System.out.println(modalListProduct.get(0).getColorname());
 
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", pageProduct.getTotalPages());
