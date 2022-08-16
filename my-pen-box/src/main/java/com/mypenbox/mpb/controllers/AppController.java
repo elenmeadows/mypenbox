@@ -39,24 +39,20 @@ public class AppController {
                            @Param("sortDir") String sortDir,
                            @Param("keyword") String keyword) {
 
+        // Paged & sorted product's list
         Page<Product> pageProduct = productService.listAll(pageNum, sortField, sortDir, keyword);
         List<Product> listProducts = pageProduct.getContent();
 
-        // Playing around
-
-        System.out.println("default: " + listProducts.get(0).getColorname());
-        Sort expListProducts = pageProduct.getSort();
-        System.out.println("defaultSort: " + expListProducts);
+        // Unpaged sorted product's list
         List<Product> modalListProduct = productService.modalFindAll(sortField, sortDir, keyword);
 
+        // Mapping of sorted product's list for modal window
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writeValue(new File("my-pen-box/src/main/resources/listProducts.json"), modalListProduct);
+            objectMapper.writeValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), modalListProduct);
         } catch(IOException e) {
             e.printStackTrace();
-        }
-
-        // Playing around
+        } // Mapping of sorted product's list for modal window
 
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", pageProduct.getTotalPages());
@@ -79,25 +75,14 @@ public class AppController {
                                      @Param("productId") int productId) {
 
         // Playing around
-
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/listProducts.json"), new TypeReference<List<Product>>(){});
-            System.out.println("FINALLY?: " + modalListProduct.get(0).getColorname());
+            List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), new TypeReference<List<Product>>(){});
+            System.out.println("FINALLY?: " + modalListProduct.get(0).getColorname() + modalListProduct.stream().count());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-//        Gson gson = new Gson();
-//        try(FileReader reader = new FileReader("listProducts.json")) {
-//            System.out.println("GSON RESULT: " + gson.fromJson(reader, Product.class));
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         // Playing around
 
         Product productInfo = productService.getProductById(Long.valueOf(productId));
