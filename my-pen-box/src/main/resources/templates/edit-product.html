@@ -45,8 +45,10 @@
     </div>
 
     <nav class="main-nav main-nav__index">
-        <form role="search" method="get" name="search" class="search search__index" action="">
-            <button type="submit" name="submit" aria-label="submit">
+        <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
+            <input type="hidden" name="sortField" th:value="colormark"/>
+            <input type="hidden" name="sortDir" th:value="asc"/>
+            <button type="submit" aria-label="submit">
                 <i class="search-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -57,7 +59,7 @@
                         </svg>
                 </i>
             </button>
-            <input type="text" name="search" id="input" value="" class="search-input" placeholder="Search">
+            <input type="text" name="keyword" th:value="${keyword}" class="search-input" placeholder="Search">
             <button type="reset" name="reset" aria-label="reset">
                 <i class="reset-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
