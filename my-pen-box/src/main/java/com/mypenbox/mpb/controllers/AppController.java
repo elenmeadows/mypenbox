@@ -1,24 +1,17 @@
 package com.mypenbox.mpb.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.services.ProductService;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -70,27 +63,85 @@ public class AppController {
         return "catalog";
     }
 
-    @GetMapping("/modal")
-    public String productInfo(Model model,
-                                     @Param("productId") int productId) {
+    @RequestMapping("/modal")
+    public String productCard(Model model,
+                                     @Param("productId") Long productId) throws IOException {
 
-        // Playing around
+        Product productCard = productService.getProductById(productId);
+        model.addAttribute("colorname", productCard.getColorname());
+        model.addAttribute("colorswatch", productCard.getColorswatch());
+        model.addAttribute("brand", productCard.getBrand());
+        model.addAttribute("type", productCard.getType());
+        model.addAttribute("colormark", productCard.getColormark());
+
+        return "fragments/modal :: product-info";
+    }
+
+    @RequestMapping("/modal-prev")
+    public String prevProductCard(Model model,
+                              @Param("productId") Long productId) throws IOException {
+
         ObjectMapper objectMapper = new ObjectMapper();
+        List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), new TypeReference<List<Product>>(){});
 
-        try {
-            List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), new TypeReference<List<Product>>(){});
-            System.out.println("FINALLY?: " + modalListProduct.get(0).getColorname() + modalListProduct.stream().count());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // Playing around
+        Product productCard = modalListProduct.stream()
+                .filter(product -> productId.equals(product.getId()))
+                .findAny()
+                .orElse(null);
 
-        Product productInfo = productService.getProductById(Long.valueOf(productId));
-        model.addAttribute("colorname", productInfo.getColorname());
-        model.addAttribute("colorswatch", productInfo.getColorswatch());
-        model.addAttribute("brand", productInfo.getBrand());
-        model.addAttribute("type", productInfo.getType());
-        model.addAttribute("colormark", productInfo.getColormark());
+        int productIndex = modalListProduct.indexOf(productCard);
+        if (productIndex != 0)
+            productIndex -= 1;
+
+
+        String id = modalListProduct.get(productIndex).getId().toString();
+        String colorname = modalListProduct.get(productIndex).getColorname();
+        String colorswatch = modalListProduct.get(productIndex).getColorswatch();
+        String brand = modalListProduct.get(productIndex).getBrand();
+        String type = modalListProduct.get(productIndex).getType();
+        String colormark = modalListProduct.get(productIndex).getColormark();
+
+        model.addAttribute("id", id);
+        model.addAttribute("colorname", colorname);
+        model.addAttribute("colorswatch", colorswatch);
+        model.addAttribute("brand", brand);
+        model.addAttribute("type", type);
+        model.addAttribute("colormark", colormark);
+
+        return "fragments/modal :: product-info";
+    }
+
+    @RequestMapping("/modal-next")
+    public String nextProductCard(Model model,
+                                  @Param("productId") Long productId) throws IOException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), new TypeReference<List<Product>>(){});
+
+        Product productCard = modalListProduct.stream()
+                .filter(product -> productId.equals(product.getId()))
+                .findAny()
+                .orElse(null);
+
+        int productIndex = modalListProduct.indexOf(productCard);
+        Long totalItems = modalListProduct.stream().count();
+        if (productIndex != totalItems)
+            productIndex += 1;
+
+
+        String id = modalListProduct.get(productIndex).getId().toString();
+        String colorname = modalListProduct.get(productIndex).getColorname();
+        String colorswatch = modalListProduct.get(productIndex).getColorswatch();
+        String brand = modalListProduct.get(productIndex).getBrand();
+        String type = modalListProduct.get(productIndex).getType();
+        String colormark = modalListProduct.get(productIndex).getColormark();
+
+        model.addAttribute("id", id);
+        model.addAttribute("colorname", colorname);
+        model.addAttribute("colorswatch", colorswatch);
+        model.addAttribute("brand", brand);
+        model.addAttribute("type", type);
+        model.addAttribute("colormark", colormark);
 
         return "fragments/modal :: product-info";
     }
@@ -103,13 +154,6 @@ public class AppController {
         return "add-product";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("product") Product product) {
-        productService.save(product);
-
-        return "redirect:/catalog";
-    }
-
     @RequestMapping("/edit-product/{productId}")
     public String editProduct(Model model,
                               @PathVariable(name = "productId") Long productId) {
@@ -119,4 +163,10 @@ public class AppController {
         return "edit-product";
     }
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveProduct(@ModelAttribute("product") Product product) {
+        productService.save(product);
+
+        return "redirect:/catalog";
+    }
 }

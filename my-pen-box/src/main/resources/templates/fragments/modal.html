@@ -1,5 +1,5 @@
 <div th:fragment="product-info">
-    <div class="product-info__modal">
+    <div class="product-info__modal" th:id="${id}">
         <div class="colorname">[[${colorname}]]</div>
         <div class="colorswatch colorswatch__modal" th:styleappend="'background-color: ' + ${colorswatch} + ';' + 'color: ' + ${colorswatch} + ';'">[[${colorswatch}]]</div>
         <div class="brand-type">

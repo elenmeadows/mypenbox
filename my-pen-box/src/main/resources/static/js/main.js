@@ -186,36 +186,35 @@ $(".fav-button").click(function () {
 // Previous and Next buttons (modal window)
 
 $(".prev-button").click(function () {
-    let pathname = window.location.href;
-    console.log(pathname);
-    let productId = parseInt($("#product-info").attr("class"));
+    let productId;
+    if($(".product-info__modal[id]").length){
+        productId = $(".product-info__modal").attr("id");
+    } else {
+        productId = parseInt($("#product-info").attr("class"));
+    }
     $.ajax({
-            url: pathname + productId
+        url:'/modal-prev?productId=' + productId,
+        success: function (data) {
+            $('#product-info').load('/modal-prev?productId=' + productId);
+        }
         });
     $("#overlay").show();
     $(".modal").show();
 });
 
 $(".next-button").click(function () {
-    let productId = parseInt($("#product-info").attr("class"));
-    let totalItems = parseInt($("#total-items").text().replace(/\D/g, ""));
-    if (productId < totalItems && productId != totalItems) {
-        $.ajax({
-            url:'/modal?productId=' + (productId + 1),
-            success: function (data) {
-                $('#product-info').load('/modal?productId=' + (productId + 1));
-                productId += 1;
-                $('#product-info').removeAttr('class').addClass(productId.toString());
-            }
-        });
-    } else if (productId >= totalItems) {
-        $.ajax({
-            url:'/modal?productId=' + (productId),
-            success: function (data) {
-                $('#product-info').load('/modal?productId=' + (productId));
-            }
-        });
+    let productId;
+    if($(".product-info__modal[id]").length){
+        productId = $(".product-info__modal").attr("id");
+    } else {
+        productId = parseInt($("#product-info").attr("class"));
     }
+    $.ajax({
+        url:'/modal-next?productId=' + productId,
+        success: function (data) {
+            $('#product-info').load('/modal-next?productId=' + productId);
+        }
+    });
     $("#overlay").show();
     $(".modal").show();
 });
