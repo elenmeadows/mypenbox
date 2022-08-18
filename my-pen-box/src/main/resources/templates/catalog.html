@@ -251,10 +251,48 @@
                 <span>// Page [[${currentPage}]] of [[${totalPages}]]</span>
             </div>
             <div>
-                <a th:each="i: ${#numbers.sequence(1, totalPages)}">
-                    <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
-                <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
-                </a>
+
+                <th:block th:if="${totalPages < 7}">
+                    <a th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                        <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
+                    </a>
+                </th:block>
+
+                <th:block th:if="${totalPages >= 7}">
+
+                    <th:block th:if="${currentPage <= 3}">
+                        <a th:each="i: ${#numbers.sequence(1, 3)}">
+                            <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                            <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
+                        </a>
+
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + 4 + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">>></a>
+
+                    </th:block>
+
+                    <th:block th:if="${currentPage >= totalPages - 2}">
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + 4 + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><<</a>
+
+                        <a th:each="i: ${#numbers.sequence(totalPages - 2, totalPages)}">
+                            <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                            <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
+                        </a>
+                    </th:block>
+
+                    <th:block th:if="${currentPage > 3 && currentPage < totalPages - 2}">
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + ${currentPage - 3} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><<</a>
+
+                        <a th:each="i: ${#numbers.sequence(currentPage - 1, currentPage + 1)}">
+                            <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                            <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
+                        </a>
+
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + ${currentPage + 3} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">>></a>
+                    </th:block>
+
+                </th:block>
+
             </div>
         </div>
     </div>
