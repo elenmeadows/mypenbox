@@ -15,7 +15,7 @@ import java.io.*;
 import java.util.List;
 
 @Controller
-public class AppController {
+public class ProductController {
 
     @Autowired
     private ProductService productService;
