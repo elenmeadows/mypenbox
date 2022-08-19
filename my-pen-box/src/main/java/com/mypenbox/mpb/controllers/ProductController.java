@@ -47,6 +47,10 @@ public class ProductController {
             e.printStackTrace();
         } // Mapping of sorted product's list for modal window
 
+        if (modalListProduct.stream().count() == 0) {
+            return "no-results.html";
+        }
+
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", pageProduct.getTotalPages());
         model.addAttribute("totalItems", pageProduct.getTotalElements());

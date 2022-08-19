@@ -1,18 +1,18 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
-    <title>[[${pageTitle}]] | my pen-box</title>
+    <title>no results | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script src="/js/jquery-3.6.0.js"></script>
 </head>
 
 <body>
-<div class="grid grid__index">
+<div class="grid">
     <header>
         <a href="/" class="title">my pen-box</a>
         <div class="header-links">
@@ -25,7 +25,7 @@
     </header>
     <div class="laptop-title"><a href="/">my pen-box</a></div>
     <div class="settings">
-        <a href="/feedback.html" class="settings__flex-feedback">Send Feedback</a>
+        <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
         <a href="#" class="dark-mode settings__flex">dark mode</a>
@@ -36,7 +36,12 @@
     <div class="settings-background">
     </div>
 
-    <div class="laptop-settings laptop-settings__index">
+    <div class="laptop-signup-login">
+        <a href="sign-up.html" class="laptop__signup">Sign Up</a>
+        <a href="login.html" class="laptop__login">Log In</a>
+    </div>
+
+    <div class="laptop-settings">
         <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
@@ -45,9 +50,11 @@
         <p class="laptop-copyright">© Copyright — Helena Meadows</p>
     </div>
 
-    <nav class="main-nav main-nav__index">
-        <form role="search" method="get" name="search" class="search search__index" action="">
-            <button type="submit" name="submit" aria-label="submit">
+    <nav class="main-nav">
+        <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
+            <input type="hidden" name="sortField" value="colorname"/>
+            <input type="hidden" name="sortDir" value="asc"/>
+            <button type="submit" aria-label="submit">
                 <i class="search-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -58,7 +65,7 @@
                         </svg>
                 </i>
             </button>
-            <input type="text" name="search" id="input" value="" class="search-input" placeholder="Search">
+            <input type="text" name="keyword" th:value="${keyword}" class="search-input" placeholder="Search">
             <button type="reset" name="reset" aria-label="reset">
                 <i class="reset-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -75,15 +82,42 @@
         </ul>
     </nav>
 
-    <div class="content-window content-window__index content-window__error">
-        <h2 class="heading">500 internal <br> server error</h2>
-        <p class="content-window__text">
-            <b>Please, send us mail. So we'll fix it!</b><br>
-        </p>
+    <div class="content-window">
+        <div class="sortby-filter-nav">
+            Filter
+            <button class="filter-toggle">off</button>
+            // Sort by
+            <button type="button" class="sortby-button">
+                <svg class="double-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                     style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
+                    <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
+                </svg>
+            </button>
+        </div>
+        <div class="sortby-filter-submenu">
+            Hey, what are you going to sort?<br>
+            Emptiness? <b>&#9786;</b>
+        </div>
+        <table>
+            <thead></thead>
+            <tbody>
+            <span style="display: inline-block; font-size: 1rem; font-style: italic; padding: 2rem; text-align: center;">Well, well, well..
+            Nothing was found. Try something else.</span>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <div>
+                <span id="total-items">Total Items: 0</span>
+            </div>
+            <div>
+            </div>
+        </div>
     </div>
-
 </div>
-</body>
-<script src="/js/main.js"></script>
+</div>
 
+</body>
+<script th:src="@{/js/main.js}"></script>
 </html>
