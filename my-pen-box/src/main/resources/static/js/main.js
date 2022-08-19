@@ -94,6 +94,17 @@ $(".reset-icon").click(function () {
 
 // SortByFilterMenu animation
 
+function toggleFilterButton() {
+    let searchInput = $(".search-input").val();
+    if (!searchInput == "") {
+        $('.filter-toggle').text("on");
+    } else if (searchInput == "") {
+        $('.filter-toggle').text("off");
+    }
+}
+
+toggleFilterButton();
+
 $(".sortby-button").click(function () {
     if ($(".sortby-filter-submenu").is(":hidden")) {
         $(".sortby-filter-submenu").slideDown(700);

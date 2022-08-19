@@ -92,7 +92,7 @@
                      style="enable-background:new 0 0 512 512;" xml:space="preserve">
                         <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
                     <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
-                    </svg>
+                </svg>
             </button>
         </div>
         <div class="sortby-filter-submenu">
@@ -141,24 +141,12 @@
                 </div>
                 <div class="filter-panels">
                     <div id="filter-panels__one">
-                        <span>Derwent</span><br>
-                        <span>Derwent</span><br>
-                        <span>Derwent</span><br>
-                        <span>Derwent</span><br>
-                        <span>Derwent</span><br>
-                        <span>Derwent</span><br>
-                        <span>Derwent</span><br>
-                        <span>Derwent</span><br>
+                        <span><a href="/catalog/page/1?sortField=colormark&sortDir=asc&keyword=copic">Copic</a></span>
+                        <span><a href="/catalog/page/1?sortField=colormark&sortDir=asc&keyword=derwent">Derwent</a></span>
                     </div>
                     <div id="filter-panels__two">
-                        <span>Inktense</span><br>
-                        <span>Inktense</span><br>
-                        <span>Inktense</span><br>
-                        <span>Inktense</span><br>
-                        <span>Inktense</span><br>
-                        <span>Inktense</span><br>
-                        <span>Inktense</span><br>
-                        <span>Inktense</span><br>
+                        <span><a href="/catalog/page/1?sortField=colormark&sortDir=asc&keyword=inktense">Inktense</a></span>
+                        <span><a href="/catalog/page/1?sortField=colormark&sortDir=asc&keyword=sketch">Sketch</a></span>
                     </div>
                 </div>
             </div>
@@ -175,10 +163,14 @@
                 <td>
                     <div class="brand-type">
                                 <span class="brand">
-                                    <b><th:block th:text="${el.brand}"/></b><br>
+                                    <a th:href="@{'/catalog/page/1?sortField=colormark&sortDir=' + ${sortDir} + '&keyword=' + ${el.brand.toLowerCase()}}">
+                                        <th:block th:text="${el.brand}"/>
+                                    </a><br>
                                 </span>
-                        <span class="type">
-                                    <i><th:block th:text="${el.type}"/></i>
+                                <span class="type">
+                                    <a th:href="@{'/catalog/page/1?sortField=colormark&sortDir=' + ${sortDir} + '&keyword=' + ${el.type.toLowerCase()}}">
+                                        <th:block th:text="${el.type}"/>
+                                    </a>
                                 </span>
                     </div>
                 </td>
@@ -267,12 +259,12 @@
                             <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
                         </a>
 
-                        <a class="pagination__pages" th:href="@{'/catalog/page/' + 4 + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">>></a>
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + 4 + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><span>&#187;</span></a>
 
                     </th:block>
 
                     <th:block th:if="${currentPage >= totalPages - 2}">
-                        <a class="pagination__pages" th:href="@{'/catalog/page/' + 4 + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><<</a>
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + 4 + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><span>&#171;</span></a>
 
                         <a th:each="i: ${#numbers.sequence(totalPages - 2, totalPages)}">
                             <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
@@ -281,14 +273,14 @@
                     </th:block>
 
                     <th:block th:if="${currentPage > 3 && currentPage < totalPages - 2}">
-                        <a class="pagination__pages" th:href="@{'/catalog/page/' + ${currentPage - 3} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><<</a>
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + ${currentPage - 3} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><span>&#171;</span></a>
 
                         <a th:each="i: ${#numbers.sequence(currentPage - 1, currentPage + 1)}">
                             <a class="pagination__pages" th:if="${currentPage != i}" th:href="@{'/catalog/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
                             <span class="pagination__pages selected" th:unless="${currentPage != i}">[[${i}]]</span>
                         </a>
 
-                        <a class="pagination__pages" th:href="@{'/catalog/page/' + ${currentPage + 3} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">>></a>
+                        <a class="pagination__pages" th:href="@{'/catalog/page/' + ${currentPage + 3} + '?sortField=' + ${sortField} + '&sortDir=' + ${whatSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"><span>&#187;</span></a>
                     </th:block>
 
                 </th:block>
