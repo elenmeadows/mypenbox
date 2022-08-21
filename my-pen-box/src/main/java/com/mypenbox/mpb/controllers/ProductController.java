@@ -20,12 +20,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("/catalog")
+    @GetMapping("/catalog")
     public String viewCatalog(Model model) {
         return viewPage(model, 1, "colormark", "asc", null);
     }
 
-    @RequestMapping("/catalog/page/{pageNum}")
+    @GetMapping("/catalog/page/{pageNum}")
     public String viewPage(Model model,
                            @PathVariable(name = "pageNum") int pageNum,
                            @Param("sortField") String sortField,
@@ -67,7 +67,7 @@ public class ProductController {
         return "catalog";
     }
 
-    @RequestMapping("/modal")
+    @GetMapping("/modal")
     public String productCard(Model model,
                                      @Param("productId") Long productId) throws IOException {
 
@@ -81,7 +81,7 @@ public class ProductController {
         return "fragments/modal :: product-info";
     }
 
-    @RequestMapping("/modal-prev")
+    @GetMapping("/modal-prev")
     public String prevProductCard(Model model,
                               @Param("productId") Long productId) throws IOException {
 
@@ -115,7 +115,7 @@ public class ProductController {
         return "fragments/modal :: product-info";
     }
 
-    @RequestMapping("/modal-next")
+    @GetMapping("/modal-next")
     public String nextProductCard(Model model,
                                   @Param("productId") Long productId) throws IOException {
 
@@ -150,7 +150,7 @@ public class ProductController {
         return "fragments/modal :: product-info";
     }
 
-    @RequestMapping("/add-product")
+    @GetMapping("/add-product")
     public String addProduct(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
@@ -158,7 +158,7 @@ public class ProductController {
         return "add-product";
     }
 
-    @RequestMapping("/edit-product/{productId}")
+    @GetMapping("/edit-product/{productId}")
     public String editProduct(Model model,
                               @PathVariable(name = "productId") Long productId) {
         Product product = productService.getProductById(productId);
@@ -167,7 +167,7 @@ public class ProductController {
         return "edit-product";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
         productService.save(product);
 

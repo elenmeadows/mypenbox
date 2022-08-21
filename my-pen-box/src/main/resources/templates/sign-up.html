@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
-    <title>sign-ip | my pen-box</title>
+    <title>sign up | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
@@ -14,16 +15,16 @@
 <body>
 <div class="grid grid__index">
     <header>
-        <a href="index-101.html" class="title">my pen-box</a>
+        <a href="/" class="title">my pen-box</a>
         <div class="header-links">
             <a href="login.html" class="header-links__login">Log In</a>
-            <a href="sign-up.html" class="header-links__signup">Sign Up</a>
+            <a href="/sign-up" class="header-links__signup">Sign Up</a>
         </div>
         <div class="settings-icon">
             <div class="settings-icon__burger"></div>
         </div>
     </header>
-    <div class="laptop-title"><a href="index-101.html">my pen-box</a></div>
+    <div class="laptop-title"><a href="/">my pen-box</a></div>
     <div class="settings">
         <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
@@ -46,8 +47,10 @@
     </div>
 
     <nav class="main-nav main-nav__index">
-        <form role="search" method="get" name="search" class="search search__index" action="">
-            <button type="submit" name="submit" aria-label="submit">
+        <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
+            <input type="hidden" name="sortField" th:value="colormark"/>
+            <input type="hidden" name="sortDir" th:value="asc"/>
+            <button type="submit" aria-label="submit">
                 <i class="search-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -58,7 +61,7 @@
                         </svg>
                 </i>
             </button>
-            <input type="text" name="search" id="input" value="" class="search-input" placeholder="Search">
+            <input type="text" name="keyword" th:value="${keyword}" class="search-input" placeholder="Search">
             <button type="reset" name="reset" aria-label="reset">
                 <i class="reset-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +74,7 @@
             </button>
         </form>
         <ul>
-            <li><a href="catalog-unregistered.html">catalogue</a></li>
+            <li><a href="/catalog">catalogue</a></li>
         </ul>
     </nav>
 
@@ -86,14 +89,13 @@
         </div>
         <p class="content-window__text">
             <b>or just fill in these forms</b>
-        <form class="content-window__fields" action="/catalog/create" method="post">
-            e-mail <input type="text" name="email" id="email" placeholder="user@mail.com" required><br>
-            <input type="text" name="first_name" placeholder="Helena" required> first name<br>
-            <input type="text" name="last_name" placeholder="Meadows" required> last name<br>
-            <input type="text" name="nickname" placeholder="@elenmeadows" required> nickname<br>
-            <input type="password" , name="password" placeholder="don't think twice," required> password<br>
-            <input type="password" , name="repeat_passoword" placeholder="it's all right!" required> repeat
-            password<br>
+        <form class="content-window__fields" action="#" th:action="@{/sign-up}" method="post" th:object="${account}">
+            e-mail <input type="text" th:field="*{email}" id="email" placeholder="user@mail.com" required><br>
+            <input type="text" th:field="*{firstName}" placeholder="Helena" required> first name<br>
+            <input type="text" th:field="*{lastName}" placeholder="Meadows" required> last name<br>
+            <input type="text" th:field="*{nickname}" placeholder="@elenmeadows" required> nickname<br>
+            <input type="date" th:field="*{birth}" placeholder="YYYY-MM-DD" required>
+            <input type="password" th:field="*{password}" placeholder="type smth" required> password<br><br>
             <button type="submit" class="content-window__buttons">
                 Confirm
             </button>
