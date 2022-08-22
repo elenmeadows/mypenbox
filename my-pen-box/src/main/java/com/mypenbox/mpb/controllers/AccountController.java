@@ -24,8 +24,6 @@ public class AccountController {
     @PostMapping("/sign-up")
     public String submitSignUp(@ModelAttribute("account") Account account) {
         accountService.save(account);
-
-        System.out.println(account);
         return "index";
     }
 }

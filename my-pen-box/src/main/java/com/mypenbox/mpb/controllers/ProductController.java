@@ -170,7 +170,6 @@ public class ProductController {
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
         productService.save(product);
-
         return "redirect:/catalog";
     }
 }
