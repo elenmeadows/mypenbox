@@ -38,21 +38,8 @@ public class AccountController {
     public String submitSignUp(@ModelAttribute("account") @Valid Account account,
                                BindingResult bindingResult, Model model) {
 
-//        List<Account> accountList = accountService.findAllAccounts();
-//        List<String> existingEmails = new ArrayList<>();
-//        for (int i = 0; i < accountList.stream().count(); i++) {
-//            existingEmails.add(accountList.get(i).getEmail());
-//        }
-//        System.out.println(existingEmails);
-//
-//        String emailCheck = account.getEmail();
-//
-//        if(existingEmails.indexOf(emailCheck) != -1) {
-//            String emailExists = "That email has already been used";
-//            model.addAttribute("emailExists", emailExists);
-//        }
-
         try {
+
             if (bindingResult.hasErrors()) {
                 return "sign-up";
 
@@ -61,6 +48,7 @@ public class AccountController {
             return "index"; // SHOULD BE CHANGED ON SUCCESS REGISTRATION PAGE
 
         } catch (DataIntegrityViolationException e) {
+
             String errorCause = e.getRootCause().toString();
             System.out.println("THAT'S ERROR: " + errorCause + " END OF ERROR");
 
@@ -69,6 +57,37 @@ public class AccountController {
                 model.addAttribute("accountExists", accountExists);
             } else if (errorCause.indexOf("nickname") != -1) {
                 String accountExists = "That nickname has already been used";
+                model.addAttribute("accountExists", accountExists);
+            }
+
+        } finally {
+
+            List<Account> accountList = accountService.findAllAccounts();
+
+            List<String> existingEmails = new ArrayList<>();
+            for (int i = 0; i < accountList.stream().count(); i++) {
+                existingEmails.add(accountList.get(i).getEmail());
+            }
+
+            List<String> existingNicknames = new ArrayList<>();
+            for (int i = 0; i < accountList.stream().count(); i++) {
+                existingNicknames.add(accountList.get(i).getNickname());
+            }
+
+            System.out.println(existingEmails);
+            System.out.println(existingNicknames);
+
+            String emailCheck = account.getEmail();
+            String nicknameCheck = account.getNickname();
+
+            if(existingEmails.indexOf(emailCheck) != -1 && existingNicknames.indexOf(nicknameCheck) != -1) {
+                String accountExists = "That email & nickname have already been useeed";
+                model.addAttribute("accountExists", accountExists);
+            } else if(existingEmails.indexOf(emailCheck) != -1) {
+                String accountExists = "That email has already been useeed";
+                model.addAttribute("accountExists", accountExists);
+            } else if(existingNicknames.indexOf(nicknameCheck) != -1) {
+                String accountExists = "That nickname has already been useeed";
                 model.addAttribute("accountExists", accountExists);
             }
 
