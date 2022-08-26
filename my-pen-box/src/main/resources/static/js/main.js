@@ -230,6 +230,8 @@ $(".next-button").click(function () {
     $(".modal").show();
 });
 
+// Sign-up fields
+
 // Auto-resize of feedback message container
 
 $(".feedback-container").keyup(function () {

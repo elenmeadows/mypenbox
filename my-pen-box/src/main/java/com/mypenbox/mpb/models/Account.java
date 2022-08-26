@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -12,12 +13,34 @@ import java.util.Date;
 public class Account {
 
     private Long accountId;
+
+    @NotBlank
+    @Email
+    @Pattern(regexp = "([\\w\\.\\-_]+)?\\w+@[\\w-_]+(\\.\\w+){1,}$")
     private String email;
+
+    @NotBlank
+    @Size(min = 1, max = 30)
+    @Pattern(regexp = "^[a-zA-ZЁёА-я][A-Za-z-'ЁёА-я]*$")
     private String firstName;
+
+    @NotBlank
+    @Size (min = 1, max = 30)
+    @Pattern(regexp = "^[a-zA-ZЁёА-я][A-Za-z0-9-'ЁёА-я]*$")
     private String lastName;
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+    @Pattern(regexp = "^[A-Za-z0-9-._@]*$")
     private String nickname;
+
     private Date birth;
+
+    @NotBlank
+    @Size(min = 8, max = 30)
+    @Pattern(regexp = "^(?=.{8,})(?=.*\\d)(?=.*[a-zёа-я])(?=.*[A-ZЁА-я])(?!.*\\s).*$")
     private String password;
+
     private String avatar;
     private Date joinedDate;
 
@@ -36,7 +59,7 @@ public class Account {
         this.accountId = accountId;
     }
 
-    @Column(name = "email", nullable=false)
+    @Column(name = "email", nullable=false, unique = true)
     public String getEmail() {
         return email;
     }
@@ -63,7 +86,7 @@ public class Account {
         this.lastName = lastName;
     }
 
-    @Column(name = "nickname", nullable=false)
+    @Column(name = "nickname", nullable=false, unique = true)
     public String getNickname() {
         return nickname;
     }

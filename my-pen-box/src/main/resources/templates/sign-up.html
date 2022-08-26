@@ -7,9 +7,8 @@
     <title>sign up | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery-3.6.0.js"></script>
 </head>
 
 <body>
@@ -90,11 +89,22 @@
         <p class="content-window__text">
             <b>or just fill in these forms</b>
         <form class="content-window__fields" action="#" th:action="@{/sign-up}" method="post" th:object="${account}">
-            e-mail <input type="text" th:field="*{email}" id="email" placeholder="user@mail.com" required><br>
-            <input type="text" th:field="*{firstName}" placeholder="Helena" required> first name<br>
-            <input type="text" th:field="*{lastName}" placeholder="Meadows" required> last name<br>
-            <input type="text" th:field="*{nickname}" placeholder="@elenmeadows" required> nickname<br>
-            <input type="password" th:field="*{password}" placeholder="type smth" required> password<br><br>
+            e-mail <input type="text" th:field="*{email}" id="email" placeholder="user@mail.com"><br>
+            <span th:if="${#fields.hasErrors('email')}">Please enter a valid e-mail address<br></span>
+            <span>[[${accountExists}]]</span>
+
+            <input type="text" th:field="*{firstName}" placeholder="Helena"> first name<br>
+            <span th:if="${#fields.hasErrors('firstName')}">First name error<br></span>
+
+            <input type="text" th:field="*{lastName}" placeholder="Meadows"> last name<br>
+            <span th:if="${#fields.hasErrors('lastName')}">Last name error<br></span>
+
+            <input type="text" th:field="*{nickname}" id="nickname" placeholder="@elenmeadows"> nickname<br>
+            <span th:if="${#fields.hasErrors('nickname')}">Invalid nickname<br></span>
+
+            <input type="password" th:field="*{password}" placeholder="type smth"> password<br><br>
+            <span th:if="${#fields.hasErrors('password')}">Password should have at least one capital letter, one small letter, one number and 8 character length.<br></span>
+
             <button type="submit" class="content-window__buttons">
                 Confirm
             </button>
@@ -104,6 +114,6 @@
     </div>
 </div>
 </body>
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 
 </html>
