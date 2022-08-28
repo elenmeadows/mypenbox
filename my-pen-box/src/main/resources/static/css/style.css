@@ -38,6 +38,7 @@
     --clr-quaternary: #E6DFEF;
     --clr-quinary: #ded6e7;
     --clr-accent-1: #989CD7;
+    --clr-errors: #BA1A1A;
 
     --ff-raleway: "Raleway", Helvetica, sans-serif;
     --ff-montserrat: "Montserrat", Helvetica, sans-serif;
@@ -616,6 +617,75 @@ header {
     border-radius: 0.2rem;
     padding: 0.4rem;
     margin: 0.3rem 0.3rem 0.3rem 0;
+}
+
+.content-window__fields input.error:not(:focus) {
+    outline: 0.13rem solid var(--clr-errors);
+    animation: shakeInput 0.65s;
+}
+
+#password-input {
+    padding: 0.4rem 0.4rem 0.4rem 2.1rem;
+}
+
+.show-password {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.show-password:hover {
+    cursor: pointer;
+}
+
+.show-password i {
+    position: absolute;
+    bottom: 1.3rem;
+    z-index: 800;
+}
+
+.show-pswd-icon {
+    display: inline-block;
+    width: 1.7rem;
+    height: 1.7rem;
+    left: 0.3rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.show-pswd-icon .st0 {
+    fill: none;
+    stroke: rgba(57, 54, 54, 0.45);
+    stroke-width: 32;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.show-pswd-icon .st1 {
+    fill: rgba(57, 54, 54, 0.45);
+    stroke: rgba(57, 54, 54, 0.45);
+    stroke-width: 32;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.errors-block {
+    margin-top: 0.5rem;
+    font-weight: 800;
+}
+
+@keyframes shakeInput {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(-2%);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(2%);
+    }
 }
 
 .content-window__fields span {

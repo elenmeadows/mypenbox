@@ -53,10 +53,10 @@ public class AccountController {
             System.out.println("THAT'S ERROR: " + errorCause + " END OF ERROR");
 
             if (errorCause.indexOf("email") != -1) {
-                String accountExists = "That email has already been used";
+                String accountExists = "Sorry, that email has already been used";
                 model.addAttribute("accountExists", accountExists);
             } else if (errorCause.indexOf("nickname") != -1) {
-                String accountExists = "That nickname has already been used";
+                String accountExists = "Sorry, that nickname has already been used";
                 model.addAttribute("accountExists", accountExists);
             }
 
@@ -81,13 +81,13 @@ public class AccountController {
             String nicknameCheck = account.getNickname();
 
             if(existingEmails.indexOf(emailCheck) != -1 && existingNicknames.indexOf(nicknameCheck) != -1) {
-                String accountExists = "That email & nickname have already been useeed";
+                String accountExists = "Sorry, that email & nickname have already been used";
                 model.addAttribute("accountExists", accountExists);
             } else if(existingEmails.indexOf(emailCheck) != -1) {
-                String accountExists = "That email has already been useeed";
+                String accountExists = "Sorry, that email has already been used";
                 model.addAttribute("accountExists", accountExists);
             } else if(existingNicknames.indexOf(nicknameCheck) != -1) {
-                String accountExists = "That nickname has already been useeed";
+                String accountExists = "Sorry, that nickname has already been used";
                 model.addAttribute("accountExists", accountExists);
             }
 

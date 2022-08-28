@@ -232,6 +232,86 @@ $(".next-button").click(function () {
 
 // Sign-up fields
 
+$("#email-input").blur(function () {
+    checkInputs($(this));
+});
+
+$("#firstname-input").blur(function () {
+    checkInputs($(this));
+});
+
+$("#lastname-input").blur(function () {
+    checkInputs($(this));
+});
+
+$("#nickname-input").blur(function () {
+    checkInputs($(this));
+});
+
+$("#password-input").blur(function () {
+    checkInputs($(this));
+});
+
+function checkInputs(inputValue) {
+    const trimmedInput = $.trim(inputValue.val());
+
+    if (trimmedInput === '') {
+        $(".errors-block").text("None of these fields can be blank!");
+        inputValue.removeAttr("class").addClass("error");
+    } else if (!isValid(trimmedInput)) {
+        inputValue.removeAttr("class").addClass("error");
+    } else {
+        $(".errors-block").text("");
+        inputValue.removeAttr("class");
+    }
+}
+
+function isValid(trimmedInput) {
+    const email = $.trim($("#email-input").val());
+    const firstName = $.trim($("#firstname-input").val());
+    const lastName = $.trim($("#lastname-input").val());
+    const nickname = $.trim($("#nickname-input").val());
+    const password = $.trim($("#password-input").val());
+    let result;
+
+    switch (trimmedInput) {
+        case email:
+            result = /([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(trimmedInput);
+            console.log("email!!!!");
+            break;
+        case firstName:
+            result = /^[a-zA-ZЁёА-я][A-Za-z-'ЁёА-я]*$/.test(trimmedInput);
+            console.log("firstname!!!");
+            break;
+        case lastName:
+            result = /^[a-zA-ZЁёА-я][A-Za-z-'ЁёА-я]*$/.test(trimmedInput);
+            console.log("lastname!!!");
+            break;
+        case nickname:
+            result = /^(?=.{3,})[A-Za-z0-9-._]*$/.test(trimmedInput);
+            console.log("nickname!!!");
+            break;
+        case password:
+            result =  /^(?=.{8,})(?=.*\d)(?=.*[a-zёа-я])(?=.*[A-ZЁА-я])(?!.*\s).*$/.test(trimmedInput);
+            console.log("password!!!");
+            break;
+    }
+
+    return result;
+
+}
+
+let passwordInput = false;
+$(".show-password").click(function() {
+    if (passwordInput) {
+        $("#password-input").attr("type", "password");
+        passwordInput = false;
+    } else {
+        $("#password-input").attr("type", "text");
+        passwordInput = true;
+    }
+});
+
 // Auto-resize of feedback message container
 
 $(".feedback-container").keyup(function () {

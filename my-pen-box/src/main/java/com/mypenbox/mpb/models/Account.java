@@ -26,12 +26,12 @@ public class Account {
 
     @NotBlank
     @Size (min = 1, max = 30)
-    @Pattern(regexp = "^[a-zA-ZЁёА-я][A-Za-z0-9-'ЁёА-я]*$")
+    @Pattern(regexp = "^[a-zA-ZЁёА-я][A-Za-z-'ЁёА-я]*$")
     private String lastName;
 
     @NotBlank
     @Size(min = 3, max = 30)
-    @Pattern(regexp = "^[A-Za-z0-9-._@]*$")
+    @Pattern(regexp = "^[A-Za-z0-9-._]*$")
     private String nickname;
 
     private Date birth;
