@@ -277,23 +277,18 @@ function isValid(trimmedInput) {
     switch (trimmedInput) {
         case email:
             result = /([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(trimmedInput);
-            console.log("email!!!!");
             break;
         case firstName:
             result = /^[a-zA-ZЁёА-я][A-Za-z-'ЁёА-я]*$/.test(trimmedInput);
-            console.log("firstname!!!");
             break;
         case lastName:
             result = /^[a-zA-ZЁёА-я][A-Za-z-'ЁёА-я]*$/.test(trimmedInput);
-            console.log("lastname!!!");
             break;
         case nickname:
             result = /^(?=.{3,})[A-Za-z0-9-._]*$/.test(trimmedInput);
-            console.log("nickname!!!");
             break;
         case password:
             result =  /^(?=.{8,})(?=.*\d)(?=.*[a-zёа-я])(?=.*[A-ZЁА-я])(?!.*\s).*$/.test(trimmedInput);
-            console.log("password!!!");
             break;
     }
 
