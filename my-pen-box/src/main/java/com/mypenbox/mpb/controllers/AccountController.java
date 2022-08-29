@@ -1,6 +1,7 @@
 package com.mypenbox.mpb.controllers;
 
 import com.mypenbox.mpb.models.Account;
+import com.mypenbox.mpb.models.AccountDTO;
 import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.services.AccountService;
 import com.mypenbox.mpb.services.ProductService;
@@ -30,28 +31,22 @@ public class AccountController {
 
     @GetMapping("/sign-up")
     public String signUpForm(Model model) {
-        Account account = new Account();
-        model.addAttribute("account", account);
+        AccountDTO accountDTO = new AccountDTO();
+        model.addAttribute("account", accountDTO);
         return "sign-up";
     }
 
     @PostMapping("/sign-up")
-    public String submitSignUp(@ModelAttribute("account") @Valid Account account,
+    public String submitSignUp(@ModelAttribute("account") @Valid AccountDTO accountDTO,
                                BindingResult bindingResult, Model model) {
+
 
         try {
 
             if (bindingResult.hasErrors()) {
                 return "sign-up";
-
             } else {
-
-                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-                String encodedPassword = passwordEncoder.encode(account.getPassword());
-                account.setPassword(encodedPassword);
-
-                accountService.save(account);
-
+                Account register = accountService.registerNewAccount(accountDTO);
                 return "index";
             }
 
@@ -69,8 +64,8 @@ public class AccountController {
                 existingNicknames.add(accountList.get(i).getNickname());
             }
 
-            String emailCheck = account.getEmail();
-            String nicknameCheck = account.getNickname();
+            String emailCheck = accountDTO.getEmail();
+            String nicknameCheck = accountDTO.getNickname();
 
             if(existingEmails.indexOf(emailCheck) != -1 && existingNicknames.indexOf(nicknameCheck) != -1) {
                 String accountExists = "Sorry, that email & nickname have already been used";
