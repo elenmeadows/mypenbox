@@ -305,9 +305,15 @@ let passwordInput = false;
 $(".show-password").click(function() {
     if (passwordInput) {
         $("#password-input").attr("type", "password");
+        $(".show-pswd-icon .st0").css("stroke", "rgba(57, 54, 54, 0.45)");
+        $(".show-pswd-icon .st1").css("fill", "rgba(57, 54, 54, 0.45)");
+        $(".show-pswd-icon .st1").css("stroke", "rgba(57, 54, 54, 0.45)");
         passwordInput = false;
     } else {
         $("#password-input").attr("type", "text");
+        $(".show-pswd-icon .st0").css("stroke", "#393636");
+        $(".show-pswd-icon .st1").css("fill", "#393636");
+        $(".show-pswd-icon .st1").css("stroke", "#393636");
         passwordInput = true;
     }
 });
