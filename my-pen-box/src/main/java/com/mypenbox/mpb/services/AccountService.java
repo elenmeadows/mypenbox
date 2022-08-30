@@ -2,15 +2,12 @@ package com.mypenbox.mpb.services;
 
 import com.mypenbox.mpb.models.Account;
 import com.mypenbox.mpb.models.AccountDTO;
-import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.repo.AccountRepository;
-import com.mypenbox.mpb.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 
 
@@ -21,10 +18,6 @@ public class AccountService implements IAccountService {
 
     @Autowired
     private AccountRepository repo;
-
-    public List<Account> findAllAccounts() {
-        return repo.findAll();
-    }
 
     @Override
     public Account registerNewAccount(AccountDTO accountDTO) {
@@ -40,5 +33,13 @@ public class AccountService implements IAccountService {
         account.setPassword(encodedPassword);
 
         return repo.save(account);
+    }
+
+    public boolean emailExists(String email){
+        return repo.findByEmail(email) !=null;
+    }
+
+    public boolean nicknameExists(String nickname){
+        return repo.findByNickname(nickname) !=null;
     }
 }
