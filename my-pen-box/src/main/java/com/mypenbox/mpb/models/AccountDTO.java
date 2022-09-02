@@ -1,15 +1,16 @@
 package com.mypenbox.mpb.models;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@Getter
+@Setter
 public class AccountDTO {
 
     @NotBlank
@@ -40,59 +41,4 @@ public class AccountDTO {
     private String password;
 
     private String avatar;
-    private Date joinedDate;
-
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Date getBirth() {
-        return birth;
-    }
-    public void setBirth(Date birth) {
-        this.birth = birth;
-    }
-
-    public String getPassword() { return password; }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public Date getJoinedDate() {
-        return joinedDate;
-    }
-    public void setJoinedDate(Date joinedDate) {
-        this.joinedDate = joinedDate;
-    }
 }

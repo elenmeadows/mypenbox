@@ -28,7 +28,6 @@ public class AccountController {
     public String submitSignUp(@ModelAttribute("account") @Valid AccountDTO accountDTO,
                                BindingResult bindingResult, Model model) {
 
-
         try {
 
             if (bindingResult.hasErrors()) {
@@ -57,5 +56,10 @@ public class AccountController {
             return "sign-up";
         }
 
+    }
+
+    @GetMapping("/log-in")
+    public String loginForm() {
+        return "log-in";
     }
 }

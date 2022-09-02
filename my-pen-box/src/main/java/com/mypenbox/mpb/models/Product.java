@@ -1,95 +1,44 @@
 package com.mypenbox.mpb.models;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 @Entity
 @Table(name = "product")
 public class Product {
 
-    private Long id;
-    private String category;
-    private String brand;
-    private String type;
-    private String colormark;
-    private String colorswatch;
-    private String colorname;
-    private String img;
-
-    public Product() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Long id;
 
     @Column(name = "category")
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    private String category;
 
     @Column(name = "brand")
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+    private String brand;
 
     @Column(name = "type")
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    private String type;
 
     @Column(name = "colormark")
-    public String getColormark() {
-        return colormark;
-    }
-
-    public void setColormark(String colormark) {
-        this.colormark = colormark;
-    }
+    private String colormark;
 
     @Column(name = "colorswatch")
-    public String getColorswatch() {
-        return colorswatch;
-    }
-
-    public void setColorswatch(String colorswatch) {
-        this.colorswatch = colorswatch;
-    }
+    private String colorswatch;
 
     @Column(name = "colorname")
-    public String getColorname() {
-        return colorname;
-    }
-
-    public void setColorname(String colorname) {
-        this.colorname = colorname;
-    }
+    private String colorname;
 
     @Column(name = "img")
-    public String getImg() {
-        return img;
-    }
+    private String img;
 
-    public void setImg(String img) {
-        this.img = img;
-    }
 }
