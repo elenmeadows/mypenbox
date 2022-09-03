@@ -1,7 +1,6 @@
 package com.mypenbox.mpb.security.config;
 
-import com.mypenbox.mpb.security.CustomAccountDetails;
-import com.mypenbox.mpb.security.CustomAccountDetailsService;
+import com.mypenbox.mpb.services.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,17 +16,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final CustomAccountDetailsService customAccountDetailsService;
+    private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("log-in")
-                .permitAll()
+                    .antMatchers("/api/v*/registration/**")
+                    .permitAll()
                 .anyRequest()
-                .permitAll();
+                .authenticated().and()
+                .formLogin();
     }
 
     @Override
@@ -38,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(customAccountDetailsService);
+        provider.setUserDetailsService(appUserService);
         provider.setPasswordEncoder(bCryptPasswordEncoder);
 
         return provider;

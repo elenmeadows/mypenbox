@@ -1,6 +1,6 @@
 package com.mypenbox.mpb.models;
 
-public enum AccountRole {
+public enum AppUserRole {
     USER,
     ADMIN
 }
