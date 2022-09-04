@@ -69,5 +69,6 @@ public class AccountController {
         return "login";
     }
 
+    // TODO: UI validation for login page
     // TODO: /logout page & button
 }
