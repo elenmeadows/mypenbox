@@ -1,6 +1,6 @@
 package com.mypenbox.mpb.registration.token;
 
-import com.mypenbox.mpb.models.AppUser;
+import com.mypenbox.mpb.models.Account;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,17 +33,17 @@ public class ConfirmationToken {
     @ManyToOne
     @JoinColumn(
             nullable = false,
-            name = "app_user_id"
+            name = "account_id"
     )
-    private AppUser appUser;
+    private Account account;
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
                              LocalDateTime expiredAt,
-                             AppUser appUser) {
+                             Account account) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiredAt;
-        this.appUser = appUser;
+        this.account = account;
     }
 }

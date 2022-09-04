@@ -20,14 +20,13 @@ import java.util.Date;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name = "app_user")
-public class AppUser implements UserDetails {
+@Table(name = "account")
+public class Account implements UserDetails {
 
-
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "account_sequence", sequenceName = "account_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_sequence")
+    @Column(name = "account_id")
     private Long accountId;
 
     @Column(name = "email", nullable=false, unique = true)
@@ -54,7 +53,7 @@ public class AppUser implements UserDetails {
     private String avatar;
 
     @Enumerated(EnumType.STRING)
-    private AppUserRole appUserRole;
+    private AccountAuthority accountAuthority;
 
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
@@ -64,23 +63,23 @@ public class AppUser implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public AppUser(String email,
+    public Account(String email,
                    String firstName,
                    String lastName,
                    String nickname,
                    String password,
-                   AppUserRole appUserRole) {
+                   AccountAuthority accountAuthority) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
         this.password = password;
-        this.appUserRole = appUserRole;
+        this.accountAuthority = accountAuthority;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(accountAuthority.name());
         return Collections.singletonList(authority);
     }
 

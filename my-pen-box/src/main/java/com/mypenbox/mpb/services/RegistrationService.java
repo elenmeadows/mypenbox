@@ -1,11 +1,11 @@
-package com.mypenbox.mpb.registration;
+package com.mypenbox.mpb.services;
 
-import com.mypenbox.mpb.models.AppUser;
-import com.mypenbox.mpb.models.AppUserRole;
+import com.mypenbox.mpb.models.AccountDTO;
+import com.mypenbox.mpb.models.Account;
+import com.mypenbox.mpb.models.AccountAuthority;
 import com.mypenbox.mpb.registration.email.EmailSender;
 import com.mypenbox.mpb.registration.token.ConfirmationToken;
 import com.mypenbox.mpb.registration.token.ConfirmationTokenService;
-import com.mypenbox.mpb.services.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,33 +14,27 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-public class RegistrationService {
+public class RegistrationService implements IRegistrationService {
 
-    private final AppUserService appUserService;
-    private final EmailValidator emailValidator;
+    private final AccountService accountService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
-    public String register(RegistrationRequest request) {
-        Boolean isValidEmail = emailValidator.test(request.getEmail());
+    public String register(AccountDTO accountDTO) {
 
-        if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
-        }
-
-        String token = appUserService.signUpUser(new AppUser(
-                request.getEmail(),
-                request.getFirstName(),
-                request.getLastName(),
-                request.getNickname(),
-                request.getPassword(),
-                AppUserRole.USER
+        String token = accountService.signUpUser(new Account(
+                accountDTO.getEmail(),
+                accountDTO.getFirstName(),
+                accountDTO.getLastName(),
+                accountDTO.getNickname(),
+                accountDTO.getPassword(),
+                AccountAuthority.USER
         ));
 
-        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
-        emailSender.send(request.getEmail(), buildEmail(request.getFirstName(), link));
+        String link = "http://localhost:8080/sign-up/confirm?token=" + token;
+        emailSender.send(accountDTO.getEmail(), buildEmail(accountDTO.getFirstName(), link));
 
-        return token;
+        return null;
     }
 
     @Transactional
@@ -50,21 +44,25 @@ public class RegistrationService {
                 .orElseThrow(() -> new IllegalStateException("token not found"));
 
         if (confirmationToken.getConfirmedAt() !=null) {
-            throw new IllegalStateException("email already confirmed");
+
+            return "email already confirmed";
         }
 
         LocalDateTime expiresAt = confirmationToken.getExpiresAt();
 
         if (expiresAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("token expired");
+
+            return "expired";
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        appUserService.enableAppUser(
-                confirmationToken.getAppUser().getEmail());
+        accountService.enableAppUser(
+                confirmationToken.getAccount().getEmail());
+
         return "confirmed";
     }
 
+    // TODO: make new html-template for buildEmail method
     private String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +

@@ -1,6 +1,6 @@
 package com.mypenbox.mpb.repo;
 
-import com.mypenbox.mpb.models.AppUser;
+import com.mypenbox.mpb.models.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,13 +11,14 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface AppUserRepository extends JpaRepository<AppUser, Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Optional<AppUser> findByEmail(String email);
+    Optional<Account> findByEmail(String email);
+    Optional<Account> findByNickname(String nickname);
 
     @Transactional
     @Modifying
-    @Query("UPDATE AppUser a " + "SET a.enabled = TRUE WHERE a.email = ?1")
+    @Query("UPDATE Account a " + "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableAppUser(String email);
 
 }

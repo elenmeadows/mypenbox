@@ -1,6 +1,6 @@
 package com.mypenbox.mpb.security.config;
 
-import com.mypenbox.mpb.services.AppUserService;
+import com.mypenbox.mpb.services.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AppUserService appUserService;
+    private final AccountService accountService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -24,11 +24,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**")
-                    .permitAll()
-                .anyRequest()
-                .authenticated().and()
-                .formLogin();
+                    .antMatchers("/", "index", "/catalog/**", "/sign-up/**", "/login*", "/css/*", "/js/*").permitAll()
+                    .antMatchers("/add-product*").hasAnyAuthority("EDITOR", "ADMIN")
+                    .antMatchers("/edit-product/**").hasAnyAuthority("EDITOR", "ADMIN")
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .loginPage("/login").permitAll();
     }
 
     @Override
@@ -39,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(appUserService);
+        provider.setUserDetailsService(accountService);
         provider.setPasswordEncoder(bCryptPasswordEncoder);
 
         return provider;
