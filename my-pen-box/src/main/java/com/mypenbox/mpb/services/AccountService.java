@@ -1,6 +1,7 @@
 package com.mypenbox.mpb.services;
 
 import com.mypenbox.mpb.models.Account;
+import com.mypenbox.mpb.models.AccountDTO;
 import com.mypenbox.mpb.registration.token.ConfirmationToken;
 import com.mypenbox.mpb.registration.token.ConfirmationTokenService;
 import com.mypenbox.mpb.repo.AccountRepository;
@@ -28,17 +29,23 @@ public class AccountService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    public void userExist(Account account) {
-        boolean emailExists = accountRepository.findByEmail(account.getEmail())
+    public String accountExists(AccountDTO accountDTO) {
+        boolean emailExists = accountRepository.findByEmail(accountDTO.getEmail())
                 .isPresent();
-        boolean nicknameExists = accountRepository.findByNickname(account.getNickname())
+        boolean nicknameExists = accountRepository.findByNickname(accountDTO.getNickname())
                 .isPresent();
 
-        if (emailExists) {
-            throw new IllegalStateException("email already taken");
+        if (emailExists && nicknameExists) {
+            return "That email & nickname have already been used";
+        } else if (nicknameExists) {
+            return "That nickname has already been used";
+        } else if (emailExists) {
+            return "That email has already been used";
             // TODO: if userExists & it's the SAME user (same email and nickname)
             //  & hasn't confirmed his account, resend him email with token
         }
+
+        return null;
     }
 
     public String signUpUser(Account account) {

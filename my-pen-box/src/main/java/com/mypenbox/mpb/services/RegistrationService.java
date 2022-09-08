@@ -1,11 +1,8 @@
 package com.mypenbox.mpb.services;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mypenbox.mpb.models.AccountDTO;
 import com.mypenbox.mpb.models.Account;
 import com.mypenbox.mpb.models.AccountAuthority;
-import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.registration.email.EmailSender;
 import com.mypenbox.mpb.registration.token.ConfirmationToken;
 import com.mypenbox.mpb.registration.token.ConfirmationTokenService;
@@ -13,10 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.time.LocalDateTime;
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class RegistrationService implements IRegistrationService {

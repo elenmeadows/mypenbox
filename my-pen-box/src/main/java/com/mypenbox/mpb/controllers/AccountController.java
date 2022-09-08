@@ -1,6 +1,7 @@
 package com.mypenbox.mpb.controllers;
 
 import com.mypenbox.mpb.models.AccountDTO;
+import com.mypenbox.mpb.services.AccountService;
 import com.mypenbox.mpb.services.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 public class AccountController {
 
     private final RegistrationService registrationService;
+    private final AccountService accountService;
 
     @GetMapping("/sign-up")
     public String signUpForm(Model model) {
@@ -37,12 +39,11 @@ public class AccountController {
             } else {
                 registrationService.register(accountDTO);
                 return "success";
-                // TODO: send me confirmation again <- make that button work
+                // TODO: send me again <- make that button work
             }
         } catch (DataIntegrityViolationException e) {
-            System.out.println("PARAM-PAM-PAM");
-            // TODO: email/nickname already exists + modelView about that on UI level
-            // TODO: email & nickname already exist -> link to send me confirmation letter again
+            String accountExists = accountService.accountExists(accountDTO);
+            model.addAttribute("accountExists", accountExists);
 
             return "sign-up";
         }
@@ -55,11 +56,8 @@ public class AccountController {
         String confirmationResult = registrationService.confirmToken(token);
 
         model.addAttribute("confirmationResult", confirmationResult);
-        return "login";
-        // TODO: return "confirmation" (th:if="${confirmationResult = "..."} x3)
-        // TODO: if confirmed -> link to LOGIN page
-        // TODO: if email has already been confirmed -> just that info
-        // TODO: if expired -> link to send me confirmation letter again
+        return "confirmation";
+        // TODO: if expired -> send me again <- make that button work
     }
 
     @GetMapping(path = "/login")
