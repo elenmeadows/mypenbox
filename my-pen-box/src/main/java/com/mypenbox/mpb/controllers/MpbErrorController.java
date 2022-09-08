@@ -16,11 +16,6 @@ public class MpbErrorController implements ErrorController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MpbErrorController.class);
 
-    public String getErrorPath() {
-        //TODO auto-generated method stub
-        return "/error";
-    }
-
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
         String errorPage = "error";

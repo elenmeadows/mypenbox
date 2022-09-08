@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -34,12 +33,11 @@ public class AccountController {
 
         try {
             if (bindingResult.hasErrors()) {
-                System.out.println("LALLALA");
                 return "sign-up";
             } else {
                 registrationService.register(accountDTO);
-                return "index";
-                // TODO: return "success-page" (please, check your mailbox)
+                return "success";
+                // TODO: send me confirmation again <- make that button work
             }
         } catch (DataIntegrityViolationException e) {
             System.out.println("PARAM-PAM-PAM");
@@ -70,5 +68,10 @@ public class AccountController {
     }
 
     // TODO: UI validation for login page
-    // TODO: /logout page & button
+
+    // TODO: /logout button
+    @GetMapping(path = "/logout")
+    public String returnMainPage() {
+        return "index";
+    }
 }

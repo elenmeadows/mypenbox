@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>login | my pen-box</title>
+    <title>success | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
@@ -47,8 +47,8 @@
 
     <nav class="main-nav main-nav__index">
         <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
-            <input type="hidden" name="sortField" th:value="colormark"/>
-            <input type="hidden" name="sortDir" th:value="asc"/>
+            <input type="hidden" name="sortField" th:value="colormark" />
+            <input type="hidden" name="sortDir" th:value="asc" />
             <button type="submit" aria-label="submit">
                 <i class="search-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -78,25 +78,13 @@
     </nav>
 
     <div class="content-window content-window__index">
-        <div class="auth__api">
-            <h2 class="heading">log in</h2>
-            <h4>
-                <b>with
-                    <a href="#">Google</a> account
-                </b>
-            </h4>
-        </div>
-        <p class="content-window__text">
-        <form class="content-window__fields" method="post" action="/login">
-            <input type="text" id="username" name="username"> email<br>
-            <input type="password" id="password" name="password" required> password<br>
-            <span><a href="#">Forgot password? Click!</a></span>
-            <button type="submit" class="content-window__buttons">
-                Let me in
-            </button>
-        </form>
+        <h2 class="heading">woo-ho! now it's time to confirm your account,</h2>
+        <p class="text"><b>please check out your mail box.</b><br>
+            If you don't have any letter from us — click on the button below:
         </p>
-
+        <div class="registration-buttons">
+            <a href="#">send me again</a>
+        </div>
     </div>
 </div>
 </body>

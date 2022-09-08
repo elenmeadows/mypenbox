@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        div,
+        h1,
+        h2,
+        header {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+        }
+
+        .main-container {
+            margin: 1.5rem;
+            border: 0.1rem solid #393636;
+            border-radius: 0.7rem;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 3.2rem;
+            border-bottom: 0.1rem solid #393636;
+            /* background-color: #393636;
+            border-radius: 0.7rem 0.7rem 0 0; */
+        }
+
+        header h1 {
+            font-family: 'Raleway', sans-serif;
+            color: #393636;
+            font-weight: 400;
+            margin-bottom: 0.2rem;
+        }
+
+        .mail-content {
+            font-family: 'Montserrat', sans-serif;
+            color: #393636;
+            font-weight: 600;
+            margin: 2.3rem 1rem 1.7rem 1rem;
+        }
+
+        .mail-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #393636;
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.4rem;
+        }
+
+        .mail-content div {
+            margin: 1.5rem 0;
+        }
+
+        .mail-content a {
+            font-family: var(--ff-montserrat);
+            color: #393636;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 0.5rem 3.4rem;
+            border: 1px solid #393636;
+            border-radius: 0.375rem;
+        }
+
+        a:hover {
+            background-color: #393636;
+            color: #EFEEEE;
+            border: 1px solid #393636;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <h1>my pen-box</h1>
+        </header>
+        <div class="mail-content">
+            <h2>hi Helena,</h2>
+            <p>thank you for registration!<br>
+                please click on the link below to complete it.<br>
+            </p>
+            <div>
+                <a class="link" href="#">
+                    activate my account
+                </a>
+            </div>
+
+            <p>* link will expire in 15 minutes.<br>
+                see you soon, xoxo</p>
+        </div>
+    </div>
+</body>
+
+</html>
