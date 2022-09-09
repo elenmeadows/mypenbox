@@ -4,5 +4,5 @@ import com.mypenbox.mpb.models.AccountDTO;
 
 public interface IRegistrationService {
 
-    String register(AccountDTO accountDTO);
+    void register(AccountDTO accountDTO);
 }

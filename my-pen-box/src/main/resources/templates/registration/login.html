@@ -4,20 +4,20 @@
 
 <head>
     <meta charset="utf-8">
-    <title>no results | my pen-box</title>
+    <title>login | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery-3.6.0.js"></script>
 </head>
 
 <body>
-<div class="grid">
+<div class="grid grid__index">
     <header>
         <a href="/" class="title">my pen-box</a>
         <div class="header-links">
-            <a href="login.html" class="header-links__login">Log In</a>
-            <a href="sign-up.html" class="header-links__signup">Sign Up</a>
+            <a href="/login" class="header-links__login">Log In</a>
+            <a href="/sign-up" class="header-links__signup">Sign Up</a>
         </div>
         <div class="settings-icon">
             <div class="settings-icon__burger"></div>
@@ -36,12 +36,7 @@
     <div class="settings-background">
     </div>
 
-    <div class="laptop-signup-login">
-        <a href="sign-up.html" class="laptop__signup">Sign Up</a>
-        <a href="login.html" class="laptop__login">Log In</a>
-    </div>
-
-    <div class="laptop-settings">
+    <div class="laptop-settings laptop-settings__index">
         <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
@@ -50,10 +45,10 @@
         <p class="laptop-copyright">© Copyright — Helena Meadows</p>
     </div>
 
-    <nav class="main-nav">
+    <nav class="main-nav main-nav__index">
         <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
-            <input type="hidden" name="sortField" value="colorname"/>
-            <input type="hidden" name="sortDir" value="asc"/>
+            <input type="hidden" name="sortField" th:value="colormark"/>
+            <input type="hidden" name="sortDir" th:value="asc"/>
             <button type="submit" aria-label="submit">
                 <i class="search-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -82,42 +77,29 @@
         </ul>
     </nav>
 
-    <div class="content-window">
-        <div class="sortby-filter-nav">
-            Filter
-            <button class="filter-toggle">off</button>
-            // Sort by
-            <button type="button" class="sortby-button">
-                <svg class="double-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
-                     style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                        <path class="st0" d="M430.9,241L256,361.8L81.1,241" />
-                    <path class="st0" d="M407.2,153L256.9,256.7L106.6,153" />
-                </svg>
+    <div class="content-window content-window__index">
+        <div class="auth__api">
+            <h2 class="heading">log in</h2>
+            <h4>
+                <b>with
+                    <a href="#">Google</a> account
+                </b>
+            </h4>
+        </div>
+        <p class="content-window__text">
+        <form class="content-window__fields" method="post" action="/login">
+            <input type="text" id="username" name="username"> email<br>
+            <input type="password" id="password" name="password"> password<br>
+            <span><a href="#">Forgot password? Click!</a></span>
+            <button type="submit" class="content-window__buttons">
+                Let me in
             </button>
-        </div>
-        <div class="sortby-filter-submenu">
-            Hey, what are you going to sort?<br>
-            Emptiness? <b>&#9786;</b>
-        </div>
-        <table>
-            <thead></thead>
-            <tbody>
-            <span style="display: inline-block; font-size: 1rem; font-style: italic; padding: 2rem; text-align: center;">Well, well, well..
-            Nothing was found. Try something else.</span>
-            </tbody>
-        </table>
-        <div class="pagination">
-            <div>
-                <span id="total-items">Total Items: 0</span>
-            </div>
-            <div>
-            </div>
-        </div>
+        </form>
+        </p>
+
     </div>
 </div>
-</div>
-
 </body>
-<script th:src="@{/js/main.js}"></script>
+<script src="/js/main.js"></script>
+
 </html>

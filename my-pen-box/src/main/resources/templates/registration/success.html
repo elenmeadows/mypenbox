@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>confirmation | my pen-box</title>
+    <title>success | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
@@ -77,36 +77,16 @@
         </ul>
     </nav>
 
-    <div th:if="${confirmationResult == 'confirmed'}" class="content-window content-window__index">
-        <h2 class="heading">congrats!</h2>
-        <p class="text" style="font-weight: 500; line-height: 1.2rem;">your account has been confirmed & now you can
-            login. have fun :)
+    <div class="content-window content-window__index">
+        <h2 class="heading">woo-ho!</h2>
+        <p class="text" style="font-weight: 500; line-height: 1.2rem;">now it's time to activate newborn account,
+            <b>please check out your mail box.</b><br>
+            If you don't have any letter from us — click on the button below:
         </p>
         <div class="registration-buttons" style="justify-content: flex-start;">
-            <a href="/login">log in</a>
+            <a href="/resend">send me confirmation again</a>
         </div>
     </div>
-
-    <div th:if="${confirmationResult == 'email already confirmed'}" class="content-window content-window__index">
-        <h2 class="heading">hm-m-m,</h2>
-        <p class="text" style="font-weight: 500; line-height: 1.2rem;">seems like your account has already been
-            confirmed :)
-        </p>
-        <div class="registration-buttons" style="justify-content: flex-start;">
-            <a href="/login">log in</a>
-        </div>
-    </div>
-
-    <div th:if="${confirmationResult == 'expired'}" class="content-window content-window__index">
-        <h2 class="heading">hm-m-m,</h2>
-        <p class="text" style="font-weight: 500; line-height: 1.2rem;">seems like your link has expired. but don't
-            worry, <br>you can get a new one! click on the button below:
-        </p>
-        <div class="registration-buttons" style="justify-content: flex-start;">
-            <a href="#">send me new link</a>
-        </div>
-    </div>
-
 </div>
 </body>
 <script src="/js/main.js"></script>

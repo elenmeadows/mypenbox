@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>sign up | my pen-box</title>
+    <title>confirmation | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
@@ -47,8 +47,8 @@
 
     <nav class="main-nav main-nav__index">
         <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
-            <input type="hidden" name="sortField" th:value="colormark"/>
-            <input type="hidden" name="sortDir" th:value="asc"/>
+            <input type="hidden" name="sortField" th:value="colormark" />
+            <input type="hidden" name="sortDir" th:value="asc" />
             <button type="submit" aria-label="submit">
                 <i class="search-icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -77,58 +77,36 @@
         </ul>
     </nav>
 
-    <div class="content-window content-window__index">
-        <div class="auth__api">
-            <h2 class="heading">sign up</h2>
-            <h4>
-                <b>with
-                    <a href="#">Google</a> account
-                </b>
-            </h4>
-        </div>
-        <p class="content-window__text">
-            <b>or just fill in these forms</b>
-        <form class="content-window__fields" action="#" th:action="@{/sign-up}" method="post" th:object="${account}">
-            e-mail <input type="text" th:field="*{email}" id="email-input" placeholder="user@mail.com"><br>
-            <span th:if="${#fields.hasErrors('email')}">Please enter a valid e-mail address<br></span>
-
-
-            <input type="text" th:field="*{firstName}" id="firstname-input" placeholder="Helena"> first name<br>
-            <span th:if="${#fields.hasErrors('firstName')}">Please enter a valid first name<br></span>
-
-            <input type="text" th:field="*{lastName}" id="lastname-input" placeholder="Meadows"> last name<br>
-            <span th:if="${#fields.hasErrors('lastName')}">Please enter a valid last name<br></span>
-
-            <input type="text" th:field="*{nickname}" id="nickname-input" placeholder="@elenmeadows"> nickname<br>
-            <span th:if="${#fields.hasErrors('nickname')}">Please enter a valid nickname (at least 3 characters length)<br></span>
-
-            <input type="password" th:field="*{password}" id="password-input" placeholder="type smth"> password<br>
-                <div class="show-password">
-                    <i class="show-pswd-icon">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                            <path class="st0" d="M63.9,257.5c0-54.3,85.9-98.3,192.1-98.3"/>
-                            <path class="st0" d="M447.4,257.5c0-54.3-83.2-98.3-186.1-98.3"/>
-                            <path class="st0" d="M64.3,251c0,57.9,85.9,104.8,192.1,104.8"/>
-                            <path class="st0" d="M447.8,251c0,57.9-83.2,104.8-186.1,104.8"/>
-                            <path class="st1" d="M256,160.2c-10.9,0-21.3,2.5-30.6,6.9c11.5,7.8,19,20.9,19,35.8c0,23.9-19.4,43.2-43.2,43.2c-5.6,0-10.9-1.1-15.8-3c5.5,34,35,60,70.6,60c39.5,0,71.5-32,71.5-71.5C327.5,192.2,295.5,160.2,256,160.2z"/>
-                        </svg>
-                    </i>
-                </div>
-            <span th:if="${#fields.hasErrors('password')}">Please enter a valid password<br></span><br>
-            <span>Password must have at least one capital letter, one small letter, one number and 8 characters length.<br></span>
-
-            <div class="errors-block">
-                <p>[[${accountExists}]]</p>
-            </div>
-
-            <button type="submit" class="content-window__buttons">
-                Confirm
-            </button>
-        </form>
+    <div th:if="${confirmationResult == 'confirmed'}" class="content-window content-window__index">
+        <h2 class="heading">congrats!</h2>
+        <p class="text" style="font-weight: 500; line-height: 1.2rem;">your account has been confirmed & now you can
+            login. have fun :)
         </p>
-
+        <div class="registration-buttons" style="justify-content: flex-start;">
+            <a href="/login">log in</a>
+        </div>
     </div>
+
+    <div th:if="${confirmationResult == 'email already confirmed'}" class="content-window content-window__index">
+        <h2 class="heading">hm-m-m,</h2>
+        <p class="text" style="font-weight: 500; line-height: 1.2rem;">seems like your account has already been
+            confirmed :)
+        </p>
+        <div class="registration-buttons" style="justify-content: flex-start;">
+            <a href="/login">log in</a>
+        </div>
+    </div>
+
+    <div th:if="${confirmationResult == 'expired'}" class="content-window content-window__index">
+        <h2 class="heading">hm-m-m,</h2>
+        <p class="text" style="font-weight: 500; line-height: 1.2rem;">seems like your link has expired. but don't
+            worry, <br>you can get a new one! click on the button below:
+        </p>
+        <div class="registration-buttons" style="justify-content: flex-start;">
+            <a href="/resend">send me new link</a>
+        </div>
+    </div>
+
 </div>
 </body>
 <script src="/js/main.js"></script>

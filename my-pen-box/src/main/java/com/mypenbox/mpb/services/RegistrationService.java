@@ -19,7 +19,7 @@ public class RegistrationService implements IRegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
-    public String register(AccountDTO accountDTO) {
+    public void register(AccountDTO accountDTO) {
 
         String token = accountService.signUpUser(new Account(
                 accountDTO.getEmail(),
@@ -30,10 +30,33 @@ public class RegistrationService implements IRegistrationService {
                 AccountAuthority.USER
         ));
 
+        sendToken(token, accountDTO);
+    }
+
+    public void sendToken(String token, AccountDTO accountDTO) {
+
         String link = "http://localhost:8080/sign-up/confirm?token=" + token;
         emailSender.send(accountDTO.getEmail(), buildEmail(accountDTO.getFirstName(), link));
 
-        return null;
+    }
+
+    public String resendToken(AccountDTO accountDTO) {
+
+        String email = accountDTO.getEmail();
+        Account account = accountService.findByEmail(email);
+
+        if (account == null) {
+            System.out.println("pam");
+            return "no user with such email was found";
+        } else if (account.getEnabled()) {
+            System.out.println("pam-pam");
+            return "your account has already been confirmed";
+        } else {
+            String token = accountService.createToken(account);
+            accountDTO.setFirstName(account.getFirstName());
+            sendToken(token, accountDTO);
+            return "activation link was sent. check your mail box";
+        }
     }
 
     @Transactional
@@ -43,21 +66,17 @@ public class RegistrationService implements IRegistrationService {
                 .orElseThrow(() -> new IllegalStateException("token not found"));
 
         if (confirmationToken.getConfirmedAt() !=null) {
-
             return "email already confirmed";
         }
 
         LocalDateTime expiresAt = confirmationToken.getExpiresAt();
 
         if (expiresAt.isBefore(LocalDateTime.now())) {
-
             return "expired";
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        accountService.enableAppUser(
-                confirmationToken.getAccount().getEmail());
-
+        accountService.enableAppUser(confirmationToken.getAccount().getEmail());
         return "confirmed";
     }
 

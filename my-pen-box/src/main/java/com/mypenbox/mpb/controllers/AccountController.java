@@ -1,5 +1,6 @@
 package com.mypenbox.mpb.controllers;
 
+import com.mypenbox.mpb.models.Account;
 import com.mypenbox.mpb.models.AccountDTO;
 import com.mypenbox.mpb.services.AccountService;
 import com.mypenbox.mpb.services.RegistrationService;
@@ -26,7 +27,7 @@ public class AccountController {
     public String signUpForm(Model model) {
         AccountDTO accountDTO = new AccountDTO();
         model.addAttribute("account", accountDTO);
-        return "sign-up";
+        return "registration/sign-up";
     }
 
     @PostMapping("/sign-up")
@@ -35,17 +36,17 @@ public class AccountController {
 
         try {
             if (bindingResult.hasErrors()) {
-                return "sign-up";
+                return "registration/sign-up";
             } else {
                 registrationService.register(accountDTO);
-                return "success";
+                return "registration/success";
                 // TODO: send me again <- make that button work
             }
         } catch (DataIntegrityViolationException e) {
             String accountExists = accountService.accountExists(accountDTO);
             model.addAttribute("accountExists", accountExists);
 
-            return "sign-up";
+            return "registration/sign-up";
         }
 
     }
@@ -54,22 +55,39 @@ public class AccountController {
     public String confirm(@Param("token") String token, Model model) {
 
         String confirmationResult = registrationService.confirmToken(token);
-
         model.addAttribute("confirmationResult", confirmationResult);
-        return "confirmation";
-        // TODO: if expired -> send me again <- make that button work
+        return "registration/confirmation";
+    }
+
+    @GetMapping(path = "/resend")
+    public String openResendPage(Model model) {
+        AccountDTO accountDTO = new AccountDTO();
+        model.addAttribute("account", accountDTO);
+        return "registration/resend";
+        // TODO: UI + back-end validation for resend page
+    }
+
+    @PostMapping(path = "/resend-link")
+    public String resend(@ModelAttribute("account") AccountDTO accountDTO,
+                         BindingResult bindingResult, Model model) {
+
+        String resendResult = registrationService.resendToken(accountDTO);
+        model.addAttribute("resendResult", resendResult);
+
+        return "registration/resend";
     }
 
     @GetMapping(path = "/login")
     public String returnLoginPage() {
-        return "login";
+
+        return "registration/login";
     }
 
-    // TODO: UI validation for login page
+    // TODO: UI + back-end validation for login page
 
     // TODO: /logout button
     @GetMapping(path = "/logout")
     public String returnMainPage() {
-        return "index";
+        return "registration/index";
     }
 }

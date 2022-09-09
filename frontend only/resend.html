@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
-    <title>success | my pen-box</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <title>my pen-box</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="grid grid__index">
         <header>
-            <a href="/" class="title">my pen-box</a>
+            <a href="index.html" class="title">my pen-box</a>
             <div class="header-links">
-                <a href="/login" class="header-links__login">Log In</a>
-                <a href="/sign-up" class="header-links__signup">Sign Up</a>
+                <a href="login.html" class="header-links__login">Log In</a>
+                <a href="sign-up.html" class="header-links__signup">Sign Up</a>
             </div>
             <div class="settings-icon">
                 <div class="settings-icon__burger"></div>
             </div>
         </header>
-        <div class="laptop-title"><a href="/">my pen-box</a></div>
+        <div class="laptop-title"><a href="index-101.html">my pen-box</a></div>
         <div class="settings">
             <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
             <a href="#" class="en-language settings__flex">en</a>
@@ -46,10 +45,8 @@
         </div>
 
         <nav class="main-nav main-nav__index">
-            <form th:action="@{/catalog/page/1}" role="search" method="get" name="search" class="search">
-                <input type="hidden" name="sortField" th:value="colormark" />
-                <input type="hidden" name="sortDir" th:value="asc" />
-                <button type="submit" aria-label="submit">
+            <form role="search" method="get" name="search" class="search search__index" action="">
+                <button type="submit" name="submit" aria-label="submit">
                     <i class="search-icon">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -60,7 +57,7 @@
                         </svg>
                     </i>
                 </button>
-                <input type="text" name="keyword" th:value="${keyword}" class="search-input" placeholder="Search">
+                <input type="text" name="search" id="input" value="" class="search-input" placeholder="Search">
                 <button type="reset" name="reset" aria-label="reset">
                     <i class="reset-icon">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -73,19 +70,24 @@
                 </button>
             </form>
             <ul>
-                <li><a href="/catalog">catalogue</a></li>
+                <li><a href="catalog-unregistered.html">catalogue</a></li>
             </ul>
         </nav>
 
         <div class="content-window content-window__index">
-            <h2 class="heading">woo-ho!</h2>
-            <p class="text" style="font-weight: 500; line-height: 1.2rem;">now it's time to activate newborn account,
-                <b>please check out your mail box.</b><br>
-                If you don't have any letter from us — click on the button below:
-            </p>
-            <div class="registration-buttons" style="justify-content: flex-start;">
-                <a href="/resend-activation">send me activation link again</a>
+            <div class="auth__api">
+                <h2 class="heading">resend link</h2>
             </div>
+            <p class="content-window__text">
+            <form class="content-window__fields" action="#" method="post">
+                <input type="text" name="email" required> email<br>
+                <span>Enter the email you provided when registering</span>
+                <button type="submit" class="content-window__buttons">
+                    send
+                </button>
+            </form>
+            </p>
+
         </div>
     </div>
 </body>

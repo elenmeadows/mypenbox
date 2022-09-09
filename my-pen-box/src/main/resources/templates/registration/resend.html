@@ -79,20 +79,19 @@
 
     <div class="content-window content-window__index">
         <div class="auth__api">
-            <h2 class="heading">log in</h2>
-            <h4>
-                <b>with
-                    <a href="#">Google</a> account
-                </b>
-            </h4>
+            <h2 class="heading">resend link</h2>
         </div>
         <p class="content-window__text">
-        <form class="content-window__fields" method="post" action="/login">
-            <input type="text" id="username" name="username"> email<br>
-            <input type="password" id="password" name="password" required> password<br>
-            <span><a href="#">Forgot password? Click!</a></span>
+        <form class="content-window__fields" th:action="@{/resend-link}" method="post" th:object="${account}">
+            <input type="text" name="email" th:field="*{email}"> email<br>
+            <span>Enter the email you provided when registering</span>
+
+        <div class="errors-block">
+            <p>[[${resendResult}]]</p>
+        </div>
+
             <button type="submit" class="content-window__buttons">
-                Let me in
+                send
             </button>
         </form>
         </p>

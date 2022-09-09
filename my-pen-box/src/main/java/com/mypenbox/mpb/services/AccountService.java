@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -42,7 +43,8 @@ public class AccountService implements UserDetailsService {
         } else if (emailExists) {
             return "That email has already been used";
             // TODO: if userExists & it's the SAME user (same email and nickname)
-            //  & hasn't confirmed his account, resend him email with token
+            //  & hasn't confirmed his account, on LOGIN PAGE:
+            //  you account is not activated + link to RESEND page
         }
 
         return null;
@@ -54,9 +56,13 @@ public class AccountService implements UserDetailsService {
 
         accountRepository.save(account);
 
+        return createToken(account);
+    }
+
+    public String createToken(Account account) {
         String token = UUID.randomUUID().toString();
         ConfirmationToken confirmationToken = new ConfirmationToken(
-            token,
+                token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
                 account
@@ -65,6 +71,17 @@ public class AccountService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
         return token;
+    }
+
+    public Account findByEmail(String email) {
+
+        Optional<Account> accountOptional = accountRepository.findByEmail(email);
+        if (accountOptional.isEmpty()) {
+            return null;
+        } else {
+            Account accountObject = accountOptional.get();
+            return accountObject;
+        }
     }
 
     public int enableAppUser(String email) {
