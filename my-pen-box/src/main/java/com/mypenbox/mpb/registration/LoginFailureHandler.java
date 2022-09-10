@@ -22,7 +22,7 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
 
-        String email = request.getParameter("username");
+        String email = request.getParameter("email");
 
         String redirectURL = "/login_failure?error=invalid";
 

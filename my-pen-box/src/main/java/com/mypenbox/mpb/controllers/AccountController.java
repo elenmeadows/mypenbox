@@ -97,7 +97,7 @@ public class AccountController {
         return "registration/login";
     }
 
-    // TODO: LOGIN PAGE = UI validation
+    // TODO: LOGIN PAGE = remember me option
 
     // TODO: /logout button for all pages
 
