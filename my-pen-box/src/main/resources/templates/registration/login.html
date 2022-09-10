@@ -91,12 +91,18 @@
             <input type="text" id="username" name="username"> email<br>
             <input type="password" id="password" name="password"> password<br>
             <span><a href="#">Forgot password? Click!</a></span>
+
+            <div class="errors-block">
+                <p>[[${errorMessage}]]</p>
+                <p th:if="${errorMessage == 'your account is not activated'}">get activation link <a href="/resend">here</a></p>
+            </div>
+
             <button type="submit" class="content-window__buttons">
                 Let me in
             </button>
+
         </form>
         </p>
-
     </div>
 </div>
 </body>

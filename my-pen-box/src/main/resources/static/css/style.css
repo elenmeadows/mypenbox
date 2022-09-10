@@ -676,6 +676,11 @@ header {
     font-weight: 800;
 }
 
+.errors-block a {
+    font-weight: 800;
+    text-decoration: underline;
+}
+
 @keyframes shakeInput {
     0%, 100% {
         transform: translateX(0);
@@ -693,10 +698,10 @@ header {
     text-transform: none;
 }
 
-.content-window__fields a:hover {
-    font-weight: 500;
-    font-size: 0.8rem;
-}
+/*.content-window__fields a:hover {*/
+/*    font-weight: 500;*/
+/*    font-size: 0.8rem;*/
+/*}*/
 
 .content-window__fields textarea {
     font-family: var(--clr-primary);

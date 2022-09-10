@@ -42,9 +42,6 @@ public class AccountService implements UserDetailsService {
             return "That nickname has already been used";
         } else if (emailExists) {
             return "That email has already been used";
-            // TODO: if userExists & it's the SAME user (same email and nickname)
-            //  & hasn't confirmed his account, on LOGIN PAGE:
-            //  you account is not activated + link to RESEND page
         }
 
         return null;
@@ -84,7 +81,20 @@ public class AccountService implements UserDetailsService {
         }
     }
 
+    public String login(String authError) {
+
+        switch (authError) {
+            case ("disabled"):
+                return "your account is not activated";
+            case ("not_found"):
+                return "no user found";
+        }
+
+        return "incorrect password";
+    }
+
     public int enableAppUser(String email) {
         return accountRepository.enableAppUser(email);
     }
+
 }

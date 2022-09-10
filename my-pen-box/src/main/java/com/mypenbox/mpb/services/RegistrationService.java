@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 @Service
+@Transactional
 @AllArgsConstructor
 public class RegistrationService implements IRegistrationService {
 
@@ -46,10 +47,8 @@ public class RegistrationService implements IRegistrationService {
         Account account = accountService.findByEmail(email);
 
         if (account == null) {
-            System.out.println("pam");
             return "no user with such email was found";
         } else if (account.getEnabled()) {
-            System.out.println("pam-pam");
             return "your account has already been confirmed";
         } else {
             String token = accountService.createToken(account);
@@ -59,7 +58,6 @@ public class RegistrationService implements IRegistrationService {
         }
     }
 
-    @Transactional
     public String confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)

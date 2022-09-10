@@ -7,12 +7,16 @@ import com.mypenbox.mpb.services.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -40,7 +44,6 @@ public class AccountController {
             } else {
                 registrationService.register(accountDTO);
                 return "registration/success";
-                // TODO: send me again <- make that button work
             }
         } catch (DataIntegrityViolationException e) {
             String accountExists = accountService.accountExists(accountDTO);
@@ -64,12 +67,10 @@ public class AccountController {
         AccountDTO accountDTO = new AccountDTO();
         model.addAttribute("account", accountDTO);
         return "registration/resend";
-        // TODO: UI + back-end validation for resend page
     }
 
     @PostMapping(path = "/resend-link")
-    public String resend(@ModelAttribute("account") AccountDTO accountDTO,
-                         BindingResult bindingResult, Model model) {
+    public String resend(@ModelAttribute("account") AccountDTO accountDTO, Model model) {
 
         String resendResult = registrationService.resendToken(accountDTO);
         model.addAttribute("resendResult", resendResult);
@@ -80,14 +81,28 @@ public class AccountController {
     @GetMapping(path = "/login")
     public String returnLoginPage() {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "registration/login";
+        }
+
+        return "redirect:/";
+    }
+
+    @GetMapping(path = "/login_failure")
+    public String getAuthError(@RequestParam(name = "error") String authError, Model model) {
+
+        String errorMessage = accountService.login(authError);
+        model.addAttribute("errorMessage", errorMessage);
         return "registration/login";
     }
 
-    // TODO: UI + back-end validation for login page
+    // TODO: LOGIN PAGE = UI validation
 
-    // TODO: /logout button
+    // TODO: /logout button for all pages
+
     @GetMapping(path = "/logout")
     public String returnMainPage() {
-        return "registration/index";
+        return "index";
     }
 }
