@@ -671,6 +671,12 @@ header {
     stroke-linejoin: round;
 }
 
+.remember-me {
+    margin-top: 0.4rem;
+    display: flex;
+    gap: 0.4rem;
+}
+
 .errors-block {
     margin-top: 0.5rem;
     font-weight: 800;
@@ -1005,8 +1011,7 @@ input[type='checkbox']:checked+label{
 input[type="checkbox"]:checked+label:after {
     content: '✕';
     position: relative;
-    top: 1px;
-    /*font-size: 1rem;*/
+    left: 0.15rem;
     font-weight: 800;
     color: var(--clr-primary);
     line-height: 0;
