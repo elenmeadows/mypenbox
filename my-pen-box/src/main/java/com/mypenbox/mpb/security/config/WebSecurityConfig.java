@@ -11,15 +11,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.sql.DataSource;
 
 @Configuration
 @AllArgsConstructor
@@ -28,6 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final AccountService accountService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("email")
                     .passwordParameter("password")
                     .failureHandler(failureHandler).and()
-                .rememberMe().and()
+                .rememberMe().tokenRepository(persistentTokenRepository()).userDetailsService(accountService).and()
                 .logout()
                     .logoutUrl("/logout")
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
@@ -56,6 +56,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoginFailureHandler failureHandler;
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepo = new JdbcTokenRepositoryImpl();
+        tokenRepo.setDataSource(dataSource);
+        return tokenRepo;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
