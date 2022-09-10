@@ -624,7 +624,7 @@ header {
     animation: shakeInput 0.65s;
 }
 
-#password-input {
+#password {
     padding: 0.4rem 0.4rem 0.4rem 2.1rem;
 }
 

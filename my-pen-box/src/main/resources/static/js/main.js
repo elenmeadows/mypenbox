@@ -232,23 +232,23 @@ $(".next-button").click(function () {
 
 // Sign-up fields
 
-$("#email-input").blur(function () {
+$("#email").blur(function () {
     checkInputs($(this));
 });
 
-$("#firstname-input").blur(function () {
+$("#firstname").blur(function () {
     checkInputs($(this));
 });
 
-$("#lastname-input").blur(function () {
+$("#lastname").blur(function () {
     checkInputs($(this));
 });
 
-$("#nickname-input").blur(function () {
+$("#nickname").blur(function () {
     checkInputs($(this));
 });
 
-$("#password-input").blur(function () {
+$("#password").blur(function () {
     checkInputs($(this));
 });
 
@@ -267,11 +267,11 @@ function checkInputs(inputValue) {
 }
 
 function isValid(trimmedInput) {
-    const email = $.trim($("#email-input").val());
-    const firstName = $.trim($("#firstname-input").val());
-    const lastName = $.trim($("#lastname-input").val());
-    const nickname = $.trim($("#nickname-input").val());
-    const password = $.trim($("#password-input").val());
+    const email = $.trim($("#email").val());
+    const firstName = $.trim($("#firstname").val());
+    const lastName = $.trim($("#lastname").val());
+    const nickname = $.trim($("#nickname").val());
+    const password = $.trim($("#password").val());
     let result;
 
     switch (trimmedInput) {
@@ -299,13 +299,13 @@ function isValid(trimmedInput) {
 let passwordInput = false;
 $(".show-password").click(function() {
     if (passwordInput) {
-        $("#password-input").attr("type", "password");
+        $("#password").attr("type", "password");
         $(".show-pswd-icon .st0").css("stroke", "rgba(57, 54, 54, 0.45)");
         $(".show-pswd-icon .st1").css("fill", "rgba(57, 54, 54, 0.45)");
         $(".show-pswd-icon .st1").css("stroke", "rgba(57, 54, 54, 0.45)");
         passwordInput = false;
     } else {
-        $("#password-input").attr("type", "text");
+        $("#password").attr("type", "text");
         $(".show-pswd-icon .st0").css("stroke", "#393636");
         $(".show-pswd-icon .st1").css("fill", "#393636");
         $(".show-pswd-icon .st1").css("stroke", "#393636");

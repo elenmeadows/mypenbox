@@ -89,19 +89,19 @@
         <p class="content-window__text">
             <b>or just fill in these forms</b>
         <form class="content-window__fields" th:action="@{/sign-up}" method="post" th:object="${account}">
-            e-mail <input type="text" th:field="*{email}" id="email-input" placeholder="user@mail.com"><br>
+            e-mail <input type="text" th:field="*{email}" id="email" placeholder="user@mail.com"><br>
             <span th:if="${#fields.hasErrors('email')}">Please enter a valid e-mail address<br></span>
 
-            <input type="text" th:field="*{firstName}" id="firstname-input" placeholder="Helena"> first name<br>
+            <input type="text" th:field="*{firstName}" id="firstname" placeholder="Helena"> first name<br>
             <span th:if="${#fields.hasErrors('firstName')}">Please enter a valid first name<br></span>
 
-            <input type="text" th:field="*{lastName}" id="lastname-input" placeholder="Meadows"> last name<br>
+            <input type="text" th:field="*{lastName}" id="lastname" placeholder="Meadows"> last name<br>
             <span th:if="${#fields.hasErrors('lastName')}">Please enter a valid last name<br></span>
 
-            <input type="text" th:field="*{nickname}" id="nickname-input" placeholder="@elenmeadows"> nickname<br>
+            <input type="text" th:field="*{nickname}" id="nickname" placeholder="elenmeadows"> nickname<br>
             <span th:if="${#fields.hasErrors('nickname')}">Please enter a valid nickname (at least 3 characters length)<br></span>
 
-            <input type="password" th:field="*{password}" id="password-input" placeholder="type smth"> password<br>
+            <input type="password" th:field="*{password}" id="password" placeholder="think of smth secure"> password<br>
                 <div class="show-password">
                     <i class="show-pswd-icon">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
