@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>login | my pen-box</title>
+    <title>resend link | my pen-box</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
@@ -82,8 +82,8 @@
             <h2 class="heading">resend link</h2>
         </div>
         <p class="content-window__text">
-        <form class="content-window__fields" th:action="@{/resend-link}" method="post" th:object="${account}">
-            <input type="text" name="email" th:field="*{email}"> email<br>
+        <form class="content-window__fields" th:action="@{/sign-up/resend-link}" method="post">
+            <input type="text" name="email"> email<br>
             <span>Enter the email you provided when registering</span>
 
         <div class="errors-block">

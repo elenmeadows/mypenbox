@@ -1,4 +1,4 @@
-package com.mypenbox.mpb.registration.token;
+package com.mypenbox.mpb.registration.passwordReset;
 
 import com.mypenbox.mpb.models.Account;
 import lombok.Getter;
@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
-public class ConfirmationToken {
+public class PasswordResetToken {
 
-    @SequenceGenerator(name = "confirmation_token_sequence", sequenceName = "confirmation_token_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "password_reset_token_sequence", sequenceName = "password_reset_token_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "confirmation_token_sequence")
-    private Long tokenId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "password_reset_token_sequence")
+    private Long passwordTokenId;
 
     @Column(nullable = false)
     private String token;
@@ -28,19 +28,17 @@ public class ConfirmationToken {
     @Column(nullable = false)
     private LocalDateTime expiresAt;
 
-    private LocalDateTime confirmedAt;
-
     @ManyToOne
     @JoinColumn(nullable = false, name = "account_id")
     private Account account;
 
-    public ConfirmationToken(String token,
-                             LocalDateTime createdAt,
-                             LocalDateTime expiredAt,
-                             Account account) {
+    public PasswordResetToken(String token,
+                              LocalDateTime createdAt,
+                              LocalDateTime expiresAt,
+                              Account account) {
         this.token = token;
         this.createdAt = createdAt;
-        this.expiresAt = expiredAt;
+        this.expiresAt = expiresAt;
         this.account = account;
     }
 }

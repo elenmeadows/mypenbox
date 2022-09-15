@@ -2,6 +2,8 @@ package com.mypenbox.mpb.services;
 
 import com.mypenbox.mpb.models.Account;
 import com.mypenbox.mpb.models.AccountDTO;
+import com.mypenbox.mpb.registration.passwordReset.PasswordResetToken;
+import com.mypenbox.mpb.registration.passwordReset.PasswordResetTokenService;
 import com.mypenbox.mpb.registration.token.ConfirmationToken;
 import com.mypenbox.mpb.registration.token.ConfirmationTokenService;
 import com.mypenbox.mpb.repo.AccountRepository;
@@ -23,6 +25,7 @@ public class AccountService implements UserDetailsService {
     private final AccountRepository accountRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
+    private final PasswordResetTokenService passwordResetTokenService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -52,7 +55,6 @@ public class AccountService implements UserDetailsService {
         account.setPassword(encodedPassword);
 
         accountRepository.save(account);
-
         return createToken(account);
     }
 
@@ -64,14 +66,23 @@ public class AccountService implements UserDetailsService {
                 LocalDateTime.now().plusMinutes(15),
                 account
         );
-
         confirmationTokenService.saveConfirmationToken(confirmationToken);
+        return token;
+    }
 
+    public String createPasswordToken(Account account) {
+        String token = UUID.randomUUID().toString();
+        PasswordResetToken passwordResetToken = new PasswordResetToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusHours(24),
+                account
+        );
+        passwordResetTokenService.savePasswordResetToken(passwordResetToken);
         return token;
     }
 
     public Account findByEmail(String email) {
-
         Optional<Account> accountOptional = accountRepository.findByEmail(email);
         if (accountOptional.isEmpty()) {
             return null;
@@ -82,15 +93,11 @@ public class AccountService implements UserDetailsService {
     }
 
     public String login(String authError) {
-
-        switch (authError) {
-            case ("disabled"):
-                return "your account is not activated";
-            case ("not_found"):
-                return "no user found";
-        }
-
-        return "incorrect password";
+        return switch (authError) {
+            case ("disabled") -> "your account is not activated";
+            case ("not_found") -> "no user found";
+            default -> "incorrect password";
+        };
     }
 
     public int enableAppUser(String email) {

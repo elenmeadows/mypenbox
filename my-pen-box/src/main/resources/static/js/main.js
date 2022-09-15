@@ -230,7 +230,7 @@ $(".next-button").click(function () {
     $(".modal").show();
 });
 
-// Sign-up fields
+// Sign-up & Login fields
 
 $("#email").blur(function () {
     checkInputs($(this));
@@ -312,6 +312,9 @@ $(".show-password").click(function() {
         passwordInput = true;
     }
 });
+
+// Forgot password
+
 
 // Auto-resize of feedback message container
 

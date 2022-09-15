@@ -1,6 +1,5 @@
 package com.mypenbox.mpb.controllers;
 
-import com.mypenbox.mpb.models.Account;
 import com.mypenbox.mpb.models.AccountDTO;
 import com.mypenbox.mpb.services.AccountService;
 import com.mypenbox.mpb.services.RegistrationService;
@@ -18,7 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Locale;
 
 @Controller
 @AllArgsConstructor
@@ -62,17 +63,17 @@ public class AccountController {
         return "registration/confirmation";
     }
 
-    @GetMapping(path = "/resend")
-    public String openResendPage(Model model) {
-        AccountDTO accountDTO = new AccountDTO();
-        model.addAttribute("account", accountDTO);
+    @GetMapping(path = "/sign-up/resend")
+    public String openResendPage() {
         return "registration/resend";
     }
 
-    @PostMapping(path = "/resend-link")
-    public String resend(@ModelAttribute("account") AccountDTO accountDTO, Model model) {
+    @PostMapping(path = "/sign-up/resend-link")
+    public String resend(HttpServletRequest request, Model model) {
 
-        String resendResult = registrationService.resendToken(accountDTO);
+        String email = request.getParameter("email");
+
+        String resendResult = registrationService.resendToken(email);
         model.addAttribute("resendResult", resendResult);
 
         return "registration/resend";
@@ -97,7 +98,26 @@ public class AccountController {
         return "registration/login";
     }
 
-    // TODO: LOGIN PAGE = remember me option
+    @GetMapping("/login/reset")
+    public String getResetPasswordPage() {
+        return "registration/reset-password";
+    }
+
+    @PostMapping("/login/reset-password")
+    public String resetPassword(HttpServletRequest request, Model model) {
+
+        String email = request.getParameter("email");
+
+        String resetResult = registrationService.resetPassword(email);
+        model.addAttribute("resetResult", resetResult);
+        return "registration/reset-password";
+    }
+
+    // TODO: LOGIN PAGE = forgot password
+    //  1. make email template for forgot password -> done
+    //  2. make new controller for login/reset?token= ->
+    //  3. link forgot-password page to the login-page (<a href> changes, y'know))) -> done
+    //  4. also don't forget to change emailSender (bc of the heading of income mails) -> done
 
     // TODO: /logout button for all pages
 
