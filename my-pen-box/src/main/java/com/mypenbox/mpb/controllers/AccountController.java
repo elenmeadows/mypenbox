@@ -1,11 +1,11 @@
 package com.mypenbox.mpb.controllers;
 
 import com.mypenbox.mpb.models.AccountDTO;
+import com.mypenbox.mpb.models.PasswordDTO;
 import com.mypenbox.mpb.services.AccountService;
 import com.mypenbox.mpb.services.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Locale;
 
 @Controller
 @AllArgsConstructor
@@ -28,20 +27,20 @@ public class AccountController {
     private final RegistrationService registrationService;
     private final AccountService accountService;
 
-    @GetMapping("/sign-up")
+    @GetMapping("/signup")
     public String signUpForm(Model model) {
         AccountDTO accountDTO = new AccountDTO();
         model.addAttribute("account", accountDTO);
-        return "registration/sign-up";
+        return "registration/signup";
     }
 
-    @PostMapping("/sign-up")
+    @PostMapping("/signup")
     public String submitSignUp(@ModelAttribute("account") @Valid AccountDTO accountDTO,
                                BindingResult bindingResult, Model model) {
 
         try {
             if (bindingResult.hasErrors()) {
-                return "registration/sign-up";
+                return "registration/signup";
             } else {
                 registrationService.register(accountDTO);
                 return "registration/success";
@@ -49,26 +48,25 @@ public class AccountController {
         } catch (DataIntegrityViolationException e) {
             String accountExists = accountService.accountExists(accountDTO);
             model.addAttribute("accountExists", accountExists);
-
-            return "registration/sign-up";
+            return "registration/signup";
         }
-
     }
 
-    @GetMapping(path = "/sign-up/confirm")
-    public String confirm(@Param("token") String token, Model model) {
+    @GetMapping(path = "/signup/confirm")
+    public String confirm(@RequestParam("token") String token, Model model) {
 
         String confirmationResult = registrationService.confirmToken(token);
         model.addAttribute("confirmationResult", confirmationResult);
         return "registration/confirmation";
     }
 
-    @GetMapping(path = "/sign-up/resend")
+    @GetMapping(path = "/signup/resend")
     public String openResendPage() {
+
         return "registration/resend";
     }
 
-    @PostMapping(path = "/sign-up/resend-link")
+    @PostMapping(path = "/signup/resend")
     public String resend(HttpServletRequest request, Model model) {
 
         String email = request.getParameter("email");
@@ -100,24 +98,60 @@ public class AccountController {
 
     @GetMapping("/login/reset")
     public String getResetPasswordPage() {
-        return "registration/reset-password";
+        return "registration/resetPassword";
     }
 
-    @PostMapping("/login/reset-password")
+    @PostMapping("/login/reset")
     public String resetPassword(HttpServletRequest request, Model model) {
 
         String email = request.getParameter("email");
 
         String resetResult = registrationService.resetPassword(email);
         model.addAttribute("resetResult", resetResult);
-        return "registration/reset-password";
+        return "registration/resetPassword";
     }
 
-    // TODO: LOGIN PAGE = forgot password
-    //  1. make email template for forgot password -> done
-    //  2. make new controller for login/reset?token= ->
-    //  3. link forgot-password page to the login-page (<a href> changes, y'know))) -> done
-    //  4. also don't forget to change emailSender (bc of the heading of income mails) -> done
+    @GetMapping(path = "/login/updatePassword")
+    public String showChangePasswordPage(@RequestParam(name = "token", required = false) String token, Model model) {
+
+        String result = registrationService.validatePasswordResetToken(token);
+
+        switch (result) {
+            case ("was already used"):
+                String invalidToken = "this reset link was already used. get a new one";
+                model.addAttribute("invalidToken", invalidToken);
+                return "registration/resetPassword";
+            case ("expired"):
+                invalidToken = "this reset link has expired. get a new one";
+                model.addAttribute("invalidToken", invalidToken);
+                return "registration/resetPassword";
+            default:
+                PasswordDTO passwordDTO = new PasswordDTO();
+                passwordDTO.setToken(token);
+                model.addAttribute("passwordDTO", passwordDTO);
+                model.addAttribute("token", token);
+                return "registration/updatePassword";
+        }
+    }
+
+    @PostMapping(path = "/login/updatePassword")
+    public String updatePassword(@ModelAttribute("passwordDTO") @Valid PasswordDTO passwordDTO,
+                                 BindingResult bindingResult, Model model) {
+
+        String token = passwordDTO.getToken();
+        model.addAttribute("token", token);
+
+        if (bindingResult.hasErrors()) {
+            return "registration/updatePassword";
+        } else {
+            String newPassword = passwordDTO.getNewPassword();
+            accountService.changePasswordByPasswordResetToken(token, newPassword);
+            String updateResult = "password has been successfully updated";
+            model.addAttribute("updateResult", updateResult);
+            return "registration/updatePassword";
+        }
+
+    }
 
     // TODO: /logout button for all pages
 

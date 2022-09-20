@@ -48,7 +48,7 @@ public class ProductController {
         } // Mapping of sorted product's list for modal window
 
         if (modalListProduct.stream().count() == 0) {
-            return "catalog/no-results.html";
+            return "catalog/nothing.html";
         }
 
         model.addAttribute("currentPage", pageNum);
@@ -150,21 +150,21 @@ public class ProductController {
         return "fragments/modal :: product-info";
     }
 
-    @GetMapping("/add-product")
+    @GetMapping("/addProduct")
     public String addProduct(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
 
-        return "catalog/add-product";
+        return "catalog/addProduct";
     }
 
-    @GetMapping("/edit-product/{productId}")
+    @GetMapping("/editProduct/{productId}")
     public String editProduct(Model model,
                               @PathVariable(name = "productId") Long productId) {
         Product product = productService.getProductById(productId);
         model.addAttribute("product", product);
 
-        return "catalog/edit-product";
+        return "catalog/editProduct";
     }
 
     @PostMapping("/save")

@@ -681,12 +681,12 @@ header {
     gap: 0.4rem;
 }
 
-.errors-block {
+.info-block {
     margin-top: 0.5rem;
     font-weight: 800;
 }
 
-.errors-block a {
+.info-block a {
     font-weight: 800;
     text-decoration: underline;
 }

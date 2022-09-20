@@ -4,6 +4,8 @@ import com.mypenbox.mpb.models.AccountDTO;
 import com.mypenbox.mpb.models.Account;
 import com.mypenbox.mpb.models.AccountAuthority;
 import com.mypenbox.mpb.registration.email.EmailSender;
+import com.mypenbox.mpb.registration.passwordReset.PasswordResetToken;
+import com.mypenbox.mpb.registration.passwordReset.PasswordResetTokenService;
 import com.mypenbox.mpb.registration.token.ConfirmationToken;
 import com.mypenbox.mpb.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,7 @@ public class RegistrationService implements IRegistrationService {
 
     private final AccountService accountService;
     private final ConfirmationTokenService confirmationTokenService;
+    private final PasswordResetTokenService passwordResetTokenService;
     private final EmailSender emailSender;
 
     public void register(AccountDTO accountDTO) {
@@ -38,7 +41,7 @@ public class RegistrationService implements IRegistrationService {
 
     public void sendToken(String token, Account account) {
 
-        String link = "http://localhost:8080/sign-up/confirm?token=" + token;
+        String link = "http://localhost:8080/signup/confirm?token=" + token;
         String subject = "complete registration";
         emailSender.send(account.getEmail(), buildConfirmationEmail(account.getFirstName(), link), subject);
 
@@ -46,7 +49,7 @@ public class RegistrationService implements IRegistrationService {
 
     public void sendPasswordToken(String token, Account account) {
 
-        String link = "http://localhost:8080/login/reset?token=" + token;
+        String link = "http://localhost:8080/login/updatePassword?token=" + token;
         String subject = "reset password";
         emailSender.send(account.getEmail(), buildResetPasswordEmail(account.getFirstName(), link), subject);
     }
@@ -88,7 +91,7 @@ public class RegistrationService implements IRegistrationService {
      public String resetPassword(String email) {
 
          Account account = accountService.findByEmail(email);
-         if (account == null) {
+         if (account == null || account.isEnabled() == false) {
          return "no user was found";
         }
 
@@ -214,6 +217,23 @@ public class RegistrationService implements IRegistrationService {
                 "</html>";
     }
 
+    public String validatePasswordResetToken(String token) {
+        PasswordResetToken passwordResetToken = passwordResetTokenService
+                .getToken(token)
+                .orElseThrow(() -> new IllegalStateException("token not found"));
+
+        if (passwordResetToken.getWasUsed() != false) {
+            return "was already used";
+        }
+
+        LocalDateTime expiresAt = passwordResetToken.getExpiresAt();
+        if (expiresAt.isBefore(LocalDateTime.now())) {
+            return "expired";
+        }
+
+        return "valid";
+    }
+
     private String buildResetPasswordEmail(String name, String link) {
         return "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
@@ -327,7 +347,7 @@ public class RegistrationService implements IRegistrationService {
                 "            </div>\n" +
                 "\n" +
                 "            <p>* link will expire after 24 hours</p><br>\n" +
-                "                <span>Ignore this email if you do remember your password," +
+                "                <span>Ignore this mail if you do remember your password," +
                 "            <br> or you have not made the request</span>\n" +
                 "        </div>\n" +
                 "    </div>\n" +

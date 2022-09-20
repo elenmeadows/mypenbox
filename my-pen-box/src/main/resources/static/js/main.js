@@ -256,12 +256,12 @@ function checkInputs(inputValue) {
     const trimmedInput = $.trim(inputValue.val());
 
     if (trimmedInput === '') {
-        $(".errors-block").text("None of these fields can be blank!");
+        $(".info-block").text("field(s) can't be blank!");
         inputValue.removeAttr("class").addClass("error");
     } else if (!isValid(trimmedInput)) {
         inputValue.removeAttr("class").addClass("error");
     } else {
-        $(".errors-block").text("");
+        $(".info-block").text("");
         inputValue.removeAttr("class");
     }
 }

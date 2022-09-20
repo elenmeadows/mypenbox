@@ -28,6 +28,8 @@ public class PasswordResetToken {
     @Column(nullable = false)
     private LocalDateTime expiresAt;
 
+    private Boolean wasUsed = false;
+
     @ManyToOne
     @JoinColumn(nullable = false, name = "account_id")
     private Account account;

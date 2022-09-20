@@ -671,7 +671,7 @@ header {
     stroke-linejoin: round;
 }
 
-.errors-block {
+.info-block {
     margin-top: 0.5rem;
     font-weight: 800;
 }

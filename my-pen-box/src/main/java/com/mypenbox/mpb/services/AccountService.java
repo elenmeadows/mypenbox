@@ -104,4 +104,20 @@ public class AccountService implements UserDetailsService {
         return accountRepository.enableAppUser(email);
     }
 
+    public int changePasswordByPasswordResetToken(String token, String password) {
+
+        PasswordResetToken passwordResetToken = passwordResetTokenService
+                .getToken(token)
+                .orElseThrow(() -> new IllegalStateException("token not found"));
+
+        Account account = passwordResetToken.getAccount();
+        changeAccountPassword(account, password);
+        return passwordResetTokenService.setWasUsed(token);
+    }
+
+    public void changeAccountPassword(Account account, String password) {
+        account.setPassword(bCryptPasswordEncoder.encode(password));
+        accountRepository.save(account);
+    }
+
 }

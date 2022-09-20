@@ -18,4 +18,8 @@ public class PasswordResetTokenService {
     public Optional<PasswordResetToken> getToken(String token) {
         return passwordResetTokenRepository.findByToken(token);
     }
+
+    public int setWasUsed(String token) {
+        return passwordResetTokenRepository.updateWasUsed(token);
+    }
 }
