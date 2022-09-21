@@ -478,7 +478,6 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 0.5rem;
 }
 
 .search__index {
@@ -1761,6 +1760,7 @@ input[type="range"] {
         justify-content: center;
         align-items: center;
         margin-bottom: 0.5rem;
+        border: 0.1rem solid var(--clr-primary);
         border-radius: 0.375rem;
     }
 
@@ -1799,10 +1799,12 @@ input[type="range"] {
     }
 
     .account-info__registered {
+        text-align: center;
         font-family: var(--ff-montserrat);
         font-size: 0.75rem;
         font-weight: 400;
         color: var(--clr-primary);
+        margin-top: 0.1rem;
     }
 
     .account-info__settings {
@@ -1827,8 +1829,6 @@ input[type="range"] {
 
     .laptop-settings {
         grid-area: laptop-settings;
-        grid-row-start: 5;
-        grid-row-end: 6;
         display: flex;
         flex-flow: row wrap;
         gap: 0.5rem;
