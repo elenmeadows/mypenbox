@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="en" dir="ltr">
 
 <head>
@@ -7,25 +9,33 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/js/jquery-3.6.0.js"></script>
 </head>
 
 <body>
 <div class="grid grid__index">
     <header>
         <a href="/" class="title">my pen-box</a>
-        <div class="header-links">
-            <a href="login.html" class="header-links__login">Log In</a>
-            <a href="sign-up.html" class="header-links__signup">Sign Up</a>
+        <div class="header-links" th:classappend="${#authentication.principal == 'anonymousUser'} ? '' : 'header-account-info'">
+            <div sec:authorize="isAnonymous()">
+                <a href="/login" class="header-links__login">Log In</a>
+                <a href="/signup" class="header-links__signup">Sign Up</a>
+            </div>
+            <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+                <span><b th:text="${#authentication.principal.getFirstName} + ' ' + ${#authentication.principal.getLastName}"></b></span><br>
+                <span th:text="'@' + ${#authentication.principal.getNickname}"></span>
+            </div>
         </div>
+        <div class="header-account-avatar" sec:authorize="hasAnyAuthority('USER', 'ADMIN')"></div>
         <div class="settings-icon">
             <div class="settings-icon__burger"></div>
         </div>
     </header>
     <div class="laptop-title"><a href="/">my pen-box</a></div>
     <div class="settings">
-        <a href="/feedback.html" class="settings__flex-feedback">Send Feedback</a>
+        <a href="#" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Edit account</a>
+        <a href="/logout" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Log out</a>
+        <a href="/feedback" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
         <a href="#" class="dark-mode settings__flex">dark mode</a>
@@ -36,8 +46,18 @@
     <div class="settings-background">
     </div>
 
-    <div class="laptop-settings laptop-settings__index">
-        <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+    <div class="account-info" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+        <a href="#" class="account-info__fullname" th:text="${#authentication.principal.getFirstName} + ' ' + ${#authentication.principal.getLastName}"></a>
+        <span class="account-info__nickname" th:text="'@' + ${#authentication.principal.getNickname}"></span>
+        <span class="account-info__registered">member since<br><span th:text="${#temporals.format(T(java.time.LocalDate).of(#dates.year(#authentication.principal.getJoinedDate), #dates.month(#authentication.principal.getJoinedDate), #dates.day(#authentication.principal.getJoinedDate)), 'MMMM d, yyyy', new java.util.Locale('en', 'EN'))}"></span></span>
+        <div class="account-info__settings">
+            <a href="edit.html">Edit account</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+
+    <div class="laptop-settings" th:classappend="${#authentication.principal == 'anonymousUser'} ? 'laptop-settings__index' : ''">
+        <a href="/feedback" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
         <a href="#" class="dark-mode settings__flex">dark mode</a>
@@ -72,6 +92,12 @@
         </form>
         <ul>
             <li><a href="/catalog">catalogue</a></li>
+            <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+                <li><a href="#">my pen-box</a></li>
+                <li><a href="#">my sets</a></li>
+                <li><a href="#">favourites</a></li>
+                <li><a href="#">wishlist</a></li>
+            </div>
         </ul>
     </nav>
 

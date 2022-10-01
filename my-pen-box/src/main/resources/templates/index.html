@@ -35,7 +35,7 @@
     <div class="settings">
         <a href="#" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Edit account</a>
         <a href="/logout" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Log out</a>
-        <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+        <a href="/feedback" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
         <a href="#" class="dark-mode settings__flex">dark mode</a>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="laptop-settings" th:classappend="${#authentication.principal == 'anonymousUser'} ? 'laptop-settings__index' : ''">
-        <a href="feedback.html" class="settings__flex-feedback">Send Feedback</a>
+        <a href="/feedback" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
         <a href="#" class="ru-language settings__flex">ru</a>
         <a href="#" class="dark-mode settings__flex">dark mode</a>
@@ -115,7 +115,7 @@
             Then manage it! Create your own sets of supplies, add them to wishlist and favourites, write notes,
             check their condition (maybe it's time to buy another one).. Sounds great, isn't it? ;)
         </p>
-        <div class="registration-buttons">
+        <div class="registration-buttons" sec:authorize="isAnonymous()">
             <a href="/login">Log In</a>
             <a href="/signup">Sign Up</a>
         </div>

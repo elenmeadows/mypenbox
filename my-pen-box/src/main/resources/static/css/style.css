@@ -1705,6 +1705,7 @@ input[type="range"] {
         width: 100%;
         height: fit-content;
         justify-content: center;
+        margin-bottom: 0.5rem;
     }
 
     .laptop-signup-login a {
@@ -1840,6 +1841,11 @@ input[type="range"] {
     .laptop-settings__index {
         grid-row-start: 4;
         grid-row-end: 5;
+    }
+
+    .laptop-settings__unregistered {
+        grid-row-start: 5;
+        grid-row-end: 6;
     }
 
     .laptop-settings a {

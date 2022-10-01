@@ -29,9 +29,14 @@ public class AccountController {
 
     @GetMapping("/signup")
     public String signUpForm(Model model) {
-        AccountDTO accountDTO = new AccountDTO();
-        model.addAttribute("account", accountDTO);
-        return "registration/signup";
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            AccountDTO accountDTO = new AccountDTO();
+            model.addAttribute("account", accountDTO);
+            return "registration/signup";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("/signup")
@@ -63,7 +68,12 @@ public class AccountController {
     @GetMapping(path = "/signup/resend")
     public String openResendPage() {
 
-        return "registration/resend";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "registration/resend";
+        }
+
+        return "redirect:/";
     }
 
     @PostMapping(path = "/signup/resend")
@@ -98,7 +108,13 @@ public class AccountController {
 
     @GetMapping("/login/reset")
     public String getResetPasswordPage() {
-        return "registration/resetPassword";
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "registration/resetPassword";
+        }
+
+        return "redirect:/";
     }
 
     @PostMapping("/login/reset")
@@ -141,15 +157,13 @@ public class AccountController {
         String token = passwordDTO.getToken();
         model.addAttribute("token", token);
 
-        if (bindingResult.hasErrors()) {
-            return "registration/updatePassword";
-        } else {
+        if (!bindingResult.hasErrors()) {
             String newPassword = passwordDTO.getNewPassword();
             accountService.changePasswordByPasswordResetToken(token, newPassword);
             String updateResult = "password has been successfully updated";
             model.addAttribute("updateResult", updateResult);
-            return "registration/updatePassword";
         }
+        return "registration/updatePassword";
 
     }
 
