@@ -158,13 +158,13 @@ public class ProductController {
         return "catalog/addProduct";
     }
 
-    @GetMapping("/editProduct/{productId}")
+    @GetMapping("/edit/{productId}")
     public String editProduct(Model model,
                               @PathVariable(name = "productId") Long productId) {
         Product product = productService.getProductById(productId);
         model.addAttribute("product", product);
 
-        return "catalog/editProduct";
+        return "catalog/edit";
     }
 
     @PostMapping("/save")

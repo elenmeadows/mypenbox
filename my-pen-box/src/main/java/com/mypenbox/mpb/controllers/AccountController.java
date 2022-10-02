@@ -1,7 +1,9 @@
 package com.mypenbox.mpb.controllers;
 
+import com.mypenbox.mpb.models.Account;
 import com.mypenbox.mpb.models.AccountDTO;
 import com.mypenbox.mpb.models.PasswordDTO;
+import com.mypenbox.mpb.models.Product;
 import com.mypenbox.mpb.services.AccountService;
 import com.mypenbox.mpb.services.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -12,10 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -164,13 +163,19 @@ public class AccountController {
             model.addAttribute("updateResult", updateResult);
         }
         return "registration/updatePassword";
-
     }
-
-    // TODO: /logout button for all pages
 
     @GetMapping(path = "/logout")
     public String returnMainPage() {
         return "index";
+    }
+
+    @GetMapping("/{nickname}/edit")
+    public String editAccount(Model model,
+                              @PathVariable(name = "nickname") String nickname) {
+        Account account = accountService.getAccountByNickname(nickname);
+        model.addAttribute("account", account);
+
+        return "account/edit";
     }
 }

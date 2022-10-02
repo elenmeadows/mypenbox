@@ -120,4 +120,8 @@ public class AccountService implements UserDetailsService {
         accountRepository.save(account);
     }
 
+    public Account getAccountByNickname(String nickname) {
+        return accountRepository.findByNickname(nickname).get();
+    }
+
 }

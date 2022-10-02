@@ -51,7 +51,7 @@
         <span class="account-info__nickname" th:text="'@' + ${#authentication.principal.getNickname}"></span>
         <span class="account-info__registered">member since<br><span th:text="${#temporals.format(T(java.time.LocalDate).of(#dates.year(#authentication.principal.getJoinedDate), #dates.month(#authentication.principal.getJoinedDate), #dates.day(#authentication.principal.getJoinedDate)), 'MMMM d, yyyy', new java.util.Locale('en', 'EN'))}"></span></span>
         <div class="account-info__settings">
-            <a href="edit.html">Edit account</a>
+            <a th:href="@{'/' + ${#authentication.principal.getNickname} + '/edit/'}">Edit account</a>
             <a href="/logout">Log out</a>
         </div>
     </div>
