@@ -160,9 +160,9 @@ $("table input:checkbox").click(function() {
 $(".modal-open").click(function () {
     let productId = $(this).attr("id").replace(/\D/g, ""); // Getting ID-number of product in row
     $.ajax({
-        url:'/modal?productId=' + productId,
+        url:'/modal?nav=default&productId=' + productId,
         success: function (data) {
-            $('#product-info').load('/modal?productId=' + productId);
+            $('#product-info').load('/modal?nav=default&productId=' + productId);
             $('#product-info').removeAttr('class').addClass(productId);
         }
     });
@@ -204,9 +204,9 @@ $(".prev-button").click(function () {
         productId = parseInt($("#product-info").attr("class"));
     }
     $.ajax({
-        url:'/modal-prev?productId=' + productId,
+        url:'/modal?nav=prev&productId=' + productId,
         success: function (data) {
-            $('#product-info').load('/modal-prev?productId=' + productId);
+            $('#product-info').load('/modal?nav=prev&productId=' + productId);
         }
         });
     $("#overlay").show();
@@ -221,9 +221,9 @@ $(".next-button").click(function () {
         productId = parseInt($("#product-info").attr("class"));
     }
     $.ajax({
-        url:'/modal-next?productId=' + productId,
+        url:'/modal?nav=next&productId=' + productId,
         success: function (data) {
-            $('#product-info').load('/modal-next?productId=' + productId);
+            $('#product-info').load('/modal?nav=next&productId=' + productId);
         }
     });
     $("#overlay").show();

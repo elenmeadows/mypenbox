@@ -47,15 +47,10 @@ public class ProductService {
     }
 
     public Product getProductById(Long id) {
-        return repo.findById(id).get();
+        return repo.findById(id).orElseThrow();
     }
 
     public void save(Product product) {
         repo.save(product);
     }
-
-//
-//    public void delete(long id) {
-//        repo.deleteById(id);
-//    }
 }

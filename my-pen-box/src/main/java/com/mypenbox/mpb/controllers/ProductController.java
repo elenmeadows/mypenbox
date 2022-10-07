@@ -68,25 +68,9 @@ public class ProductController {
     }
 
     @GetMapping("/modal")
-    public String productCard(Model model,
-                                     @Param("productId") Long productId) throws IOException {
-
-        Product productCard = productService.getProductById(productId);
-        model.addAttribute("colorname", productCard.getColorname());
-        model.addAttribute("colorswatch", productCard.getColorswatch());
-        model.addAttribute("brand", productCard.getBrand());
-        model.addAttribute("type", productCard.getType());
-        model.addAttribute("colormark", productCard.getColormark());
-
-        return "fragments/modal :: product-info";
-    }
-
-    @GetMapping("/modal-prev")
-    public String prevProductCard(Model model,
-                              @Param("productId") Long productId) throws IOException {
-
+    public String showProductCard(Model model, @Param("nav") String nav, @Param("productId") Long productId) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), new TypeReference<List<Product>>(){});
+        List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), new TypeReference<>() {});
 
         Product productCard = modalListProduct.stream()
                 .filter(product -> productId.equals(product.getId()))
@@ -94,44 +78,16 @@ public class ProductController {
                 .orElse(null);
 
         int productIndex = modalListProduct.indexOf(productCard);
-        if (productIndex != 0)
-            productIndex -= 1;
 
-
-        String id = modalListProduct.get(productIndex).getId().toString();
-        String colorname = modalListProduct.get(productIndex).getColorname();
-        String colorswatch = modalListProduct.get(productIndex).getColorswatch();
-        String brand = modalListProduct.get(productIndex).getBrand();
-        String type = modalListProduct.get(productIndex).getType();
-        String colormark = modalListProduct.get(productIndex).getColormark();
-
-        model.addAttribute("id", id);
-        model.addAttribute("colorname", colorname);
-        model.addAttribute("colorswatch", colorswatch);
-        model.addAttribute("brand", brand);
-        model.addAttribute("type", type);
-        model.addAttribute("colormark", colormark);
-
-        return "fragments/modal :: product-info";
-    }
-
-    @GetMapping("/modal-next")
-    public String nextProductCard(Model model,
-                                  @Param("productId") Long productId) throws IOException {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Product> modalListProduct = objectMapper.readValue(new File("my-pen-box/src/main/resources/json/modalListProduct.json"), new TypeReference<List<Product>>(){});
-
-        Product productCard = modalListProduct.stream()
-                .filter(product -> productId.equals(product.getId()))
-                .findAny()
-                .orElse(null);
-
-        int productIndex = modalListProduct.indexOf(productCard);
-        Long totalItems = modalListProduct.stream().count();
-        if (productIndex != totalItems)
-            productIndex += 1;
-
+        switch (nav) {
+            case "prev":
+                if (productIndex != 0) productIndex -= 1;
+                break;
+            case "next":
+                long totalItems = modalListProduct.size();
+                if (productIndex != (totalItems - 1)) productIndex += 1;
+                break;
+        }
 
         String id = modalListProduct.get(productIndex).getId().toString();
         String colorname = modalListProduct.get(productIndex).getColorname();
