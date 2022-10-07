@@ -33,7 +33,7 @@
     </header>
     <div class="laptop-title"><a href="/">my pen-box</a></div>
     <div class="settings">
-        <a href="#" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Edit account</a>
+        <a th:href="@{'/' + ${#authentication.principal.getNickname} + '/edit/'}" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Edit account</a>
         <a href="/logout" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Log out</a>
         <a href="/feedback" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>

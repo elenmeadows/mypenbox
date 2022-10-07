@@ -33,7 +33,7 @@
     </header>
     <div class="laptop-title"><a href="/">my pen-box</a></div>
     <div class="settings">
-        <a href="#" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Edit account</a>
+        <a th:href="@{'/' + ${#authentication.principal.getNickname} + '/edit/'}" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Edit account</a>
         <a href="/logout" class="settings__flex" sec:authorize="hasAnyAuthority('USER', 'ADMIN')">Log out</a>
         <a href="/feedback" class="settings__flex-feedback">Send Feedback</a>
         <a href="#" class="en-language settings__flex">en</a>
@@ -56,7 +56,7 @@
         <span class="account-info__nickname" th:text="'@' + ${#authentication.principal.getNickname}"></span>
         <span class="account-info__registered">member since<br><span th:text="${#temporals.format(T(java.time.LocalDate).of(#dates.year(#authentication.principal.getJoinedDate), #dates.month(#authentication.principal.getJoinedDate), #dates.day(#authentication.principal.getJoinedDate)), 'MMMM d, yyyy', new java.util.Locale('en', 'EN'))}"></span></span>
         <div class="account-info__settings">
-            <a href="edit.html">Edit account</a>
+            <a th:href="@{'/' + ${#authentication.principal.getNickname} + '/edit/'}">Edit account</a>
             <a href="/logout">Log out</a>
         </div>
     </div>
@@ -144,6 +144,6 @@
 </div>
 </div>
 </body>
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 
 </html>

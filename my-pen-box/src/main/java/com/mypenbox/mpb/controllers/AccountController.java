@@ -94,7 +94,7 @@ public class AccountController {
             return "registration/login";
         }
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping(path = "/login_failure")
